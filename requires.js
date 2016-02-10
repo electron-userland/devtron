@@ -1,6 +1,9 @@
 'use strict';
 
 const evalInWindow = (expression) => {
+  if (typeof expression === 'function') {
+    expression = `(${expression})()`
+  }
   return new Promise((resolve, reject) => {
     chrome.devtools.inspectedWindow.eval(expression, (result, error) => {
       if (error)
@@ -50,7 +53,9 @@ const loadRequire = (path) => {
 }
 
 const getRequirePaths = () => {
-  return evalInWindow('Object.keys(require.cache)')
+  return evalInWindow(() => {
+    return Object.keys(require.cache)
+  })
 }
 
 const getRequires = () => {
@@ -62,7 +67,7 @@ const getRequires = () => {
 }
 
 const getRequireGraph = () => {
-  var collector = '(' + (function () {
+  return evalInWindow(() => {
     var collectModules = function (module) {
       var name = module.filename
       if (name.indexOf(process.resourcesPath) === 0) {
@@ -74,6 +79,5 @@ const getRequireGraph = () => {
       }
     }
     return collectModules(process.mainModule)
-  }).toString() + ')()'
-  return evalInWindow(collector)
+  })
 }
