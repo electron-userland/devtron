@@ -114,16 +114,28 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Toggle children on click.
-  function click(d) {
-    if (d.children) {
-      d._children = d.children;
-      d.children = null;
-    } else {
-      d.children = d._children;
-      d._children = null;
+  function hideChildren (node) {
+    node._children = node.children;
+    node.children = null;
+
+    if (node._children) {
+      node._children.forEach(hideChildren)
     }
-    update(d);
+  }
+
+  function showChildren (node) {
+    node.children = node._children;
+    node._children = null;
+  }
+
+  // Toggle children on click.
+  function click(node) {
+    if (node.children) {
+      hideChildren(node)
+    } else {
+      showChildren(node)
+    }
+    update(node);
   }
 
   function color(d) {
@@ -133,6 +145,9 @@ document.addEventListener("DOMContentLoaded", function () {
   getRequireGraph().then(function (graph) {
     graph.x0 = 0;
     graph.y0 = 0;
+    graph.children.forEach(function (node) {
+      hideChildren(node)
+    })
     update(root = graph);
   })
 })
