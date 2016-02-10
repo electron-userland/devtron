@@ -64,8 +64,12 @@ const getRequires = () => {
 const getRequireGraph = () => {
   var collector = '(' + (function () {
     var collectModules = function (module) {
+      var name = module.filename
+      if (name.indexOf(process.resourcesPath) === 0) {
+        name = name.substring(process.resourcesPath.length + 1)
+      }
       return {
-        name: module.filename,
+        name: name,
         children: module.children.map(collectModules)
       }
     }
