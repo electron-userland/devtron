@@ -60,3 +60,16 @@ const getRequires = () => {
     }))
   })
 }
+
+const getRequireGraph = () => {
+  var collector = '(' + (function () {
+    var collectModules = function (module) {
+      return {
+        name: module.filename,
+        children: module.children.map(collectModules)
+      }
+    }
+    return collectModules(process.mainModule)
+  }).toString() + ')()'
+  return evalInWindow(collector)
+}
