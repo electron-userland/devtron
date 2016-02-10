@@ -16,7 +16,9 @@ const getBasename = (path) => {
 }
 
 const getLibraryName = (path) => {
-  if (/\/atom\.asar\//.test(path)) return 'electron'
+  if (/\/atom\.asar\/browser\//.test(path)) return 'electron-browser'
+  if (/\/atom\.asar\/common\//.test(path)) return 'electron-common'
+  if (/\/atom\.asar\/renderer\//.test(path)) return 'electron-renderer'
 
   const libraryPattern = /\/node_modules\/[^\/]+\//g
   let library = libraryPattern.exec(path)
