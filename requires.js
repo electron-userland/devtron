@@ -28,17 +28,35 @@ const getLibraryName = (path) => {
   return library
 }
 
+const getFileSize = (path) => {
+  return evalInWindow(`require('fs').statSyncNoException("${path}")`).then((stats) => {
+    if (stats) {
+      return stats.size
+    } else {
+      return -1
+    }
+  })
+}
+
+const loadRequire = (path) => {
+  return getFileSize(path).then(function (size) {
+    return {
+      name: getBasename(path),
+      library: getLibraryName(path),
+      path: path,
+      size: size
+    }
+  })
+}
+
 const getRequirePaths = () => {
   return evalInWindow('Object.keys(require.cache)')
 }
 
 const getRequires = () => {
   return getRequirePaths().then((paths) => {
-    return paths.map((path) => {
-      return {
-        name: getBasename(path),
-        library: getLibraryName(path)
-      }
-    })
+    return Promise.all(paths.map((path) => {
+      return loadRequire(path)
+    }))
   })
 }
