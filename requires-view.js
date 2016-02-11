@@ -1,21 +1,22 @@
 'use strict';
 
 document.addEventListener("DOMContentLoaded", function () {
-  getRequires().then((requires) => {
-    const table = document.querySelector('.js-requires-table')
-    requires.forEach((require) => {
+  const table = document.querySelector('.js-requires-table')
+
+  getRequires().then((modules) => {
+    modules.forEach((module) => {
       var row = document.createElement('tr')
 
       var nameTd = document.createElement('td')
-      nameTd.textContent = require.name
+      nameTd.textContent = module.getName()
       row.appendChild(nameTd)
 
       var sizeTd = document.createElement('td')
-      sizeTd.textContent = require.size
+      sizeTd.textContent = module.getSize()
       row.appendChild(sizeTd)
 
       var libTd = document.createElement('td')
-      libTd.textContent = require.library
+      libTd.textContent = module.getLibrary()
       row.appendChild(libTd)
 
       table.appendChild(row)

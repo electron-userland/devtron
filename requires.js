@@ -1,83 +1,62 @@
 'use strict';
 
-const evalInWindow = (expression) => {
-  if (typeof expression === 'function') {
-    expression = `(${expression})()`
+class Module {
+  constructor(path) {
+    this.path = path
+    this.size = -1
+    this.children = []
   }
-  return new Promise((resolve, reject) => {
-    chrome.devtools.inspectedWindow.eval(expression, (result, error) => {
-      if (error)
-        reject(error)
-      else
-        resolve(result)
+
+  setSize(size) {
+    this.size = size
+  }
+
+  getSize() {
+    return this.size
+  }
+
+  addChild(child) {
+    this.children.push(child)
+  }
+
+  getPath() {
+    return this.path
+  }
+
+  getName() {
+    return /\/([^\/]+)$/.exec(this.path)[1]
+  }
+
+  getLibrary() {
+    if (/\/atom\.asar\/browser\//.test(this.path)) return 'electron-browser'
+    if (/\/atom\.asar\/common\//.test(this.path)) return 'electron-common'
+    if (/\/atom\.asar\/renderer\//.test(this.path)) return 'electron-renderer'
+
+    const libraryPattern = /\/node_modules\/([^\/]+)(?=\/)/g
+    let match = libraryPattern.exec(path)
+    while (match != null) {
+      let library = match[1]
+      match = libraryPattern.exec(path)
+      if (match == null) return library
+    }
+  }
+}
+
+const initModules = () => {
+  return Eval.getRequirePaths().then((paths) => {
+    return paths.map((path) => new Module(path))
+  })
+}
+
+const loadSizes = (modules) => {
+  return Promise.all(modules.map((module) => {
+    return Eval.getFileSize(module.path).then((size) => {
+      module.setSize(size)
+      return module
     })
-  })
-}
-
-const getBasename = (path) => {
-  return /\/([^\/]+)$/.exec(path)[1]
-}
-
-const getLibraryName = (path) => {
-  if (/\/atom\.asar\/browser\//.test(path)) return 'electron-browser'
-  if (/\/atom\.asar\/common\//.test(path)) return 'electron-common'
-  if (/\/atom\.asar\/renderer\//.test(path)) return 'electron-renderer'
-
-  const libraryPattern = /\/node_modules\/[^\/]+\//g
-  let library = libraryPattern.exec(path)
-  while(library != null) {
-    library = libraryPattern.exec(path)
-  }
-  return library
-}
-
-const getFileSize = (path) => {
-  return evalInWindow(`require('fs').statSyncNoException("${path}")`).then((stats) => {
-    if (stats) {
-      return stats.size
-    } else {
-      return -1
-    }
-  })
-}
-
-const loadRequire = (path) => {
-  return getFileSize(path).then(function (size) {
-    return {
-      name: getBasename(path),
-      library: getLibraryName(path),
-      path: path,
-      size: size
-    }
-  })
-}
-
-const getRequirePaths = () => {
-  return evalInWindow(() => {
-    return Object.keys(require.cache)
-  })
+  }))
 }
 
 const getRequires = () => {
-  return getRequirePaths().then((paths) => {
-    return Promise.all(paths.map((path) => {
-      return loadRequire(path)
-    }))
-  })
-}
-
-const getRequireGraph = () => {
-  return evalInWindow(() => {
-    var collectModules = function (module) {
-      var name = module.filename
-      if (name.indexOf(process.resourcesPath) === 0) {
-        name = name.substring(process.resourcesPath.length + 1)
-      }
-      return {
-        name: name,
-        children: module.children.map(collectModules)
-      }
-    }
-    return collectModules(process.mainModule)
-  })
+  return initModules().then(loadSizes)
 }
