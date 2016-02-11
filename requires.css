@@ -1,18 +1,24 @@
-.node rect {
-  cursor: pointer;
-  fill: #fff;
-  fill-opacity: 1;
-  stroke: #3182bd;
-  stroke-width: 1.5px;
+.graph-entry {
+  cursor: default;
+  padding-left: 25px;
 }
 
-.node text {
-  font: 10px sans-serif;
-  pointer-events: none;
+.root-node {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-path.link {
-  fill: none;
-  stroke: #9ecae1;
-  stroke-width: 1.5px;
+.child-nodelist {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.node-box {
+  border: 1px solid #abcdef;
+  border-radius: 8px;
+  display: inline-block;
+  margin: 25px;
+  padding: 10px;
 }

@@ -73,13 +73,9 @@ const getRequireGraph = () => {
       if (name.indexOf(process.resourcesPath) === 0) {
         name = name.substring(process.resourcesPath.length + 1)
       }
-      var children = module.children.map(collectModules)
-      if (children.length === 0) {
-        children = null
-      }
       return {
         name: name,
-        children: children
+        children: module.children.map(collectModules)
       }
     }
     return collectModules(process.mainModule)
