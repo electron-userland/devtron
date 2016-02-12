@@ -30,6 +30,17 @@ class ModuleView {
     })
   }
 
+  getHumanizedSize() {
+    const size = this.module.getSize()
+    if (size > 1024 * 1024) {
+      return `${Math.round((size * 10) / (1024 * 1024)) / 10}M`
+    } else if (size > 1024) {
+      return `${Math.round((size * 10) / 1024) / 10}K`
+    } else {
+      return `${size}B`
+    }
+  }
+
   hide() {
     this.element.classList.add('hidden')
     this.children.forEach((child) => child.hide())
@@ -72,7 +83,7 @@ class ModuleView {
 
   render() {
     this.element.querySelector('.js-row-module').textContent = this.module.getLibrary()
-    this.element.querySelector('.js-row-size').textContent = this.module.getSize()
+    this.element.querySelector('.js-row-size').textContent = this.getHumanizedSize()
 
     if (this.module.hasChildren()) this.element.classList.add('has-children')
     this.element.querySelector('.js-row-name').textContent = this.module.getName()
