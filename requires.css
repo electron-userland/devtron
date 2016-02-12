@@ -2,8 +2,18 @@
   border-radius: 0;
 }
 
-table td:last-child {
+.row-file {
   width: 100%;
+}
+
+.row-module {
+  min-width: 140px;
+  max-width: 140px;
+}
+
+.row-size {
+  min-width: 70px;
+  max-width: 70px;
 }
 
 .disclosure-arrow {
