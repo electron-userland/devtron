@@ -1,24 +1,3 @@
-.graph-entry {
-  cursor: default;
-  padding-left: 25px;
-}
-
-.root-node {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.child-nodelist {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.node-box {
-  border: 1px solid #abcdef;
-  border-radius: 8px;
-  display: inline-block;
-  margin: 25px;
-  padding: 10px;
+.list-group-item:last-child, .list-group-item:first-child {
+  border-radius: 0;
 }
