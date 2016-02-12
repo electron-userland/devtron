@@ -87,6 +87,7 @@ class ModuleView {
 
     if (this.module.hasChildren()) this.element.classList.add('has-children')
     this.element.querySelector('.js-row-name').textContent = this.module.getName()
+    this.element.querySelector('.js-row-directory').textContent = this.module.getDirectory()
     this.element.querySelector('.js-row-file').style['padding-left'] = `${(this.module.getDepth()) * 15}px`
   }
 }

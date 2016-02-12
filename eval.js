@@ -28,12 +28,6 @@ class Eval {
     }, path)
   }
 
-  static getRequirePaths() {
-    return Eval.execute(() => {
-      const paths = Object.keys(require.cache)
-    })
-  }
-
   static getRequireGraph() {
     return Eval.execute(() => {
       const walkModule = (module) => {
@@ -42,7 +36,9 @@ class Eval {
           children: module.children.map(walkModule)
         }
       }
-      return walkModule(process.mainModule)
+      const mainModule = walkModule(process.mainModule)
+      mainModule.resourcesPath = process.resourcesPath
+      return mainModule
     })
   }
 }

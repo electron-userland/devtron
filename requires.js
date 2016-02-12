@@ -1,8 +1,9 @@
 'use strict';
 
 class Module {
-  constructor(path) {
+  constructor(path, resourcesPath) {
     this.path = path
+    this.resourcesPath = resourcesPath
     this.size = -1
     this.children = []
   }
@@ -41,6 +42,14 @@ class Module {
 
   getName() {
     return /\/([^\/]+)$/.exec(this.path)[1]
+  }
+
+  getDirectory() {
+    let directoryPath = /(.+)\/[^\/]+$/.exec(this.path)[1]
+    if (directoryPath.indexOf(this.resourcesPath) === 0) {
+      directoryPath = directoryPath.substring(this.resourcesPath.length + 1)
+    }
+    return directoryPath
   }
 
   getLibrary() {
@@ -87,8 +96,9 @@ const loadSizes = (mainModule) => {
 
 const loadRequireGraph = () => {
   return Eval.getRequireGraph().then((mainModule) => {
+    const resourcesPath = mainModule.resourcesPath
     const processModule = (node) => {
-      const module = new Module(node.path)
+      const module = new Module(node.path, resourcesPath)
       node.children.forEach((childNode) => {
         module.addChild(processModule(childNode))
       })

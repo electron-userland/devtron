@@ -48,7 +48,19 @@
   display: inline-block;
 }
 
-.table-striped > tbody > .require-row.active {
+.table-striped > tbody > .require-row.active,
+.table-striped > tbody > .require-row.active .row-directory {
   background-color: #116cd6;
   color: #fff;
+}
+
+.row-directory {
+  color: #bbb;
+  display: inline-block;
+  margin-left: 5px;
+}
+
+.row-directory:before {
+  content: '-';
+  padding-right: 5px;
 }
