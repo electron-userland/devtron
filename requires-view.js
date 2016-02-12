@@ -19,10 +19,6 @@ document.addEventListener("DOMContentLoaded", function () {
       libTd.textContent = module.getLibrary()
       row.appendChild(libTd)
 
-      var parentTd = document.createElement('td')
-      parentTd.textContent = module.getParentLibrary()
-      row.appendChild(parentTd)
-
       table.appendChild(row)
 
       module.children.forEach(addView)

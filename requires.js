@@ -45,10 +45,6 @@ class Module {
     return 'app'
   }
 
-  getParentLibrary() {
-    this.parent ? this.parent.getLibrary() : undefined
-  }
-
   visit(callback) {
     callback(this)
     this.children.forEach((child) => child.visit(callback))
