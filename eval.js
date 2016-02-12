@@ -30,7 +30,19 @@ class Eval {
 
   static getRequirePaths() {
     return Eval.execute(() => {
-      return Object.keys(require.cache)
+      const paths = Object.keys(require.cache)
+    })
+  }
+
+  static getRequireGraph() {
+    return Eval.execute(() => {
+      const walkModule = (module) => {
+        return {
+          path: module.filename,
+          children: module.children.map(walkModule)
+        }
+      }
+      return walkModule(process.mainModule)
     })
   }
 }

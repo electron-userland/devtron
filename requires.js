@@ -9,6 +9,7 @@ class Module {
 
   setSize(size) {
     this.size = size
+    return this
   }
 
   getSize() {
@@ -17,6 +18,7 @@ class Module {
 
   addChild(child) {
     this.children.push(child)
+    child.parent = this
   }
 
   getPath() {
@@ -33,30 +35,60 @@ class Module {
     if (/\/atom\.asar\/renderer\//.test(this.path)) return 'electron-renderer'
 
     const libraryPattern = /\/node_modules\/([^\/]+)(?=\/)/g
-    let match = libraryPattern.exec(path)
+    let match = libraryPattern.exec(this.path)
     while (match != null) {
       let library = match[1]
-      match = libraryPattern.exec(path)
+      match = libraryPattern.exec(this.path)
       if (match == null) return library
     }
+
+    return 'app'
+  }
+
+  getParentLibrary() {
+    this.parent ? this.parent.getLibrary() : undefined
+  }
+
+  visit(callback) {
+    callback(this)
+    this.children.forEach((child) => child.visit(callback))
+  }
+
+  toArray() {
+    const modules = []
+    this.visit((module) => modules.push(module))
+    return modules
   }
 }
 
 const initModules = () => {
   return Eval.getRequirePaths().then((paths) => {
-    return paths.map((path) => new Module(path))
+    const modules = {}
+    paths.forEach((path) => modules[path] = new Module(path))
+    return modules
   })
 }
 
-const loadSizes = (modules) => {
-  return Promise.all(modules.map((module) => {
-    return Eval.getFileSize(module.path).then((size) => {
-      module.setSize(size)
+const loadSizes = (mainModule) => {
+  return Promise.all(mainModule.toArray().map((module) => {
+    return Eval.getFileSize(module.path).then((size) => module.setSize(size))
+  })).then(() => mainModule)
+}
+
+const loadRequireGraph = () => {
+  return Eval.getRequireGraph().then((mainModule) => {
+    const processModule = (node) => {
+      const module = new Module(node.path)
+      node.children.forEach((childNode) => {
+        module.addChild(processModule(childNode))
+      })
       return module
-    })
-  }))
+    }
+
+    return processModule(mainModule)
+  })
 }
 
 const getRequires = () => {
-  return initModules().then(loadSizes)
+  return loadRequireGraph().then(loadSizes)
 }
