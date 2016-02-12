@@ -4,19 +4,18 @@ class ModuleView {
   constructor(module, table) {
     this.module = module
     this.table = table
-    this.expanded = false
-    this.element = document.importNode(document.querySelector('#js-requires-table-row').content, true).firstElementChild
+    this.element = this.createElement()
     this.disclosure = this.element.querySelector('.js-disclosure')
+
     table.appendChild(this.element)
     this.render()
-    this.handleEvents()
     this.children = this.module.children.map((child) => new ModuleView(child, table))
+    this.module.getDepth() === 1 ? this.expand() : this.collapse()
+  }
 
-    if (this.module.getDepth() === 1) {
-      this.expand()
-    } else {
-      this.collapse()
-    }
+  createElement() {
+    const template = document.querySelector('#js-requires-table-row').content
+    return document.importNode(template, true).firstElementChild
   }
 
   handleEvents() {
