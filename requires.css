@@ -1,3 +1,7 @@
 .list-group-item:last-child, .list-group-item:first-child {
   border-radius: 0;
 }
+
+table td:last-child {
+  width: 100%;
+}

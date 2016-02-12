@@ -7,17 +7,19 @@ document.addEventListener("DOMContentLoaded", function () {
     const addView = (module) => {
       var row = document.createElement('tr')
 
-      var nameTd = document.createElement('td')
-      nameTd.textContent = module.getName()
-      row.appendChild(nameTd)
+      var libTd = document.createElement('td')
+      libTd.textContent = module.getLibrary()
+      row.appendChild(libTd)
 
       var sizeTd = document.createElement('td')
       sizeTd.textContent = module.getSize()
       row.appendChild(sizeTd)
 
-      var libTd = document.createElement('td')
-      libTd.textContent = module.getLibrary()
-      row.appendChild(libTd)
+      var nameTd = document.createElement('td')
+      var prefix = module.hasChildren() ? '+' : ''
+      nameTd.textContent = `${prefix} ${module.getName()}`
+      nameTd.style['padding-left'] = `${(module.getDepth()) * 15}px`
+      row.appendChild(nameTd)
 
       table.appendChild(row)
 

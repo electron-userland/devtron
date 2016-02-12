@@ -16,6 +16,10 @@ class Module {
     return this.size
   }
 
+  hasChildren() {
+    return this.children.length > 0
+  }
+
   addChild(child) {
     this.children.push(child)
     child.parent = this
@@ -23,6 +27,16 @@ class Module {
 
   getPath() {
     return this.path
+  }
+
+  getDepth() {
+    let depth = 1
+    let parent = this.parent
+    while(parent != null) {
+      depth++
+      parent = parent.parent
+    }
+    return depth
   }
 
   getName() {
