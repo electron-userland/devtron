@@ -28,6 +28,10 @@
 	border-left: 7px solid #aaa;
 }
 
+.require-row.active .disclosure-arrow {
+  border-left-color: #fff;
+}
+
 .disclosure-arrow-expanded {
   border-top: 7px solid #aaa;
   border-right: 4px solid transparent;
@@ -35,6 +39,16 @@
   border-left: 4px solid transparent;
 }
 
+.require-row.active .disclosure-arrow-expanded {
+  border-left-color: transparent;
+  border-top-color: #fff;
+}
+
 .has-children .disclosure-arrow {
   display: inline-block;
+}
+
+.table-striped > tbody > .require-row.active {
+  background-color: #116cd6;
+  color: #fff;
 }

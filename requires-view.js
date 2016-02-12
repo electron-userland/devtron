@@ -3,6 +3,7 @@
 class ModuleView {
   constructor(module, table) {
     this.module = module
+    this.table = table
     this.expanded = false
     this.element = document.importNode(document.querySelector('#js-requires-table-row').content, true).firstElementChild
     this.disclosure = this.element.querySelector('.js-disclosure')
@@ -20,6 +21,13 @@ class ModuleView {
 
   handleEvents() {
     this.element.querySelector('.js-disclosure').addEventListener('click', () => this.toggleExpansion())
+    this.table.addEventListener('mousedown', (event) => {
+      if (this.element.contains(event.target)) {
+        this.select()
+      } else {
+        this.deselect()
+      }
+    })
   }
 
   hide() {
@@ -32,6 +40,14 @@ class ModuleView {
     if (this.expanded) {
       this.children.forEach((child) => child.show())
     }
+  }
+
+  select() {
+    this.element.classList.add('active')
+  }
+
+  deselect() {
+    this.element.classList.remove('active')
   }
 
   toggleExpansion() {
@@ -64,9 +80,10 @@ class ModuleView {
   }
 }
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
   getRequires().then((mainModule) => {
     const table = document.querySelector('.js-requires-table')
-    new ModuleView(mainModule, table)
+    let selectedView = new ModuleView(mainModule, table)
+    selectedView.select()
   })
 });
