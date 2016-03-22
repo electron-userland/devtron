@@ -30,7 +30,6 @@ class Eval {
         return {
           path: module.filename,
           children: module.children.map(walkModule),
-
         }
       }
       const mainModule = walkModule(process.mainModule)

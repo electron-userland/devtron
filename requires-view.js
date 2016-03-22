@@ -11,6 +11,7 @@ class ModuleView {
     this.render()
     this.children = this.module.children.map((child) => new ModuleView(child, table))
     this.module.getDepth() === 1 ? this.expand() : this.collapse()
+    this.handleEvents()
   }
 
   createElement() {
@@ -19,7 +20,7 @@ class ModuleView {
   }
 
   handleEvents() {
-    this.element.querySelector('.js-disclosure').addEventListener('click', () => this.toggleExpansion())
+    this.disclosure.addEventListener('click', () => this.toggleExpansion())
     this.table.addEventListener('mousedown', (event) => {
       if (this.element.contains(event.target)) {
         this.select()
