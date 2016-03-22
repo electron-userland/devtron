@@ -20,11 +20,7 @@ class Eval {
   static getFileSize(path) {
     return Eval.execute((path) => {
       const stats = require('fs').statSyncNoException(path)
-      if (stats) {
-        return stats.size
-      } else {
-        return -1
-      }
+      return stats ? stats.size : -1
     }, path)
   }
 
@@ -33,11 +29,13 @@ class Eval {
       const walkModule = (module) => {
         return {
           path: module.filename,
-          children: module.children.map(walkModule)
+          children: module.children.map(walkModule),
+
         }
       }
       const mainModule = walkModule(process.mainModule)
       mainModule.resourcesPath = process.resourcesPath
+      mainModule.appName = require('electron').remote.app.getName()
       return mainModule
     })
   }

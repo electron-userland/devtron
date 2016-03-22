@@ -1,9 +1,10 @@
 'use strict';
 
 class Module {
-  constructor(path, resourcesPath) {
+  constructor(path, resourcesPath, appName) {
     this.path = path
     this.resourcesPath = resourcesPath
+    this.appName = appName
     this.size = -1
     this.children = []
   }
@@ -53,9 +54,7 @@ class Module {
   }
 
   getLibrary() {
-    if (/\/atom\.asar\/browser\//.test(this.path)) return 'electron-browser'
-    if (/\/atom\.asar\/common\//.test(this.path)) return 'electron-common'
-    if (/\/atom\.asar\/renderer\//.test(this.path)) return 'electron-renderer'
+    if (/\/atom\.asar\/(browser|common|renderer)\//.test(this.path)) return 'electron'
 
     const libraryPattern = /\/node_modules\/([^\/]+)(?=\/)/g
     let match = libraryPattern.exec(this.path)
@@ -65,7 +64,7 @@ class Module {
       if (match == null) return library
     }
 
-    return 'app'
+    return this.appName
   }
 
   visit(callback) {
@@ -80,14 +79,6 @@ class Module {
   }
 }
 
-const initModules = () => {
-  return Eval.getRequirePaths().then((paths) => {
-    const modules = {}
-    paths.forEach((path) => modules[path] = new Module(path))
-    return modules
-  })
-}
-
 const loadSizes = (mainModule) => {
   return Promise.all(mainModule.toArray().map((module) => {
     return Eval.getFileSize(module.path).then((size) => module.setSize(size))
@@ -97,8 +88,9 @@ const loadSizes = (mainModule) => {
 const loadRequireGraph = () => {
   return Eval.getRequireGraph().then((mainModule) => {
     const resourcesPath = mainModule.resourcesPath
+    const appName = mainModule.appName
     const processModule = (node) => {
-      const module = new Module(node.path, resourcesPath)
+      const module = new Module(node.path, resourcesPath, appName)
       node.children.forEach((childNode) => {
         module.addChild(processModule(childNode))
       })
