@@ -22,10 +22,11 @@
   margin-right: 5px;
   display: none;
 
-	border-top: 4px solid transparent;
+  border-top: 4px solid transparent;
   border-right: 0;
-	border-bottom: 4px solid transparent;
-	border-left: 7px solid #aaa;
+  border-bottom: 4px solid transparent;
+  border-left: 7px solid #aaa;
+  width: 8px;
 }
 
 .require-row.active .disclosure-arrow {
