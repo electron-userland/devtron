@@ -22,7 +22,7 @@ class ModuleView extends View {
       else
         this.deselect()
     })
-    window.addEventListener('keydown', (event) => {
+    this.table.addEventListener('keydown', (event) => {
       if (!this.selected) return
 
       switch (event.code) {
