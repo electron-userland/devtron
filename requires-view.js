@@ -22,16 +22,26 @@ class ModuleView extends View {
       else
         this.deselect()
     })
-    window.addEventListener('keydown', ({code: code}) => {
+    window.addEventListener('keydown', (event) => {
       if (!this.selected) return
 
-      switch (code) {
+      switch (event.code) {
+        case 'ArrowDown':
+          this.selectNext()
+          event.stopImmediatePropagation()
+          break
         case 'ArrowLeft':
           this.collapse()
-          break;
+          event.stopImmediatePropagation()
+          break
         case 'ArrowRight':
           this.expand()
-          break;
+          event.stopImmediatePropagation()
+          break
+        case 'ArrowUp':
+          this.selectPrevious()
+          event.stopImmediatePropagation()
+          break
       }
     })
   }
@@ -47,6 +57,10 @@ class ModuleView extends View {
     }
   }
 
+  isHidden() {
+    return this.element.classList.contains('hidden')
+  }
+
   hide() {
     this.element.classList.add('hidden')
     this.children.forEach((child) => child.hide())
@@ -54,9 +68,8 @@ class ModuleView extends View {
 
   show() {
     this.element.classList.remove('hidden')
-    if (this.expanded) {
+    if (this.expanded)
       this.children.forEach((child) => child.show())
-    }
   }
 
   select() {
@@ -67,6 +80,32 @@ class ModuleView extends View {
   deselect() {
     this.selected = false
     this.element.classList.remove('active')
+  }
+
+  selectNext() {
+    let next = this.element.nextElementSibling
+    while (next && (next.view instanceof ModuleView)) {
+      if (next.view.isHidden()) {
+        next = next.nextElementSibling
+        continue
+      }
+      this.deselect()
+      next.view.select()
+      break
+    }
+  }
+
+  selectPrevious() {
+    let previous = this.element.previousElementSibling
+    while (previous && (previous.view instanceof ModuleView)) {
+      if (previous.view.isHidden()) {
+        previous = previous.previousElementSibling
+        continue
+      }
+      this.deselect()
+      previous.view.select()
+      break
+    }
   }
 
   toggleExpansion() {

@@ -4,6 +4,7 @@ class View {
   constructor(viewId) {
     this.id = viewId
     this.element = this.createElement()
+    this.element.view = this
     this.bindFields()
   }
 
