@@ -17,10 +17,21 @@ class ModuleView extends View {
   handleEvents() {
     this.disclosure.addEventListener('click', () => this.toggleExpansion())
     this.table.addEventListener('mousedown', (event) => {
-      if (this.element.contains(event.target)) {
+      if (this.element.contains(event.target))
         this.select()
-      } else {
+      else
         this.deselect()
+    })
+    window.addEventListener('keydown', ({code: code}) => {
+      if (!this.selected) return
+
+      switch (code) {
+        case 'ArrowLeft':
+          this.collapse()
+          break;
+        case 'ArrowRight':
+          this.expand()
+          break;
       }
     })
   }
@@ -49,10 +60,12 @@ class ModuleView extends View {
   }
 
   select() {
+    this.selected = true
     this.element.classList.add('active')
   }
 
   deselect() {
+    this.selected = false
     this.element.classList.remove('active')
   }
 
