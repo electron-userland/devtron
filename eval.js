@@ -24,8 +24,24 @@ class Eval {
     }, path)
   }
 
-  static getRequireGraph() {
+  static getRenderRequireGraph() {
     return Eval.execute(() => {
+      const walkModule = (module) => {
+        return {
+          path: module.filename,
+          children: module.children.map(walkModule),
+        }
+      }
+      const mainModule = walkModule(process.mainModule)
+      mainModule.resourcesPath = process.resourcesPath
+      mainModule.appName = require('electron').remote.app.getName()
+      return mainModule
+    })
+  }
+
+  static getMainRequireGraph() {
+    return Eval.execute(() => {
+      let process = require('electron').remote.process
       const walkModule = (module) => {
         return {
           path: module.filename,

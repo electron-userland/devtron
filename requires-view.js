@@ -23,7 +23,7 @@ class ModuleView extends View {
       else
         this.deselect()
     })
-    this.table.addEventListener('keydown', (event) => {
+    this.table.parentElement.addEventListener('keydown', (event) => {
       if (!this.selected) return
 
       switch (event.code) {
@@ -147,8 +147,14 @@ class ModuleView extends View {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  getRequires().then((mainModule) => {
-    const table = document.querySelector('.js-requires-table')
+  getRenderModules().then((mainModule) => {
+    const table = document.querySelector('.js-render-requires-table')
+    let selectedView = new ModuleView(mainModule, table)
+    selectedView.select()
+  })
+
+  getMainModules().then((mainModule) => {
+    const table = document.querySelector('.js-main-requires-table')
     let selectedView = new ModuleView(mainModule, table)
     selectedView.select()
   })
