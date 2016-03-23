@@ -1,22 +1,17 @@
 'use strict';
 
-class ModuleView {
+class ModuleView extends View {
   constructor(module, table) {
+    super('js-requires-table-row')
+
     this.module = module
     this.table = table
-    this.element = this.createElement()
-    this.disclosure = this.element.querySelector('.js-disclosure')
 
     table.appendChild(this.element)
     this.render()
     this.children = this.module.children.map((child) => new ModuleView(child, table))
     this.module.getDepth() === 1 ? this.expand() : this.collapse()
     this.handleEvents()
-  }
-
-  createElement() {
-    const template = document.querySelector('#js-requires-table-row').content
-    return document.importNode(template, true).firstElementChild
   }
 
   handleEvents() {
@@ -82,13 +77,13 @@ class ModuleView {
   }
 
   render() {
-    this.element.querySelector('.js-row-module').textContent = this.module.getLibrary()
-    this.element.querySelector('.js-row-size').textContent = this.getHumanizedSize()
+    this.moduleName.textContent = this.module.getLibrary()
+    this.fileSize.textContent = this.getHumanizedSize()
 
     if (this.module.hasChildren()) this.element.classList.add('has-children')
-    this.element.querySelector('.js-row-name').textContent = this.module.getName()
-    this.element.querySelector('.js-row-directory').textContent = this.module.getDirectory()
-    this.element.querySelector('.js-row-file').style['padding-left'] = `${(this.module.getDepth()) * 15}px`
+    this.fileName.textContent = this.module.getName()
+    this.moduleDirectory.textContent = this.module.getDirectory()
+    this.pathSection.style['padding-left'] = `${(this.module.getDepth()) * 15}px`
   }
 }
 

@@ -6,6 +6,7 @@
     <script src="eval.js" charset="utf-8"></script>
     <script src="requires.js" charset="utf-8"></script>
     <script src="loader.js" charset="utf-8"></script>
+    <script src="view.js" charset="utf-8"></script>
     <script src="requires-view.js" charset="utf-8"></script>
     <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="vendor/photon/css/photon.min.css">
@@ -32,12 +33,12 @@
               <tbody class="js-requires-table">
                 <template id="js-requires-table-row">
                   <tr class="require-row">
-                    <td class="row-module js-row-module"></td>
-                    <td class="row-size js-row-size"></td>
-                    <td class="row-file js-row-file">
-                      <span class="js-disclosure disclosure-arrow"></span>
-                      <span class="js-row-name"></span>
-                      <span class="row-directory js-row-directory"></span>
+                    <td class="row-module" data-field="moduleName"></td>
+                    <td class="row-size" data-field="fileSize"></td>
+                    <td class="row-file" data-field="pathSection">
+                      <span class="disclosure-arrow" data-field="disclosure"></span>
+                      <span data-field="fileName"></span>
+                      <span class="row-directory" data-field="moduleDirectory"></span>
                     </td>
                   </tr>
                 </template>
