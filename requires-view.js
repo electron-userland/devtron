@@ -1,15 +1,16 @@
 'use strict';
 
 class ModuleView extends View {
-  constructor(module, table) {
+  constructor(module, table, parent) {
     super('js-requires-table-row')
 
+    this.parent = parent
     this.module = module
     this.table = table
 
     table.appendChild(this.element)
     this.render()
-    this.children = this.module.children.map((child) => new ModuleView(child, table))
+    this.children = this.module.children.map((child) => new ModuleView(child, table, this))
     this.module.getDepth() === 1 ? this.expand() : this.collapse()
     this.handleEvents()
   }
@@ -31,7 +32,13 @@ class ModuleView extends View {
           event.stopImmediatePropagation()
           break
         case 'ArrowLeft':
-          this.collapse()
+          if (this.expanded)
+            this.collapse()
+          else if (this.parent && this.parent.expanded) {
+            this.deselect()
+            this.parent.collapse()
+            this.parent.select()
+          }
           event.stopImmediatePropagation()
           break
         case 'ArrowRight':
