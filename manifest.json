@@ -1,5 +1,5 @@
 {
   "name": "devtron",
   "version": "1.0",
-  "devtools_page": "index.html"
+  "devtools_page": "static/index.html"
 }
