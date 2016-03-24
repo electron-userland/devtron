@@ -1,7 +1,7 @@
 const Eval = require('../lib/eval')
 const vm = require('vm')
 
-describe('eval', () => {
+describe('Eval', () => {
   beforeEach(() => {
     global.chrome = {
       devtools: {
