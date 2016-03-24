@@ -1,16 +1,23 @@
 const Eval = require('../lib/eval')
 const vm = require('vm')
 
+const describe = global.describe
+const it = global.it
+const beforeEach = global.beforeEach
+const afterEach = global.afterEach
+
 describe('Eval', () => {
   beforeEach(() => {
-    global.chrome = {
-      devtools: {
-        inspectedWindow: {
-          eval: (expression, callback) => {
-            try {
-              callback(vm.runInNewContext(expression))
-            } catch (error) {
-              callback(null, error)
+    global.window = {
+      chrome: {
+        devtools: {
+          inspectedWindow: {
+            eval: (expression, callback) => {
+              try {
+                callback(vm.runInNewContext(expression))
+              } catch (error) {
+                callback(null, error)
+              }
             }
           }
         }
@@ -19,7 +26,7 @@ describe('Eval', () => {
   })
 
   afterEach(() => {
-    delete global.chrome
+    delete global.window
   })
 
   describe('execute(expression, ...args)', () => {

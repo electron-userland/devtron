@@ -1,4 +1,8 @@
 const Module = require('../lib/module')
+const expect = require('chai').expect
+
+const describe = global.describe
+const it = global.it
 
 describe('Module', () => {
   describe('main module', () => {
