@@ -10,7 +10,7 @@ describe('Eval', () => {
             try {
               callback(vm.runInNewContext(expression))
             } catch (error) {
-              callback(null, Promise.reject(error))
+              callback(null, error)
             }
           }
         }
@@ -27,6 +27,10 @@ describe('Eval', () => {
       return Eval.execute('1+1').should.eventually.equal(2)
     })
 
+    it('returns a rejected promise on errors', () => {
+      return Eval.execute('+-').should.be.rejected
+    })
+
     it('accepts a function with no arguments', () => {
       return Eval.execute(() => 3).should.eventually.equal(3)
     })
@@ -34,5 +38,7 @@ describe('Eval', () => {
     it('accepts a function with arguments', () => {
       return Eval.execute((x, y) => x + y, 1, 2).should.eventually.equal(3)
     })
+
+
   })
 })
