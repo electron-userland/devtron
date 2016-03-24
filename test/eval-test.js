@@ -38,7 +38,5 @@ describe('Eval', () => {
     it('accepts a function with arguments', () => {
       return Eval.execute((x, y) => x + y, 1, 2).should.eventually.equal(3)
     })
-
-
   })
 })
