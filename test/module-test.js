@@ -1,4 +1,3 @@
-const expect = require('chai').expect
 const Module = require('../lib/module')
 
 describe('Module', () => {
