@@ -2,65 +2,9 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>requires</title>
-    <link rel="stylesheet" href="../vendor/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../vendor/photon/css/photon.min.css">
-    <link rel="stylesheet" href="devtron.css">
-    <script src="../out/index.js" charset="utf-8"></script>
+    <title>devtron</title>
+    <script>
+      chrome.devtools.panels.create('Devtron', 'devtron.png', 'static/index.html')
+    </script>
   </head>
-  <body>
-    <div class="window">
-      <div class="window-content">
-        <div class="pane-group">
-          <div class="pane pane-sm sidebar">
-            <ul class="list-group">
-              <li class="list-group-item active">
-                Require Graph
-              </li>
-            </ul>
-          </div>
-          <div class="pane">
-            <div class="tab-group">
-              <div class="tab-item active js-render-process-tab">
-                Renderer Process
-              </div>
-              <div class="tab-item js-main-process-tab">
-                Main Process
-              </div>
-            </div>
-            <table class="js-render-process-table table-striped" tabindex="-1">
-              <thead>
-                <th>Module</th>
-                <th>Size</th>
-                <th>File</th>
-              </thead>
-              <tbody class="js-render-requires-table">
-              </tbody>
-            </table>
-            <table class="js-main-process-table table-striped hidden" tabindex="-1">
-              <thead>
-                <th>Module</th>
-                <th>Size</th>
-                <th>File</th>
-              </thead>
-              <tbody class="js-main-requires-table">
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <template id="js-requires-table-row">
-      <tr class="require-row">
-        <td class="row-module" data-field="moduleName"></td>
-        <td class="row-size" data-field="fileSize"></td>
-        <td class="row-file" data-field="pathSection">
-          <span class="disclosure-arrow" data-field="disclosure"></span>
-          <span data-field="fileName"></span>
-          <span class="row-directory" data-field="moduleDirectory"></span>
-        </td>
-      </tr>
-    </template>
-  </body>
 </html>
