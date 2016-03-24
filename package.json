@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Electron Developer Tools Extension",
   "scripts": {
-    "install": "browserify lib/*.js -o lib/index.js --ignore-missing --entry lib/startup.js"
+    "install": "browserify lib/*.js -o lib/index.js --ignore-missing --entry lib/startup.js",
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -16,6 +17,8 @@
   },
   "homepage": "https://github.com/kevinsawicki/devtron#readme",
   "devDependencies": {
-    "browserify": "^13.0.0"
+    "browserify": "^13.0.0",
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5"
   }
 }
