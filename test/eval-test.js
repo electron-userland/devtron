@@ -22,7 +22,7 @@ describe('eval', () => {
     delete global.chrome
   })
 
-  describe('execute(expression, args)', () => {
+  describe('execute(expression, ...args)', () => {
     it('returns a promise that resolves to the value of the specified expression', () => {
       return Eval.execute('1+1').should.eventually.equal(2)
     })
