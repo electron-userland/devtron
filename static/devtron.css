@@ -2,6 +2,17 @@
   border-radius: 0;
 }
 
+.list-group-item {
+  background: transparent;
+  border-bottom-width: 0;
+  border-left-width: 0;
+  border-right-width: 0;
+}
+
+.list-group-item.active:hover {
+  background-color: #116cd6;
+}
+
 .row-file {
   width: 100%;
 }
