@@ -1,4 +1,4 @@
-# Devtools - An Electron Dev Tools Extension
+# devtron - An Electron Dev Tools Extension
 
 ## Setup
 
