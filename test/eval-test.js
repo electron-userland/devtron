@@ -71,7 +71,7 @@ describe('Eval', () => {
       return Eval.getFileVersion(path.join(__dirname, 'fixtures', 'node_modules', 'foo', 'index.js')).should.eventually.equal('1.2.3')
     })
 
-    it('returns the electron version for paths inside the api asar filed', () => {
+    it('returns the electron version for paths inside the api asar file', () => {
       return Eval.getFileVersion('/Electron.app/Contents/Resources/atom.asar/renderer/init.js').should.eventually.equal('1.0.0')
     })
   })
