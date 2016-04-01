@@ -70,6 +70,16 @@ table:focus {
   outline: 0 none;
 }
 
+.table-scroller {
+  display: block;
+  overflow: scroll;
+  position: absolute;
+  top: 26px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
 .row-directory {
   color: #bbb;
   display: inline-block;
