@@ -1,3 +1,5 @@
+'use strict'
+
 const Eval = require('../lib/eval')
 const path = require('path')
 const vm = require('vm')
@@ -14,8 +16,14 @@ describe('Eval', () => {
         devtools: {
           inspectedWindow: {
             eval: (expression, callback) => {
+              expression = `'use strict';\n${expression}`
               try {
-                callback(vm.runInNewContext(expression, {require: require}))
+                let sandbox = {
+                  require: require,
+                  console: console,
+                  process: process
+                }
+                callback(vm.runInNewContext(expression, sandbox))
               } catch (error) {
                 callback(null, error)
               }
@@ -55,6 +63,16 @@ describe('Eval', () => {
 
     it('returns -1 for files that do not exist', () => {
       return Eval.getFileSize(path.join(__dirname, 'fixtures', 'does-not-exist.txt')).should.eventually.equal(-1)
+    })
+  })
+
+  describe('getFileVersion(filePath)', () => {
+    it('returns the version from the parent package.json', () => {
+      return Eval.getFileVersion(path.join(__dirname, 'fixtures', 'node_modules', 'foo', 'index.js')).should.eventually.equal('1.2.3')
+    })
+
+    it('returns the electron version for paths inside the api asar filed', () => {
+      return Eval.getFileVersion('/Electron.app/Contents/Resources/atom.asar/renderer/init.js').should.eventually.equal('1.0.0')
     })
   })
 })
