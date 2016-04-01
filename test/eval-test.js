@@ -1,4 +1,5 @@
 const Eval = require('../lib/eval')
+const path = require('path')
 const vm = require('vm')
 
 const describe = global.describe
@@ -14,7 +15,7 @@ describe('Eval', () => {
           inspectedWindow: {
             eval: (expression, callback) => {
               try {
-                callback(vm.runInNewContext(expression))
+                callback(vm.runInNewContext(expression, {require: require}))
               } catch (error) {
                 callback(null, error)
               }
@@ -44,6 +45,16 @@ describe('Eval', () => {
 
     it('accepts a function with arguments', () => {
       return Eval.execute((x, y) => x + y, 1, 2).should.eventually.equal(3)
+    })
+  })
+
+  describe('getFileSize(filePath)', () => {
+    it('returns the size of the file', () => {
+      return Eval.getFileSize(path.join(__dirname, 'fixtures', 'foo.txt')).should.eventually.equal(15)
+    })
+
+    it('returns -1 for files that do not exist', () => {
+      return Eval.getFileSize(path.join(__dirname, 'fixtures', 'does-not-exist.txt')).should.eventually.equal(-1)
     })
   })
 })
