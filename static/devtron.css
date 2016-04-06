@@ -50,7 +50,8 @@
   -webkit-mask-image: url(../vendor/entypo/triangle-down.svg);
 }
 
-.active .disclosure-arrow {
+.active .disclosure-arrow,
+.active .ipc-icon {
   background-color: white;
 }
 
