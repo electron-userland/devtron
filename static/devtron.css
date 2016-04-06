@@ -34,16 +34,12 @@
 }
 
 .disclosure-arrow {
-  width: 0;
-  height: 0;
-  margin-right: 5px;
-  display: none;
-
-  border-top: 4px solid transparent;
-  border-right: 0;
-  border-bottom: 4px solid transparent;
-  border-left: 7px solid #aaa;
-  width: 8px;
+  width: 16px;
+  height: 16px;
+  margin-right: 2px;
+  background-color: #666;
+  float: left;
+  -webkit-mask-image: url(../vendor/entypo/triangle-right.svg);
 }
 
 .active .disclosure-arrow {
@@ -51,19 +47,11 @@
 }
 
 .disclosure-arrow-expanded {
-  border-top: 7px solid #aaa;
-  border-right: 4px solid transparent;
-  border-bottom: 0;
-  border-left: 4px solid transparent;
+  -webkit-mask-image: url(../vendor/entypo/triangle-down.svg);
 }
 
-.active .disclosure-arrow-expanded {
-  border-left-color: transparent;
-  border-top-color: #fff;
-}
-
-.has-children .disclosure-arrow {
-  display: inline-block;
+.active .disclosure-arrow {
+  background-color: white;
 }
 
 .table-striped > tbody > tr.active,
