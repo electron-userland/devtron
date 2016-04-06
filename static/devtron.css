@@ -81,7 +81,7 @@ table:focus {
   right: 0;
 }
 
-.row-directory {
+.row-directory, .listener-count {
   color: #bbb;
   display: inline-block;
   margin-left: 5px;
