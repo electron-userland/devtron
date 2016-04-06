@@ -62,7 +62,13 @@
           </div>
 
           <div class="pane hidden" data-pane="listeners">
-            <h1>Event Listeners</h1>
+            <table class="table-striped" tabindex="-1">
+              <thead>
+                <th>Event Listeners</th>
+              </thead>
+              <tbody class="js-listeners-table">
+              </tbody>
+            </table>
           </div>
 
           <div class="pane hidden" data-pane="ipc">
@@ -102,6 +108,32 @@
         </td>
         <td class="row-event-listener-count" data-field="eventListenerCount"></td>
         <td class="row-event-data"><code data-field="eventData"></code></td>
+      </tr>
+    </template>
+
+    <template id="js-emitter-row">
+      <tr>
+        <td class="row-listener has-children">
+          <span class="disclosure-arrow" data-field="disclosure"></span>
+          <span data-field="emitterName"></span>
+        </td>
+      </tr>
+    </template>
+
+    <template id="js-event-type-row">
+      <tr>
+        <td class="row-listener has-children row-listener-event-name">
+          <span class="disclosure-arrow" data-field="disclosure"></span>
+          <span data-field="eventName"></span>
+        </td>
+      </tr>
+    </template>
+
+    <template id="js-listener-code-row">
+      <tr>
+        <td class="row-listener row-listener-event-code">
+          <code data-field="listenerValue"></code>
+        </td>
       </tr>
     </template>
   </body>

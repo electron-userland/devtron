@@ -14,7 +14,7 @@
   background-color: #116cd6;
 }
 
-.row-file, .row-event-data {
+.row-file, .row-event-data, .row-listener {
   width: 100%;
 }
 
@@ -41,7 +41,7 @@
   width: 8px;
 }
 
-.require-row.active .disclosure-arrow {
+.active .disclosure-arrow {
   border-left-color: #fff;
 }
 
@@ -52,7 +52,7 @@
   border-left: 4px solid transparent;
 }
 
-.require-row.active .disclosure-arrow-expanded {
+.active .disclosure-arrow-expanded {
   border-left-color: transparent;
   border-top-color: #fff;
 }
@@ -61,8 +61,8 @@
   display: inline-block;
 }
 
-.table-striped > tbody > .require-row.active,
-.table-striped > tbody > .require-row.active .row-directory {
+.table-striped > tbody > tr.active,
+.table-striped > tbody > tr.active .row-directory {
   background-color: #116cd6;
   color: #fff;
 }
@@ -98,6 +98,14 @@ table:focus {
   margin-right: 10px;
   background-color: black;
   float: left;
+}
+
+.row-listener-event-name {
+  padding-left: 30px;
+}
+
+.row-listener-event-code {
+  padding-left: 45px;
 }
 
 .active .sidebar-icon {
