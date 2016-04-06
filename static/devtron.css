@@ -132,3 +132,7 @@ table:focus {
 .ipc-icon-received {
   -webkit-mask-image: url(../vendor/entypo/arrow-down.svg);
 }
+
+.ipc-icon-sync {
+  -webkit-mask-image: url(../vendor/entypo/controller-paus.svg);
+}
