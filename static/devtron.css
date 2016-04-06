@@ -14,16 +14,16 @@
   background-color: #116cd6;
 }
 
-.row-file {
+.row-file, .row-event-data {
   width: 100%;
 }
 
-.row-module {
-  min-width: 140px;
-  max-width: 140px;
+.row-module, .row-event-name {
+  min-width: 300px;
+  max-width: 300px;
 }
 
-.row-size {
+.row-size, .row-event-listener-count {
   min-width: 70px;
   max-width: 70px;
 }
@@ -90,4 +90,44 @@ table:focus {
 .row-directory:before {
   content: '-';
   padding-right: 5px;
+}
+
+.sidebar-icon {
+  width: 16px;
+  height: 16px;
+  margin-right: 10px;
+  background-color: black;
+  float: left;
+}
+
+.active .sidebar-icon {
+  background-color: white;
+}
+
+.sidebar-icon-graph {
+  -webkit-mask-image: url(../vendor/entypo/flow-tree.svg);
+}
+
+.sidebar-icon-events {
+  -webkit-mask-image: url(../vendor/entypo/sound.svg);
+}
+
+.sidebar-icon-ipc {
+  -webkit-mask-image: url(../vendor/entypo/swap.svg);
+}
+
+.ipc-icon {
+  width: 16px;
+  height: 16px;
+  margin-right: 10px;
+  background-color: #666;
+  float: left;
+}
+
+.ipc-icon-sent {
+  -webkit-mask-image: url(../vendor/entypo/arrow-up.svg);
+}
+
+.ipc-icon-received {
+  -webkit-mask-image: url(../vendor/entypo/arrow-down.svg);
 }
