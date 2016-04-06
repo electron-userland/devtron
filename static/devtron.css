@@ -56,7 +56,8 @@
 }
 
 .table-striped > tbody > tr.active,
-.table-striped > tbody > tr.active .row-directory {
+.table-striped > tbody > tr.active .row-directory,
+.table-striped > tbody > tr.active .listener-count {
   background-color: #116cd6;
   color: #fff;
 }
