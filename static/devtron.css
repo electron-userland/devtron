@@ -137,3 +137,8 @@ table:focus {
 .ipc-icon-sync {
   -webkit-mask-image: url(../vendor/entypo/controller-paus.svg);
 }
+
+code {
+  color: inherit;
+  background-color: inherit;
+}
