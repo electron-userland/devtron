@@ -18,7 +18,12 @@
   width: 100%;
 }
 
-.row-module, .row-event-name {
+.row-module {
+  min-width: 150px;
+  max-width: 150px;
+}
+
+.row-event-name {
   min-width: 300px;
   max-width: 300px;
 }
