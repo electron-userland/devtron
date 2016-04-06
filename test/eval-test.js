@@ -21,7 +21,8 @@ describe('Eval', () => {
                 let sandbox = {
                   require: require,
                   console: console,
-                  process: process
+                  process: process,
+                  global: {}
                 }
                 callback(vm.runInNewContext(expression, sandbox))
               } catch (error) {
