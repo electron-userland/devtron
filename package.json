@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Electron Developer Tools Extension",
   "scripts": {
-    "install": "browserify lib/*.js -o out/index.js --ignore-missing --entry lib/index.js",
+    "install": "mkdir -p out && browserify lib/*.js -o out/index.js --ignore-missing --entry lib/index.js",
     "start": "watchify lib/*.js -o out/index.js --ignore-missing --entry lib/index.js --verbose",
     "test": "mocha && standard"
   },
