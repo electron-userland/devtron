@@ -3,7 +3,7 @@
 ## Setup
 
 ```
-git clone https://github.com/kevinsawicki/devtron
+git clone https://github.com/electron/devtron
 cd devtron
 npm install
 npm start

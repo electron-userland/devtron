@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kevinsawicki/devtron.git"
+    "url": "git+https://github.com/electron/devtron.git"
   },
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/kevinsawicki/devtron/issues"
+    "url": "https://github.com/electron/devtron/issues"
   },
-  "homepage": "https://github.com/kevinsawicki/devtron#readme",
+  "homepage": "https://github.com/electron/devtron#readme",
   "devDependencies": {
     "browserify": "^13.0.0",
     "chai": "^3.5.0",
