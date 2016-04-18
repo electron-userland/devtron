@@ -146,7 +146,8 @@ code {
 
 .search-box {
   width: 250px;
-  height: 23px;
+  min-height: 24px;
+  max-height: 24px;
 }
 
 .search-box:focus {
