@@ -5,6 +5,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
+const path = require('path')
 const vm = require('vm')
 
 console.log('Starting Devtron server')
@@ -21,4 +22,5 @@ app.post('/', function (request, response) {
 })
 app.listen(3948, 'localhost', function () {
   console.log('Devtron server listening on http://localhost:3948')
+  console.log(`Open file://${path.join(__dirname, '..', 'static', 'index.html')} to view`)
 })
