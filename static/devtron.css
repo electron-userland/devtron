@@ -70,7 +70,7 @@ table:focus {
   display: block;
   overflow: scroll;
   position: absolute;
-  top: 26px;
+  top: 62px;
   bottom: 0;
   left: 0;
   right: 0;
@@ -142,4 +142,14 @@ table:focus {
 code {
   color: inherit;
   background-color: inherit;
+}
+
+.search-box {
+  width: 250px;
+  min-height: 24px;
+  max-height: 24px;
+}
+
+.search-box:focus {
+  box-shadow: 1px 1px 0 #6db3fd, -1px -1px 0 #6db3fd, -1px 1px 0 #6db3fd, 1px -1px 0 #6db3fd;
 }
