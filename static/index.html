@@ -33,16 +33,6 @@
 
           </div>
 
-          <div class="pane hidden" data-pane="listeners">
-            <table class="table-striped" tabindex="-1">
-              <thead>
-                <th>Event Listeners</th>
-              </thead>
-              <tbody class="js-listeners-table">
-              </tbody>
-            </table>
-          </div>
-
         </div>
       </div>
     </div>
@@ -141,6 +131,18 @@
             </tbody>
           </table>
         </div>
+      </div>
+    </template>
+
+    <template id="js-events-view">
+      <div class="pane hidden" data-pane="listeners">
+        <table class="table-striped" tabindex="-1">
+          <thead>
+            <th>Event Listeners</th>
+          </thead>
+          <tbody data-field="listenersTable">
+          </tbody>
+        </table>
       </div>
     </template>
 
