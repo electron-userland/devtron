@@ -29,42 +29,7 @@
             </ul>
           </div>
           <div class="pane" data-pane="graph">
-            <header class="toolbar toolbar-header">
-              <div class="toolbar-actions">
-                <button class="btn btn-default js-load-graph pull-right">Load Graph</button>
-                <input class="form-control pull-right search-box pull-right js-search-graph" type="text" placeholder="Search modules">
-              </div>
-            </header>
-            <div class="tab-group">
-              <div class="tab-item active js-render-process-tab">
-                Renderer Process
-              </div>
-              <div class="tab-item js-main-process-tab">
-                Main Process
-              </div>
-            </div>
-            <div class="table-scroller">
-              <table class="js-render-process-table table-striped" tabindex="-1">
-                <thead>
-                  <th>Module</th>
-                  <th>Version</th>
-                  <th>Size</th>
-                  <th>File</th>
-                </thead>
-                <tbody class="js-render-requires-table">
-                </tbody>
-              </table>
-              <table class="js-main-process-table table-striped hidden" tabindex="-1">
-                <thead>
-                  <th>Module</th>
-                  <th>Version</th>
-                  <th>Size</th>
-                  <th>File</th>
-                </thead>
-                <tbody class="js-main-requires-table">
-                </tbody>
-              </table>
-            </div>
+
           </div>
 
           <div class="pane hidden" data-pane="listeners">
@@ -144,6 +109,50 @@
           <pre data-field="listenerValue"></pre>
         </td>
       </tr>
+    </template>
+
+    <template id="js-modules-view">
+      <div>
+        <header class="toolbar toolbar-header">
+          <div class="toolbar-actions">
+            <button data-field="loadButton" class="btn btn-default js-load-graph pull-right">Load Graph</button>
+            <input data-field="searchBox" class="form-control pull-right search-box pull-right js-search-graph" type="text" placeholder="Search modules">
+          </div>
+        </header>
+
+        <div class="tab-group">
+          <div data-field="renderProcessTab" class="tab-item active">
+            Renderer Process
+          </div>
+          <div data-field="mainProcessTab" class="tab-item">
+            Main Process
+          </div>
+        </div>
+
+        <div class="table-scroller">
+          <table data-field="renderProcessTable" class="table-striped" tabindex="-1">
+            <thead>
+              <th>Module</th>
+              <th>Version</th>
+              <th>Size</th>
+              <th>File</th>
+            </thead>
+            <tbody data-field="renderRequireRows">
+            </tbody>
+          </table>
+
+          <table data-field="mainProcessTable" class="table-striped hidden" tabindex="-1">
+            <thead>
+              <th>Module</th>
+              <th>Version</th>
+              <th>Size</th>
+              <th>File</th>
+            </thead>
+            <tbody data-field="mainRequireRows">
+            </tbody>
+          </table>
+        </div>
+      </div>
     </template>
   </body>
 </html>
