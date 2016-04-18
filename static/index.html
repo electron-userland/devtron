@@ -11,7 +11,7 @@
   <body>
     <div class="window">
       <div class="window-content">
-        <div class="pane-group">
+        <div class="pane-group js-pane-group">
           <div class="pane pane-sm sidebar js-pane-sidebar">
             <ul class="list-group">
               <li class="list-group-item active" data-pane-link="graph">
@@ -39,18 +39,6 @@
                 <th>Event Listeners</th>
               </thead>
               <tbody class="js-listeners-table">
-              </tbody>
-            </table>
-          </div>
-
-          <div class="pane hidden" data-pane="ipc">
-            <table class="table-striped" tabindex="-1">
-              <thead>
-                <th>Channel</th>
-                <th>Listeners</th>
-                <th>Arguments</th>
-              </thead>
-              <tbody class="js-ipc-table">
               </tbody>
             </table>
           </div>
@@ -153,6 +141,20 @@
             </tbody>
           </table>
         </div>
+      </div>
+    </template>
+
+    <template id="js-ipc-view">
+      <div class="pane hidden" data-pane="ipc">
+        <table class="table-striped" tabindex="-1">
+          <thead>
+            <th>Channel</th>
+            <th>Listeners</th>
+            <th>Arguments</th>
+          </thead>
+          <tbody data-field="ipcTable">
+          </tbody>
+        </table>
       </div>
     </template>
   </body>
