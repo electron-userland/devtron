@@ -24,5 +24,10 @@
     "mocha": "^2.4.5",
     "standard": "^6.0.8",
     "watchify": "^3.7.0"
+  },
+  "standard": {
+    "ignore": [
+      "/out/index.js"
+    ]
   }
 }
