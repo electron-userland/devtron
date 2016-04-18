@@ -148,3 +148,7 @@ code {
   width: 250px;
   height: 23px;
 }
+
+.search-box:focus {
+  box-shadow: 1px 1px 0 #6db3fd, -1px -1px 0 #6db3fd, -1px 1px 0 #6db3fd, 1px -1px 0 #6db3fd;
+}
