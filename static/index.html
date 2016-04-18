@@ -12,22 +12,6 @@
     <div class="window">
       <div class="window-content">
         <div class="pane-group js-pane-group">
-          <div class="pane pane-sm sidebar js-pane-sidebar">
-            <ul class="list-group">
-              <li class="list-group-item active" data-pane-link="graph">
-                <div class="sidebar-icon sidebar-icon-graph"></div>
-                Require Graph
-              </li>
-              <li class="list-group-item" data-pane-link="listeners">
-                <div class="sidebar-icon sidebar-icon-events"></div>
-                Event Listeners
-              </li>
-              <li class="list-group-item" data-pane-link="ipc">
-                <div class="sidebar-icon sidebar-icon-ipc"></div>
-                IPC
-              </li>
-            </ul>
-          </div>
 
         </div>
       </div>
@@ -153,6 +137,25 @@
           <tbody data-field="ipcTable">
           </tbody>
         </table>
+      </div>
+    </template>
+
+    <template id="js-sidebar-view">
+      <div class="pane pane-sm sidebar">
+        <ul class="list-group">
+          <li class="list-group-item active" data-pane-link="graph">
+            <div class="sidebar-icon sidebar-icon-graph"></div>
+            Require Graph
+          </li>
+          <li class="list-group-item" data-pane-link="listeners">
+            <div class="sidebar-icon sidebar-icon-events"></div>
+            Event Listeners
+          </li>
+          <li class="list-group-item" data-pane-link="ipc">
+            <div class="sidebar-icon sidebar-icon-ipc"></div>
+            IPC
+          </li>
+        </ul>
       </div>
     </template>
   </body>
