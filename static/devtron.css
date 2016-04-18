@@ -143,3 +143,8 @@ code {
   color: inherit;
   background-color: inherit;
 }
+
+.search-box {
+  width: 200px;
+  height: 23px;
+}
