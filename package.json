@@ -18,9 +18,12 @@
   },
   "homepage": "https://github.com/electron/devtron#readme",
   "devDependencies": {
+    "body-parser": "^1.15.0",
     "browserify": "^13.0.0",
     "chai": "^3.5.0",
     "chai-as-promised": "^5.3.0",
+    "cors": "^2.7.1",
+    "express": "^4.13.4",
     "mocha": "^2.4.5",
     "standard": "^6.0.8",
     "watchify": "^3.7.0"
