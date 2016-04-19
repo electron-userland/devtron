@@ -88,7 +88,7 @@
           </div>
         </div>
 
-        <div class="table-scroller">
+        <div class="table-scroller table-scroller-with-tabs">
           <table data-field="renderProcessTable" class="table-striped" tabindex="-1">
             <thead>
               <th>Module</th>
@@ -123,13 +123,15 @@
           </div>
         </header>
 
-        <table class="table-striped" tabindex="-1">
-          <thead>
-            <th>Event Listeners</th>
-          </thead>
-          <tbody data-field="listenersTable">
-          </tbody>
-        </table>
+        <div class="table-scroller">
+          <table class="table-striped" tabindex="-1">
+            <thead>
+              <th>Event Listeners</th>
+            </thead>
+            <tbody data-field="listenersTable">
+            </tbody>
+          </table>
+        </div>
       </div>
     </template>
 
@@ -151,15 +153,17 @@
           </div>
         </header>
 
-        <table class="table-striped" tabindex="-1">
-          <thead>
-            <th>Channel</th>
-            <th>Listeners</th>
-            <th>Arguments</th>
-          </thead>
-          <tbody data-field="ipcTable">
-          </tbody>
-        </table>
+        <div class="table-scroller">
+          <table class="table-striped" tabindex="-1">
+            <thead>
+              <th>Channel</th>
+              <th>Listeners</th>
+              <th>Arguments</th>
+            </thead>
+            <tbody data-field="ipcTable">
+            </tbody>
+          </table>
+        </div>
       </div>
     </template>
 

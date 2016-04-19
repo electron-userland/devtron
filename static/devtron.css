@@ -67,14 +67,19 @@ table:focus,
   outline: 0 none;
 }
 
-.table-scroller {
+.table-scroller,
+.table-scroller-with-tabs  {
   display: block;
   overflow: scroll;
   position: absolute;
-  top: 62px;
+  top: 35px;
   bottom: 0;
   left: 0;
   right: 0;
+}
+
+.table-scroller-with-tabs {
+  top: 62px;
 }
 
 .row-directory, .listener-count {
