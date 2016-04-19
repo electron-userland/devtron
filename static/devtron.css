@@ -185,11 +185,17 @@ table code {
 
 table pre {
   margin: 0;
+  padding: 0;
   -webkit-user-select: text;
 }
 
 code {
   color: inherit;
+  background-color: inherit;
+}
+
+.hljs {
+  padding: 0;
   background-color: inherit;
 }
 
