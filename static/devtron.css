@@ -200,7 +200,7 @@ code {
 
 .hljs {
   padding: 0;
-  background-color: inherit;
+  background: inherit;
 }
 
 .search-box {
