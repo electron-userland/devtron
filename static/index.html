@@ -116,6 +116,13 @@
 
     <template id="events-view">
       <div class="pane hidden" data-pane="listeners">
+        <header class="toolbar toolbar-header">
+          <div class="toolbar-actions">
+            <button data-field="loadButton" class="btn btn-default js-load-graph pull-right">Load Listeners</button>
+            <input data-field="searchBox" class="form-control pull-right search-box pull-right js-search-graph" type="text" placeholder="Search events">
+          </div>
+        </header>
+
         <table class="table-striped" tabindex="-1">
           <thead>
             <th>Event Listeners</th>
@@ -174,5 +181,6 @@
         </ul>
       </div>
     </template>
+
   </body>
 </html>
