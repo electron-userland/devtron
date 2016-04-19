@@ -33,6 +33,10 @@
   max-width: 70px;
 }
 
+.row-listener-event-code code {
+  padding: 5px;
+}
+
 .disclosure-arrow {
   width: 16px;
   height: 16px;
