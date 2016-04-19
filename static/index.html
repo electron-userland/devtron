@@ -130,10 +130,16 @@
       <div class="pane hidden" data-pane="ipc">
         <header class="toolbar toolbar-header">
           <div class="toolbar-actions">
-            <button data-field="recordButton" class="btn btn-default pull-right">
-              <div class="toolbar-icon toolbar-icon-record"></div>
-              Record
-            </button>
+            <div class="btn-group pull-right">
+              <button data-field="recordButton" class="btn btn-default">
+                <div class="toolbar-icon toolbar-icon-record"></div>
+                Record
+              </button>
+              <button data-field="clearButton" class="btn btn-default">
+                <div class="toolbar-icon toolbar-icon-block"></div>
+                Clear
+              </button>
+            </div>
             <input data-field="searchBox" class="form-control pull-right search-box pull-right js-search-graph" type="text" placeholder="Search events">
           </div>
         </header>

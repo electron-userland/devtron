@@ -160,6 +160,10 @@ table:focus,
   -webkit-mask-image: url(../vendor/entypo/controller-stop.svg);
 }
 
+.toolbar-icon-block {
+  -webkit-mask-image: url(../vendor/entypo/block.svg);
+}
+
 .toolbar-actions .active,
 .toolbar-actions .active:focus {
   color: #fff;
