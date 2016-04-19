@@ -175,10 +175,12 @@ table:focus,
 
 table code {
   padding: 0;
+  -webkit-user-select: text;
 }
 
 table pre {
   margin: 0;
+  -webkit-user-select: text;
 }
 
 code {
