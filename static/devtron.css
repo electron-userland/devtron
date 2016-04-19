@@ -204,9 +204,9 @@ code {
 }
 
 .active pre,
-.active pre > span,
+.active pre span,
 .active code,
-.active code > span {
+.active code span {
   color: white !important;
 }
 
