@@ -173,6 +173,10 @@ table:focus,
   outline: none;
 }
 
+table code {
+  padding: 0;
+}
+
 code {
   color: inherit;
   background-color: inherit;
