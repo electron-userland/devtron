@@ -5,6 +5,7 @@
     <title>Devtron</title>
     <link rel="stylesheet" href="../vendor/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="../vendor/photon/css/photon.min.css">
+    <link rel="stylesheet" href="../vendor/docco.css">
     <link rel="stylesheet" href="devtron.css">
     <script src="../out/index.js" charset="utf-8"></script>
   </head>
@@ -38,7 +39,9 @@
           <div data-field="eventName"></div>
         </td>
         <td class="row-event-listener-count" data-field="eventListenerCount"></td>
-        <td class="row-event-data"><code data-field="eventData"></code></td>
+        <td class="row-event-data">
+          <pre><code class="language-javascript" data-field="eventData"></code></pre>
+        </td>
       </tr>
     </template>
 
@@ -65,7 +68,7 @@
     <template id="listener-code-row">
       <tr>
         <td class="row-listener row-listener-event-code">
-          <pre data-field="listenerValue"></pre>
+          <pre><code class="language-javascript" data-field="listenerValue"></code></pre>
         </td>
       </tr>
     </template>
