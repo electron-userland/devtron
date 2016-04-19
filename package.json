@@ -32,5 +32,8 @@
     "ignore": [
       "/out/index.js"
     ]
+  },
+  "dependencies": {
+    "humanize-plus": "^1.8.1"
   }
 }
