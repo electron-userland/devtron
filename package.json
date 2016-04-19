@@ -34,6 +34,7 @@
     ]
   },
   "dependencies": {
+    "highlight.js": "^9.3.0",
     "humanize-plus": "^1.8.1"
   }
 }
