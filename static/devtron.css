@@ -33,6 +33,10 @@
   max-width: 70px;
 }
 
+.row-event-data pre {
+  border-width: 0;
+}
+
 .row-listener-event-code code {
   padding: 5px;
 }
