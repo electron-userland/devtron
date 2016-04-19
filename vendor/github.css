@@ -1,49 +1,56 @@
 /*
-Docco style used in http://jashkenas.github.com/docco/ converted by Simon Madine (@thingsinjars)
+
+github.com style (c) Vasily Polovnyov <vast@whiteants.net>
+
 */
 
 .hljs {
   display: block;
   overflow-x: auto;
   padding: 0.5em;
-  color: #000;
-  background: #f8f8ff;
+  color: #333;
+  background: #f8f8f8;
 }
 
 .hljs-comment,
 .hljs-quote {
-  color: #408080;
+  color: #998;
   font-style: italic;
 }
 
 .hljs-keyword,
 .hljs-selector-tag,
-.hljs-literal,
 .hljs-subst {
-  color: #954121;
+  color: #333;
+  font-weight: bold;
 }
 
-.hljs-number {
-  color: #40a070;
+.hljs-number,
+.hljs-literal,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag .hljs-attr {
+  color: #008080;
 }
 
 .hljs-string,
 .hljs-doctag {
-  color: #219161;
+  color: #d14;
 }
 
-.hljs-selector-id,
-.hljs-selector-class,
+.hljs-title,
 .hljs-section,
-.hljs-type {
-  color: #19469d;
+.hljs-selector-id {
+  color: #900;
+  font-weight: bold;
 }
 
-.hljs-params {
-  color: #00f;
+.hljs-subst {
+  font-weight: normal;
 }
 
-.hljs-title {
+.hljs-type,
+.hljs-class .hljs-title {
   color: #458;
   font-weight: bold;
 }
@@ -55,14 +62,9 @@ Docco style used in http://jashkenas.github.com/docco/ converted by Simon Madine
   font-weight: normal;
 }
 
-.hljs-variable,
-.hljs-template-variable {
-  color: #008080;
-}
-
 .hljs-regexp,
 .hljs-link {
-  color: #b68;
+  color: #009926;
 }
 
 .hljs-symbol,
