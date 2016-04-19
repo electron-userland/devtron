@@ -197,9 +197,17 @@ table pre {
   -webkit-user-select: text;
 }
 
+pre,
 code {
   color: inherit;
   background-color: inherit;
+}
+
+.active pre,
+.active pre > span,
+.active code,
+.active code > span {
+  color: white !important;
 }
 
 .hljs {
