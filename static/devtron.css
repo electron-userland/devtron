@@ -177,6 +177,10 @@ table code {
   padding: 0;
 }
 
+table pre {
+  margin: 0;
+}
+
 code {
   color: inherit;
   background-color: inherit;
