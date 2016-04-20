@@ -176,12 +176,15 @@
           <div data-field="outdated" class="alert hidden" role="alert">
             <p>
               <div class="lint-icon"></div>
-              <strong>Using latest electron version</strong>
+              <strong>Using latest Electron version</strong>
             </p>
-            <p>
+            <p data-field="outdatedDescription">
               Your application is using version <span data-field="versionLabel"></span>
               and the latest version released is <span data-field="latestLabel"></span>.
-              View the <a href="http://electron.atom.io/releases.html">release notes</a>
+
+              <p>
+                View the <a href="http://electron.atom.io/releases.html">Electron release notes</a>.
+              </p>
             </p>
           </div>
 
@@ -190,7 +193,16 @@
               <div class="lint-icon"></div>
               <strong>Using asar</strong>
             </p>
-            <p>Description here</p>
+            <p data-field="asarDescription">
+              Your application is not bundled in an <code>.asar</code> archive.
+              Asar bundles your entire application into a single file which
+              makes your app quicker to install/update as well as improves the
+              code loading performance in many environments.
+
+              <p>
+                View the <a href="http://electron.atom.io/docs/latest/tutorial/application-packaging/#generating-asar-archive">asar instructions</a>.
+              </p>
+            </p>
           </div>
 
           <div data-field="crashListener" class="alert hidden" role="alert">
@@ -198,7 +210,16 @@
               <div class="lint-icon"></div>
               <strong>Listening for crash events</strong>
             </p>
-            <p>Description here</p>
+            <p data-field="crashDescription">
+              Your application is not listening for the <code>crashed</code> event on
+              the <code>BrowserWindow</code>. It is important to listen for this
+              event to report when it happens and notify the user about what
+              happened.
+
+              <p>
+                Listen for this event by adding: <code>myWindow.webContents.on('crashed', function () { })</code>
+              </p>
+            </p>
           </div>
 
           <div data-field="unresponsiveListener" class="alert hidden" role="alert">
@@ -206,15 +227,34 @@
               <div class="lint-icon"></div>
               <strong>Listening for unresponsive events</strong>
             </p>
-            <p>Description here</p>
+            <p data-field="unresponsiveDescription">
+              Your application is not listening for the <code>unresponsive</code> event on
+              the <code>BrowserWindow</code>. It is important to listen for this
+              event to report when it happens and to notify the user about what
+              has happened.
+
+              <p>
+                Listen for this event by adding: <code>myWindow.on('unresponsive', function () { })</code>
+              </p>
+            </p>
           </div>
 
           <div data-field="uncaughtListener" class="alert hidden" role="alert">
             <p>
               <div class="lint-icon"></div>
-              <strong>Listening for uncaughtException</strong>
+              <strong>Listening for uncaughtException events</strong>
             </p>
-            <p>Description here</p>
+            <p data-field="uncaughtDescription">
+              Your application is not listening for the <code>uncaughtException</code>
+              event on the main <code>process</code>. Electron shows a dialog with a
+              stack trace by default if you do not provide a listener for this event.
+              It is important to listen for this event to report when it happens
+              and possibly notify the user about what has happened.
+
+              <p>
+                Listen for this event by adding <code>process.on('uncaughtException', function () { })</code> in the main process.
+              </p>
+            </p>
           </div>
         </div>
       </div>
