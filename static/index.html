@@ -173,6 +173,10 @@
     <template id="lint-view">
       <div class="pane hidden" data-pane="lint">
         <div class="padded">
+          <div data-field="outdated" class="alert alert-warning hidden" role="alert">
+            <strong>Application is not using the latest Electron version.</strong>
+          </div>
+
           <div data-field="usingAsar" class="alert alert-warning hidden" role="alert">
             <strong>Application is not using asar.</strong>
           </div>
