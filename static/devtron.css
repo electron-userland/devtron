@@ -202,9 +202,9 @@ table:focus,
   background-color: #3c763d;
 }
 
-.alert-danger .lint-icon {
+.alert-warning .lint-icon {
   -webkit-mask-image: url(../vendor/entypo/thumbs-down.svg);
-  background-color: #a94442;
+  background-color: #8a6d3b;
 }
 
 
