@@ -190,6 +190,24 @@ table:focus,
   outline: none;
 }
 
+.lint-icon {
+  width: 18px;
+  height: 18px;
+  margin-right: 10px;
+  float: left;
+}
+
+.alert-success .lint-icon {
+  -webkit-mask-image: url(../vendor/entypo/thumbs-up.svg);
+  background-color: #3c763d;
+}
+
+.alert-danger .lint-icon {
+  -webkit-mask-image: url(../vendor/entypo/thumbs-down.svg);
+  background-color: #a94442;
+}
+
+
 table code {
   padding: 0;
   -webkit-user-select: text;
