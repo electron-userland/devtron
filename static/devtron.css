@@ -133,6 +133,10 @@ table:focus,
   -webkit-mask-image: url(../vendor/entypo/swap.svg);
 }
 
+.sidebar-icon-lint {
+  -webkit-mask-image: url(../vendor/entypo/new.svg);
+}
+
 .ipc-icon {
   width: 16px;
   height: 16px;
