@@ -175,22 +175,21 @@
         <div class="padded">
           <div data-field="outdated" class="alert hidden" role="alert">
             <p>
-              <div class="lint-icon"></div>
+              <span class="lint-icon"></span>
               <strong>Using latest Electron version</strong>
             </p>
             <p data-field="outdatedDescription">
               Your application is using version <span data-field="versionLabel"></span>
               and the latest version released is <span data-field="latestLabel"></span>.
 
-              <p>
-                View the <a href="http://electron.atom.io/releases.html">Electron release notes</a>.
-              </p>
+              <br><br>
+              View the <a href="http://electron.atom.io/releases.html">Electron release notes</a>.
             </p>
           </div>
 
           <div data-field="usingAsar" class="alert hidden" role="alert">
             <p>
-              <div class="lint-icon"></div>
+              <span class="lint-icon"></span>
               <strong>Using an asar archive</strong>
             </p>
             <p data-field="asarDescription">
@@ -199,15 +198,14 @@
               makes your app quicker to install/update as well as improves the
               code loading performance in many environments.
 
-              <p>
-                View the <a href="http://electron.atom.io/docs/latest/tutorial/application-packaging/#generating-asar-archive">asar instructions</a>.
-              </p>
+              <br><br>
+              View the <a href="http://electron.atom.io/docs/latest/tutorial/application-packaging/#generating-asar-archive">asar instructions</a>.
             </p>
           </div>
 
           <div data-field="crashListener" class="alert hidden" role="alert">
             <p>
-              <div class="lint-icon"></div>
+              <span class="lint-icon"></span>
               <strong>Listening for crash events</strong>
             </p>
             <p data-field="crashDescription">
@@ -216,15 +214,14 @@
               It is important to listen for this event to report when it happens
               and notify the user about what happened.
 
-              <p>
-                Listen for this event by adding: <code>myWindow.webContents.on('crashed', function () { })</code>
-              </p>
+              <br><br>
+              Listen for this event by adding: <code>myWindow.webContents.on('crashed', function () { })</code>
             </p>
           </div>
 
           <div data-field="unresponsiveListener" class="alert hidden" role="alert">
             <p>
-              <div class="lint-icon"></div>
+              <span class="lint-icon"></span>
               <strong>Listening for unresponsive events</strong>
             </p>
             <p data-field="unresponsiveDescription">
@@ -233,15 +230,14 @@
               event to report when it happens and to notify the user about what
               has happened.
 
-              <p>
-                Listen for this event by adding: <code>myWindow.on('unresponsive', function () { })</code>
-              </p>
+              <br><br>
+              Listen for this event by adding: <code>myWindow.on('unresponsive', function () { })</code>
             </p>
           </div>
 
           <div data-field="uncaughtListener" class="alert hidden" role="alert">
             <p>
-              <div class="lint-icon"></div>
+              <span class="lint-icon"></span>
               <strong>Listening for uncaughtException events</strong>
             </p>
             <p data-field="uncaughtDescription">
@@ -251,9 +247,8 @@
               It is important to listen for this event to report when it happens
               and possibly notify the user about what has happened.
 
-              <p>
-                Listen for this event by adding <code>process.on('uncaughtException', function () { })</code> in the main process.
-              </p>
+              <br><br>
+              Listen for this event by adding <code>process.on('uncaughtException', function () { })</code> in the main process.
             </p>
           </div>
         </div>
