@@ -1,5 +1,17 @@
 # devtron - An Electron Dev Tools Extension
 
+## Installing
+
+```sh
+npm install --save-dev devtron
+```
+
+Then from the Console tab of your running Electron app execute the following:
+
+```js
+require('devtron').install()
+```
+
 ## Setup
 
 ```
