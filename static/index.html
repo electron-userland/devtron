@@ -170,6 +170,12 @@
       </div>
     </template>
 
+    <template id="lint-view">
+      <div class="pane hidden" data-pane="lint">
+        Lint
+      </div>
+    </template>
+
     <template id="sidebar-view">
       <div class="pane pane-sm sidebar">
         <ul class="list-group">
@@ -185,7 +191,7 @@
             <div class="sidebar-icon sidebar-icon-ipc"></div>
             IPC
           </li>
-          <li class="list-group-item" data-field="linkLink">
+          <li class="list-group-item" data-field="lintLink" data-pane-link="lint">
             <div class="sidebar-icon sidebar-icon-lint"></div>
             Lint
           </li>
