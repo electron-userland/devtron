@@ -191,7 +191,7 @@
           <div data-field="usingAsar" class="alert hidden" role="alert">
             <p>
               <div class="lint-icon"></div>
-              <strong>Using asar</strong>
+              <strong>Using an asar archive</strong>
             </p>
             <p data-field="asarDescription">
               Your application is not bundled in an <code>.asar</code> archive.
@@ -212,9 +212,9 @@
             </p>
             <p data-field="crashDescription">
               Your application is not listening for the <code>crashed</code> event on
-              the <code>BrowserWindow</code>. It is important to listen for this
-              event to report when it happens and notify the user about what
-              happened.
+              the <code>webContents</code> property of the <code>BrowserWindow</code>.
+              It is important to listen for this event to report when it happens
+              and notify the user about what happened.
 
               <p>
                 Listen for this event by adding: <code>myWindow.webContents.on('crashed', function () { })</code>
