@@ -33,6 +33,14 @@
   max-width: 70px;
 }
 
+.row-event-data pre {
+  border-width: 0;
+}
+
+.row-listener-event-code code {
+  padding: 5px;
+}
+
 .disclosure-arrow {
   width: 16px;
   height: 16px;
@@ -185,12 +193,26 @@ table code {
 
 table pre {
   margin: 0;
+  padding: 0;
   -webkit-user-select: text;
 }
 
+pre,
 code {
   color: inherit;
   background-color: inherit;
+}
+
+.active pre,
+.active pre span,
+.active code,
+.active code span {
+  color: white !important;
+}
+
+.hljs {
+  padding: 0;
+  background: inherit;
 }
 
 .search-box {
