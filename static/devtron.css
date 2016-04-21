@@ -263,3 +263,17 @@ code {
 .search-box:focus {
   box-shadow: 1px 1px 0 #6db3fd, -1px -1px 0 #6db3fd, -1px 1px 0 #6db3fd, 1px -1px 0 #6db3fd;
 }
+
+.btn-group .btn + .btn.active {
+  border-left: 1px solid transparent;
+}
+
+.btn-default:hover,
+.btn-default:focus,
+.btn-default:active,
+.btn-default:active:focus {
+  border-top-color: #c2c0c2;
+  border-right-color: #c2c0c2;
+  border-bottom-color: #a19fa1;
+  border-left-color: #c2c0c2;
+}
