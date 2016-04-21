@@ -190,7 +190,8 @@ table:focus,
 }
 
 .toolbar-actions .active,
-.toolbar-actions .active:focus {
+.toolbar-actions .active:focus,
+.toolbar-actions .active:hover {
   color: #fff;
   border: 1px solid transparent;
   background-color: #6d6c6d;
