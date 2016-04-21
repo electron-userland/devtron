@@ -170,6 +170,97 @@
       </div>
     </template>
 
+    <template id="lint-view">
+      <div class="pane hidden" data-pane="lint">
+        <header class="toolbar toolbar-header">
+          <div class="toolbar-actions">
+            <button data-field="lintButton" class="btn btn-default js-load-graph pull-right">Lint App</button>
+          </div>
+        </header>
+
+        <div class="padded">
+          <div data-field="outdated" class="alert hidden" role="alert">
+            <p>
+              <span class="lint-icon"></span>
+              <strong>Using latest Electron version</strong>
+            </p>
+            <p data-field="outdatedDescription">
+              Your application is using version <span data-field="versionLabel"></span>
+              and the latest version released is <span data-field="latestLabel"></span>.
+
+              <br><br>
+              View the <a href="http://electron.atom.io/releases.html">Electron release notes</a>.
+            </p>
+          </div>
+
+          <div data-field="usingAsar" class="alert hidden" role="alert">
+            <p>
+              <span class="lint-icon"></span>
+              <strong>Using an asar archive</strong>
+            </p>
+            <p data-field="asarDescription">
+              Your application is not bundled in an <code>.asar</code> archive.
+              Asar bundles your entire application into a single file which
+              makes your app quicker to install/update as well as improves the
+              code loading performance in many environments.
+
+              <br><br>
+              View the <a href="http://electron.atom.io/docs/latest/tutorial/application-packaging">asar instructions</a>.
+            </p>
+          </div>
+
+          <div data-field="crashListener" class="alert hidden" role="alert">
+            <p>
+              <span class="lint-icon"></span>
+              <strong>Listening for crash events</strong>
+            </p>
+            <p data-field="crashDescription">
+              Your application is not listening for the <code>crashed</code> event on
+              the <code>webContents</code> property of the <code>BrowserWindow</code>.
+              It is important to listen for this event to report when it happens
+              and notify the user about what happened.
+
+              <br><br>
+              Listen for this event by adding: <code>myWindow.webContents.on('crashed', function () { })</code>
+            </p>
+          </div>
+
+          <div data-field="unresponsiveListener" class="alert hidden" role="alert">
+            <p>
+              <span class="lint-icon"></span>
+              <strong>Listening for unresponsive events</strong>
+            </p>
+            <p data-field="unresponsiveDescription">
+              Your application is not listening for the <code>unresponsive</code> event on
+              the <code>BrowserWindow</code>. It is important to listen for this
+              event to report when it happens and to notify the user about what
+              has happened.
+
+              <br><br>
+              Listen for this event by adding: <code>myWindow.on('unresponsive', function () { })</code>
+            </p>
+          </div>
+
+          <div data-field="uncaughtListener" class="alert hidden" role="alert">
+            <p>
+              <span class="lint-icon"></span>
+              <strong>Listening for uncaughtException events</strong>
+            </p>
+            <p data-field="uncaughtDescription">
+              Your application is not listening for the <code>uncaughtException</code>
+              event on the main <code>process</code>. Electron shows a dialog with a
+              stack trace by default if you do not provide a listener for this event.
+              It is important to listen for this event to report when it happens
+              and possibly notify the user about what has happened.
+
+              <br><br>
+              Listen for this event by adding <code>process.on('uncaughtException', function () { })</code> in the main process.
+            </p>
+          </div>
+        </div>
+      </div>
+    </template>
+
     <template id="sidebar-view">
       <div class="pane pane-sm sidebar">
         <ul class="list-group">
@@ -184,6 +275,10 @@
           <li class="list-group-item" data-field="ipcLink" data-pane-link="ipc">
             <div class="sidebar-icon sidebar-icon-ipc"></div>
             IPC
+          </li>
+          <li class="list-group-item" data-field="lintLink" data-pane-link="lint">
+            <div class="sidebar-icon sidebar-icon-lint"></div>
+            Lint
           </li>
         </ul>
       </div>

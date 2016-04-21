@@ -133,6 +133,10 @@ table:focus,
   -webkit-mask-image: url(../vendor/entypo/swap.svg);
 }
 
+.sidebar-icon-lint {
+  -webkit-mask-image: url(../vendor/entypo/new.svg);
+}
+
 .ipc-icon {
   width: 16px;
   height: 16px;
@@ -185,6 +189,24 @@ table:focus,
   background-image: none;
   outline: none;
 }
+
+.lint-icon {
+  width: 18px;
+  height: 18px;
+  margin-right: 10px;
+  float: left;
+}
+
+.alert-success .lint-icon {
+  -webkit-mask-image: url(../vendor/entypo/thumbs-up.svg);
+  background-color: #3c763d;
+}
+
+.alert-warning .lint-icon {
+  -webkit-mask-image: url(../vendor/entypo/thumbs-down.svg);
+  background-color: #8a6d3b;
+}
+
 
 table code {
   padding: 0;
