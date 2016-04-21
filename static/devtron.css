@@ -228,6 +228,10 @@ table pre {
   -webkit-user-select: text;
 }
 
+pre code span {
+  -webkit-user-select: text;
+}
+
 pre,
 code {
   color: inherit;
