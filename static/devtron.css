@@ -185,6 +185,10 @@ table:focus,
   -webkit-mask-image: url(../vendor/entypo/open-book.svg);
 }
 
+.toolbar-icon-funnel {
+  -webkit-mask-image: url(../vendor/entypo/funnel.svg);
+}
+
 .toolbar-actions .active,
 .toolbar-actions .active:focus {
   color: #fff;
