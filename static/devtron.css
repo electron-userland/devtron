@@ -181,6 +181,10 @@ table:focus,
   -webkit-mask-image: url(../vendor/entypo/block.svg);
 }
 
+.toolbar-icon-book {
+  -webkit-mask-image: url(../vendor/entypo/open-book.svg);
+}
+
 .toolbar-actions .active,
 .toolbar-actions .active:focus {
   color: #fff;
