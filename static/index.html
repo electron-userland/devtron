@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <title>Devtron</title>
-    <link rel="stylesheet" href="../vendor/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../vendor/photon/css/photon.min.css">
+    <link rel="stylesheet" href="../vendor/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../vendor/photon/css/photon.css">
     <link rel="stylesheet" href="../vendor/github.css">
     <link rel="stylesheet" href="devtron.css">
     <script src="../out/index.js" charset="utf-8"></script>
@@ -147,9 +147,17 @@
                 <div class="toolbar-icon toolbar-icon-record"></div>
                 Record
               </button>
+              <button data-field="hideInternalButton" class="btn btn-default">
+                <div class="toolbar-icon toolbar-icon-funnel"></div>
+                Ignore Internal
+              </button>
               <button data-field="clearButton" class="btn btn-default">
                 <div class="toolbar-icon toolbar-icon-block"></div>
                 Clear
+              </button>
+              <button data-field="docsButton" class="btn btn-default">
+                <div class="toolbar-icon toolbar-icon-book"></div>
+                Docs
               </button>
             </div>
             <input data-field="searchBox" class="form-control pull-right search-box pull-right js-search-graph" type="text" placeholder="Search events">

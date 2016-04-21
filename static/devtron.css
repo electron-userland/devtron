@@ -181,8 +181,17 @@ table:focus,
   -webkit-mask-image: url(../vendor/entypo/block.svg);
 }
 
+.toolbar-icon-book {
+  -webkit-mask-image: url(../vendor/entypo/open-book.svg);
+}
+
+.toolbar-icon-funnel {
+  -webkit-mask-image: url(../vendor/entypo/funnel.svg);
+}
+
 .toolbar-actions .active,
-.toolbar-actions .active:focus {
+.toolbar-actions .active:focus,
+.toolbar-actions .active:hover {
   color: #fff;
   border: 1px solid transparent;
   background-color: #6d6c6d;
@@ -219,10 +228,18 @@ table pre {
   -webkit-user-select: text;
 }
 
+pre code span {
+  -webkit-user-select: text;
+}
+
 pre,
 code {
   color: inherit;
   background-color: inherit;
+}
+
+.row-event-data pre code {
+  white-space: nowrap;
 }
 
 .active pre,
@@ -245,4 +262,18 @@ code {
 
 .search-box:focus {
   box-shadow: 1px 1px 0 #6db3fd, -1px -1px 0 #6db3fd, -1px 1px 0 #6db3fd, 1px -1px 0 #6db3fd;
+}
+
+.btn-group .btn + .btn.active {
+  border-left: 1px solid transparent;
+}
+
+.btn-default:hover,
+.btn-default:focus,
+.btn-default:active,
+.btn-default:active:focus {
+  border-top-color: #c2c0c2;
+  border-right-color: #c2c0c2;
+  border-bottom-color: #a19fa1;
+  border-left-color: #c2c0c2;
 }
