@@ -234,6 +234,10 @@ code {
   background-color: inherit;
 }
 
+.row-event-data pre code {
+  white-space: nowrap;
+}
+
 .active pre,
 .active pre span,
 .active code,
