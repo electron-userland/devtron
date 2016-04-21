@@ -2,8 +2,9 @@
   "name": "devtron",
   "version": "1.0.0",
   "description": "Electron Developer Tools Extension",
+  "main": "./api.js",
   "scripts": {
-    "install": "browserify lib/*.js -o out/index.js --ignore-missing --entry lib/index.js",
+    "prepublish": "browserify lib/*.js -o out/index.js --ignore-missing --entry lib/index.js",
     "start": "watchify lib/*.js -o out/index.js --ignore-missing --entry lib/index.js --verbose",
     "test": "mocha test/*-test.js && standard"
   },
