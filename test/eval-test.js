@@ -1,8 +1,8 @@
 'use strict'
 
+const devtools = require('./devtools')
 const Eval = require('../lib/eval')
 const path = require('path')
-const vm = require('vm')
 
 const describe = global.describe
 const it = global.it
@@ -11,28 +11,7 @@ const afterEach = global.afterEach
 
 describe('Eval', () => {
   beforeEach(() => {
-    global.window = {
-      chrome: {
-        devtools: {
-          inspectedWindow: {
-            eval: (expression, callback) => {
-              expression = `'use strict';\n${expression}`
-              try {
-                let sandbox = {
-                  require: require,
-                  console: console,
-                  process: process,
-                  global: {}
-                }
-                callback(vm.runInNewContext(expression, sandbox))
-              } catch (error) {
-                callback(null, error)
-              }
-            }
-          }
-        }
-      }
-    }
+    global.window = devtools.create()
   })
 
   afterEach(() => {
