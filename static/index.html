@@ -35,7 +35,7 @@
       <tr class="ipc-row">
         <td class="row-event-name">
           <div class="ipc-icon" data-field="eventIcon"></div>
-          <div class="ipc-icon ipc-icon-sync" data-field="syncIcon"></div>
+          <div class="ipc-icon ipc-icon-sync" data-field="syncIcon" title="Synchronous"></div>
           <div data-field="eventName"></div>
         </td>
         <td class="row-event-listener-count" data-field="eventListenerCount"></td>
@@ -77,7 +77,10 @@
       <div class="pane" data-pane="graph">
         <header class="toolbar toolbar-header">
           <div class="toolbar-actions">
-            <button data-field="loadButton" class="btn btn-default js-load-graph pull-right">Load Graph</button>
+            <button data-field="loadButton" class="btn btn-default js-load-graph pull-right">
+              <span class="toolbar-icon toolbar-icon-cycle"></span>
+              Load Graph
+            </button>
             <input data-field="searchBox" class="form-control pull-right search-box pull-right js-search-graph" type="text" placeholder="Search modules">
           </div>
         </header>
@@ -121,7 +124,10 @@
       <div class="pane hidden" data-pane="listeners">
         <header class="toolbar toolbar-header">
           <div class="toolbar-actions">
-            <button data-field="loadButton" class="btn btn-default js-load-graph pull-right">Load Listeners</button>
+            <button data-field="loadButton" class="btn btn-default js-load-graph pull-right">
+              <span class="toolbar-icon toolbar-icon-cycle"></span>
+              Load Listeners
+            </button>
             <input data-field="searchBox" class="form-control pull-right search-box pull-right js-search-graph" type="text" placeholder="Search events">
           </div>
         </header>
@@ -143,20 +149,20 @@
         <header class="toolbar toolbar-header">
           <div class="toolbar-actions">
             <div class="btn-group pull-right">
-              <button data-field="recordButton" class="btn btn-default">
-                <div class="toolbar-icon toolbar-icon-record"></div>
+              <button data-field="recordButton" class="btn btn-default" title="Record IPC events">
+                <span class="toolbar-icon toolbar-icon-record"></span>
                 Record
               </button>
-              <button data-field="hideInternalButton" class="btn btn-default">
-                <div class="toolbar-icon toolbar-icon-funnel"></div>
+              <button data-field="hideInternalButton" class="btn btn-default" title="Ignore internal IPC events">
+                <span class="toolbar-icon toolbar-icon-funnel"></span>
                 Ignore Internal
               </button>
-              <button data-field="clearButton" class="btn btn-default">
-                <div class="toolbar-icon toolbar-icon-block"></div>
+              <button data-field="clearButton" class="btn btn-default" title="Clear events from table">
+                <span class="toolbar-icon toolbar-icon-block"></span>
                 Clear
               </button>
-              <button data-field="docsButton" class="btn btn-default">
-                <div class="toolbar-icon toolbar-icon-book"></div>
+              <button data-field="docsButton" class="btn btn-default" title="Open Electron IPC docs">
+                <span class="toolbar-icon toolbar-icon-book"></span>
                 Docs
               </button>
             </div>
@@ -182,7 +188,10 @@
       <div class="pane hidden" data-pane="lint">
         <header class="toolbar toolbar-header">
           <div class="toolbar-actions">
-            <button data-field="lintButton" class="btn btn-default js-load-graph pull-right">Lint App</button>
+            <button data-field="lintButton" class="btn btn-default js-load-graph pull-right">
+              <span class="toolbar-icon toolbar-icon-cycle"></span>
+              Lint App
+            </button>
           </div>
         </header>
 

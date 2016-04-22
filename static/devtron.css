@@ -189,6 +189,10 @@ table:focus,
   -webkit-mask-image: url(../vendor/entypo/funnel.svg);
 }
 
+.toolbar-icon-cycle {
+  -webkit-mask-image: url(../vendor/entypo/cycle.svg);
+}
+
 .toolbar-actions .active,
 .toolbar-actions .active:focus,
 .toolbar-actions .active:hover {
