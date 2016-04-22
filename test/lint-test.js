@@ -25,4 +25,28 @@ describe('Lint Helpers', () => {
       })
     })
   })
+
+  describe('isListeningForCrashEvents()', () => {
+    it('returns false if not listening for crash events', () => {
+      return Lint.isListeningForCrashEvents().then((listening) => {
+        expect(listening).to.equal(false)
+      })
+    })
+  })
+
+  describe('isListeningForUnresponsiveEvents()', () => {
+    it('returns false if not listening for unresponsive events', () => {
+      return Lint.isListeningForUnresponsiveEvents().then((listening) => {
+        expect(listening).to.equal(false)
+      })
+    })
+  })
+
+  describe('isListeningForUncaughtExceptionEvents()', () => {
+    it('returns false if not listening for uncaught exception events', () => {
+      return Lint.isListeningForUncaughtExceptionEvents().then((listening) => {
+        expect(listening).to.equal(false)
+      })
+    })
+  })
 })
