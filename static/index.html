@@ -284,6 +284,16 @@
       </div>
     </template>
 
+    <template id="about-view">
+      <div class="pane hidden" data-pane="about">
+        <div class="padded">
+          <h3>Devtron</h3>
+          <p>A dev tools extension for Electron</p>
+
+        </div>
+      </div>
+    </template>
+
     <template id="sidebar-view">
       <div class="pane pane-sm sidebar">
         <ul class="list-group">
@@ -302,6 +312,10 @@
           <li class="list-group-item" data-field="lintLink" data-pane-link="lint">
             <div class="sidebar-icon sidebar-icon-lint"></div>
             Lint
+          </li>
+          <li class="list-group-item" data-field="aboutLink" data-pane-link="about">
+            <div class="sidebar-icon sidebar-icon-about"></div>
+            About
           </li>
         </ul>
       </div>
