@@ -141,6 +141,10 @@ table:focus,
   -webkit-mask-image: url(../vendor/entypo/help-with-circle.svg);
 }
 
+.keybinding {
+  padding-bottom: 5px;
+}
+
 .ipc-icon {
   width: 16px;
   height: 16px;
