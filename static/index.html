@@ -284,6 +284,29 @@
       </div>
     </template>
 
+    <template id="about-view">
+      <div class="pane hidden" data-pane="about">
+        <div class="padded">
+          <h3>Devtron</h3>
+          <p>A dev tools extension for Electron</p>
+          <p><a href="https://github.com/electron/devtron">https://github.com/electron/devtron</a></p>
+
+          <h4>Keyboard Shortcuts</h4>
+
+          <h5>Panes</h5>
+          <div class="keybinding" ><kbd>Alt + Up Arrow</kbd> &mdash; Navigate to previous pane</div>
+          <div class="keybinding" ><kbd>Alt + Down Arrow</kbd> &mdash; Navigate to next pane</div>
+
+          <h5>Tables</h5>
+          <div class="keybinding"><kbd>Left Arrow</kbd> &mdash; Collapse selected item</div>
+          <div class="keybinding"><kbd>Right Arrow</kbd> &mdash; Expand selected item</div>
+          <div class="keybinding"><kbd>Up Arrow</kbd> &mdash; Select previous item</div>
+          <div class="keybinding"><kbd>Down Arrow</kbd> &mdash; Select next item</div>
+
+        </div>
+      </div>
+    </template>
+
     <template id="sidebar-view">
       <div class="pane pane-sm sidebar">
         <ul class="list-group">
@@ -302,6 +325,10 @@
           <li class="list-group-item" data-field="lintLink" data-pane-link="lint">
             <div class="sidebar-icon sidebar-icon-lint"></div>
             Lint
+          </li>
+          <li class="list-group-item" data-field="aboutLink" data-pane-link="about">
+            <div class="sidebar-icon sidebar-icon-about"></div>
+            About
           </li>
         </ul>
       </div>
