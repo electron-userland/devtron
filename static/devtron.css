@@ -201,6 +201,10 @@ table:focus,
   -webkit-mask-image: url(../vendor/entypo/cycle.svg);
 }
 
+.toolbar-icon-bug {
+  -webkit-mask-image: url(../vendor/entypo/bug.svg);
+}
+
 .toolbar-actions .active,
 .toolbar-actions .active:focus,
 .toolbar-actions .active:hover {
