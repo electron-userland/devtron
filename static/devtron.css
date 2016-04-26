@@ -71,6 +71,7 @@
 }
 
 table:focus,
+tbody:focus,
 .toolbar-actions .btn:focus {
   outline: 0 none;
 }
