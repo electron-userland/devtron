@@ -102,7 +102,7 @@
               <th>Size</th>
               <th>File</th>
             </thead>
-            <tbody data-field="renderRequireRows">
+            <tbody data-field="renderRequireRows" tabindex="-1">
             </tbody>
           </table>
 
@@ -113,7 +113,7 @@
               <th>Size</th>
               <th>File</th>
             </thead>
-            <tbody data-field="mainRequireRows">
+            <tbody data-field="mainRequireRows" tabindex="-1">
             </tbody>
           </table>
         </div>
@@ -137,7 +137,7 @@
             <thead>
               <th>Event Listeners</th>
             </thead>
-            <tbody data-field="listenersTable">
+            <tbody data-field="listenersTable" tabindex="-1">
             </tbody>
           </table>
         </div>
@@ -303,8 +303,9 @@
           <h4>Keyboard Shortcuts</h4>
 
           <h5>Panes</h5>
-          <div class="keybinding" ><kbd>Alt + Up Arrow</kbd> &mdash; Navigate to previous pane</div>
-          <div class="keybinding" ><kbd>Alt + Down Arrow</kbd> &mdash; Navigate to next pane</div>
+          <div class="keybinding"><kbd>Alt + Up Arrow</kbd> &mdash; Navigate to previous pane</div>
+          <div class="keybinding"><kbd>Alt + Down Arrow</kbd> &mdash; Navigate to next pane</div>
+          <div class="keybinding"><kbd>Ctrl + E / Cmd + E</kbd> &mdash; Reload the pane</div>
 
           <h5>Tables</h5>
           <div class="keybinding"><kbd>Left Arrow</kbd> &mdash; Collapse selected item</div>
