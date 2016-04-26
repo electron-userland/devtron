@@ -195,7 +195,7 @@
           </div>
         </header>
 
-        <div class="padded">
+        <div class="padded table-scroller">
           <div data-field="outdated" class="alert hidden" role="alert">
             <p>
               <span class="lint-icon"></span>
@@ -286,8 +286,17 @@
 
     <template id="about-view">
       <div class="pane hidden" data-pane="about">
-        <div class="padded">
-          <h3>Devtron</h3>
+        <header class="toolbar toolbar-header">
+          <div class="toolbar-actions">
+            <button data-field="issueButton" class="btn btn-default js-load-graph pull-right">
+              <span class="toolbar-icon toolbar-icon-bug"></span>
+              Report Issue
+            </button>
+          </div>
+        </header>
+
+        <div class="padded table-scroller">
+          <h3>Devtron <small data-field="versionLabel"></small></h3>
           <p>A dev tools extension for Electron</p>
           <p><a href="https://github.com/electron/devtron">https://github.com/electron/devtron</a></p>
 
