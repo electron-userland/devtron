@@ -223,14 +223,22 @@ tbody:focus,
   float: left;
 }
 
-.alert-success .lint-icon {
+.alert-lint-pass .lint-icon {
   -webkit-mask-image: url(../vendor/entypo/check.svg);
   background-color: #3c763d;
 }
 
-.alert-warning .lint-icon {
+.alert-lint-fail .lint-icon {
   -webkit-mask-image: url(../vendor/entypo/warning.svg);
-  background-color: #8a6d3b;
+  background-color: #a94442;
+}
+
+.alert-lint-pass .lint-title {
+  background-color: #3c763d;
+}
+
+.alert-lint-fail .lint-title {
+  color: #a94442;
 }
 
 table code {
