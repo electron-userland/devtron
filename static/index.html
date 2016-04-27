@@ -217,91 +217,108 @@
           </div>
         </header>
 
-        <div class="padded table-scroller">
-          <div data-field="outdated" class="alert hidden" role="alert">
-            <p>
-              <span class="lint-icon"></span>
-              <strong>Using latest Electron version</strong>
-            </p>
-            <p data-field="outdatedDescription">
-              Your application is using version <span data-field="versionLabel"></span>
-              and the latest version released is <span data-field="latestLabel"></span>.
+        <div class="table-scroller">
+          <table class="table-striped" tabindex="-1">
+            <thead>
+              <th>Lint Checks</th>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-field="outdated" class="alert hidden" role="alert">
+                  <p>
+                    <span class="lint-icon"></span>
+                    <strong class="lint-title">Using latest Electron version</strong>
+                  </p>
+                  <p data-field="outdatedDescription">
+                    Your application is using version <span data-field="versionLabel"></span>
+                    and the latest version released is <span data-field="latestLabel"></span>.
 
-              <br><br>
-              View the <a href="http://electron.atom.io/releases.html">Electron release notes</a>.
-            </p>
-          </div>
+                    <br><br>
+                    View the <a href="http://electron.atom.io/releases.html">Electron release notes</a>.
+                  </p>
+                </td>
+              </tr>
 
-          <div data-field="usingAsar" class="alert hidden" role="alert">
-            <p>
-              <span class="lint-icon"></span>
-              <strong>Using an asar archive</strong>
-            </p>
-            <p data-field="asarDescription">
-              Your application is not bundled in an <code>.asar</code> archive.
-              Asar bundles your entire application into a single file which
-              makes your app quicker to install/update as well as improves the
-              code loading performance in many environments.
+              <tr>
+                <td data-field="usingAsar" class="alert hidden" role="alert">
+                  <p>
+                    <span class="lint-icon"></span>
+                    <strong class="lint-title">Using an asar archive</strong>
+                  </p>
+                  <p data-field="asarDescription">
+                    Your application is not bundled in an <code>.asar</code> archive.
+                    Asar bundles your entire application into a single file which
+                    makes your app quicker to install/update as well as improves the
+                    code loading performance in many environments.
 
-              <br><br>
-              View the <a href="http://electron.atom.io/docs/latest/tutorial/application-packaging">asar instructions</a>.
-            </p>
-          </div>
+                    <br><br>
+                    View the <a href="http://electron.atom.io/docs/latest/tutorial/application-packaging">asar instructions</a>.
+                  </p>
+                </td>
+              </tr>
 
-          <div data-field="crashListener" class="alert hidden" role="alert">
-            <p>
-              <span class="lint-icon"></span>
-              <strong>Listening for crash events</strong>
-            </p>
-            <p data-field="crashDescription">
-              Your application is not listening for the <code>crashed</code> event on
-              the <code>webContents</code> property of the <code>BrowserWindow</code>.
-              It is important to listen for this event to report when it happens
-              and notify the user about what happened.
+              <tr>
+                <td data-field="crashListener" class="alert hidden" role="alert">
+                  <p>
+                    <span class="lint-icon"></span>
+                    <strong class="lint-title">Listening for crash events</strong>
+                  </p>
+                  <p data-field="crashDescription">
+                    Your application is not listening for the <code>crashed</code> event on
+                    the <code>webContents</code> property of the <code>BrowserWindow</code>.
+                    It is important to listen for this event to report when it happens
+                    and notify the user about what happened.
 
-              <br><br>
-              Listen for this event by adding: <code>myWindow.webContents.on('crashed', function () { })</code>
-              <br>
-              View the <a href="http://electron.atom.io/docs/latest/api/web-contents/#event-crashed">docs</a>.
-            </p>
-          </div>
+                    <br><br>
+                    Listen for this event by adding: <code>myWindow.webContents.on('crashed', function () { })</code>
+                    <br>
+                    View the <a href="http://electron.atom.io/docs/latest/api/web-contents/#event-crashed">docs</a>.
+                  </p>
+                </td>
+              </tr>
 
-          <div data-field="unresponsiveListener" class="alert hidden" role="alert">
-            <p>
-              <span class="lint-icon"></span>
-              <strong>Listening for unresponsive events</strong>
-            </p>
-            <p data-field="unresponsiveDescription">
-              Your application is not listening for the <code>unresponsive</code> event on
-              the <code>BrowserWindow</code>. It is important to listen for this
-              event to report when it happens and to notify the user about what
-              has happened.
+              <tr>
+                <td data-field="unresponsiveListener" class="alert hidden" role="alert">
+                  <p>
+                    <span class="lint-icon"></span>
+                    <strong class="lint-title">Listening for unresponsive events</strong>
+                  </p>
+                  <p data-field="unresponsiveDescription">
+                    Your application is not listening for the <code>unresponsive</code> event on
+                    the <code>BrowserWindow</code>. It is important to listen for this
+                    event to report when it happens and to notify the user about what
+                    has happened.
 
-              <br><br>
-              Listen for this event by adding: <code>myWindow.on('unresponsive', function () { })</code>
-              <br>
-              View the <a href="http://electron.atom.io/docs/latest/api/browser-window/#event-unresponsive">docs</a>.
-            </p>
-          </div>
+                    <br><br>
+                    Listen for this event by adding: <code>myWindow.on('unresponsive', function () { })</code>
+                    <br>
+                    View the <a href="http://electron.atom.io/docs/latest/api/browser-window/#event-unresponsive">docs</a>.
+                  </p>
+                </td>
+              </tr>
 
-          <div data-field="uncaughtListener" class="alert hidden" role="alert">
-            <p>
-              <span class="lint-icon"></span>
-              <strong>Listening for uncaughtException events</strong>
-            </p>
-            <p data-field="uncaughtDescription">
-              Your application is not listening for the <code>uncaughtException</code>
-              event on the main <code>process</code>. Electron shows a dialog with a
-              stack trace by default if you do not provide a listener for this event.
-              It is important to listen for this event to report when it happens
-              and possibly notify the user about what has happened.
+              <tr>
+                <td data-field="uncaughtListener" class="alert hidden" role="alert">
+                  <p>
+                    <span class="lint-icon"></span>
+                    <strong class="lint-title">Listening for uncaughtException events</strong>
+                  </p>
+                  <p data-field="uncaughtDescription">
+                    Your application is not listening for the <code>uncaughtException</code>
+                    event on the main <code>process</code>. Electron shows a dialog with a
+                    stack trace by default if you do not provide a listener for this event.
+                    It is important to listen for this event to report when it happens
+                    and possibly notify the user about what has happened.
 
-              <br><br>
-              Listen for this event by adding <code>process.on('uncaughtException', function () { })</code> in the main process.
-              <br>
-              View the <a href="https://nodejs.org/api/process.html#process_event_uncaughtexception">docs</a>.
-            </p>
-          </div>
+                    <br><br>
+                    Listen for this event by adding <code>process.on('uncaughtException', function () { })</code> in the main process.
+                    <br>
+                    View the <a href="https://nodejs.org/api/process.html#process_event_uncaughtexception">docs</a>.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
 
           <div class="table-description" data-field="tableDescription">
             This pane shows warnings about potential issues or missing

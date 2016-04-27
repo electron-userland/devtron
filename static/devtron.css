@@ -135,7 +135,7 @@ tbody:focus,
 }
 
 .sidebar-icon-lint {
-  -webkit-mask-image: url(../vendor/entypo/new.svg);
+  -webkit-mask-image: url(../vendor/entypo/warning.svg);
 }
 
 .sidebar-icon-about {
@@ -223,16 +223,27 @@ tbody:focus,
   float: left;
 }
 
-.alert-success .lint-icon {
-  -webkit-mask-image: url(../vendor/entypo/thumbs-up.svg);
+.alert-lint-pass .lint-icon {
+  -webkit-mask-image: url(../vendor/entypo/check.svg);
   background-color: #3c763d;
 }
 
-.alert-warning .lint-icon {
-  -webkit-mask-image: url(../vendor/entypo/thumbs-down.svg);
-  background-color: #8a6d3b;
+.alert-lint-fail .lint-icon {
+  -webkit-mask-image: url(../vendor/entypo/warning.svg);
+  background-color: #a94442;
 }
 
+.alert-lint-pass .lint-title {
+  color: #3c763d;
+}
+
+.alert-lint-fail .lint-title {
+  color: #a94442;
+}
+
+td.alert {
+  white-space: normal;
+}
 
 table code {
   padding: 0;
