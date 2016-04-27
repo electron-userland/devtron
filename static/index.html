@@ -116,6 +116,14 @@
             <tbody data-field="mainRequireRows" tabindex="-1">
             </tbody>
           </table>
+
+          <div class="table-description" data-field="tableDescription">
+            This table shows all of the JavaScript files loaded via <code>require</code>
+            starting from your application's main entry point.
+            <br>
+            Click Load Graph to generate a require graph for the renderer process
+            and the main process.
+          </div>
         </div>
       </div>
     </template>
@@ -140,6 +148,13 @@
             <tbody data-field="listenersTable" tabindex="-1">
             </tbody>
           </table>
+
+          <div class="table-description" data-field="tableDescription">
+            This table shows the event names and listeners currently registered
+            on core Electron and node.js APIs.
+            <br>
+            Click Load Listeners to populate it.
+          </div>
         </div>
       </div>
     </template>
@@ -180,6 +195,13 @@
             <tbody data-field="ipcTable">
             </tbody>
           </table>
+
+          <div class="table-description" data-field="tableDescription">
+            This table shows the inter-process communication (IPC) events sent
+            and received between the renderer process and the main process.
+            <br>
+            Click Record to start monitoring and displaying IPC traffic.
+          </div>
         </div>
       </div>
     </template>
@@ -279,6 +301,13 @@
               <br>
               View the <a href="https://nodejs.org/api/process.html#process_event_uncaughtexception">docs</a>.
             </p>
+          </div>
+
+          <div class="table-description" data-field="tableDescription">
+            This pane shows warnings about potential issues or missing
+            functionality in your application.
+            <br>
+            Click Lint App to inspect the running application.
           </div>
         </div>
       </div>
