@@ -63,6 +63,11 @@
   background-color: white;
 }
 
+.table-striped tr:nth-child(even),
+.table-striped > tbody > tr:nth-of-type(odd) {
+  background-color: #fff;
+}
+
 .table-striped > tbody > tr.active,
 .table-striped > tbody > tr.active .row-directory,
 .table-striped > tbody > tr.active .listener-count {
