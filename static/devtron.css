@@ -294,3 +294,12 @@ code {
   border-bottom-color: #a19fa1;
   border-left-color: #c2c0c2;
 }
+
+.table-description {
+  margin: auto;
+  margin-top: 40px;
+  text-align: center;
+  font-size: 1.2em;
+  font-weight: 300;
+  color: #bbb;
+}
