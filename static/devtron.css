@@ -135,7 +135,7 @@ tbody:focus,
 }
 
 .sidebar-icon-lint {
-  -webkit-mask-image: url(../vendor/entypo/new.svg);
+  -webkit-mask-image: url(../vendor/entypo/warning.svg);
 }
 
 .sidebar-icon-about {
