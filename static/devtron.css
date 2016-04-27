@@ -234,11 +234,15 @@ tbody:focus,
 }
 
 .alert-lint-pass .lint-title {
-  background-color: #3c763d;
+  color: #3c763d;
 }
 
 .alert-lint-fail .lint-title {
   color: #a94442;
+}
+
+td.alert {
+  white-space: normal;
 }
 
 table code {
