@@ -4,6 +4,18 @@ An Electron developer tools extension.
 
 ![screenshot](https://cloud.githubusercontent.com/assets/671378/14900253/8f794de8-0d44-11e6-8972-37886b716e60.png)
 
+## Features
+
+  * **Require graph** to help you visualize your app's internal and external
+    library dependencies in both the main and renderer processes.
+  * **IPC monitor** to track and inspect the messages sent and received
+    between the renderer and main processes in your app.
+  * **Event inspector** that shows the events and listeners that are registered
+    in your app on the core Electron APIs such as the window, the app, and the
+    processes.
+  * **App Linter** that checks your apps for possible issues and missing
+    functionality.
+
 ## Installing
 
 ```sh
