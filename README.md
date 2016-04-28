@@ -73,3 +73,11 @@ Chrome tab that will talk remotely to a running Electron app over HTTP.
 - Then open `/Users/me/devtron/static/index.html` in Chrome
 - The page there will talk remotely to the running Electron app so you'll
   be able to fully interact with each pane with real data.
+
+## Contributing
+
+Have an idea for something this extension could do to make debugging Electron
+apps easier? Please [open an issue](https://github.com/electron/devtron/issues/new).
+
+Pull requests are also welcome and appreciated. Run `npm test` to run the
+existing tests. This project uses the [standard JavaScript style](http://standardjs.com).
