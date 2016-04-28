@@ -100,7 +100,8 @@ tbody:focus,
   top: 62px;
 }
 
-.row-directory, .listener-count {
+.row-directory,
+.listener-count {
   color: #bbb;
   display: inline-block;
   margin-left: 5px;

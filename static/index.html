@@ -19,7 +19,7 @@
     </div>
 
     <template id="requires-table-row">
-      <tr class="require-row">
+      <tr>
         <td class="row-module" data-field="moduleName"></td>
         <td class="row-version" data-field="moduleVersion"></td>
         <td class="row-size" data-field="fileSize"></td>
@@ -32,7 +32,7 @@
     </template>
 
     <template id="ipc-table-row">
-      <tr class="ipc-row">
+      <tr>
         <td class="row-event-name">
           <div class="ipc-icon" data-field="eventIcon"></div>
           <div class="ipc-icon ipc-icon-sync" data-field="syncIcon" title="Synchronous"></div>
@@ -47,7 +47,7 @@
 
     <template id="emitter-row">
       <tr>
-        <td class="row-listener has-children">
+        <td class="row-listener">
           <span class="disclosure-arrow" data-field="disclosure"></span>
           <span data-field="emitterName"></span>
           <span class="listener-count" data-field="listenerCount"></span>
@@ -57,7 +57,7 @@
 
     <template id="event-type-row">
       <tr>
-        <td class="row-listener has-children row-listener-event-name">
+        <td class="row-listener row-listener-event-name">
           <span class="disclosure-arrow" data-field="disclosure"></span>
           <span data-field="eventName"></span>
           <span class="listener-count" data-field="listenerCount"></span>
