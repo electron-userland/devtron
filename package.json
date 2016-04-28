@@ -12,11 +12,17 @@
     "type": "git",
     "url": "git+https://github.com/electron/devtron.git"
   },
-  "author": "",
+  "author": "Kevin Sawicki",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/electron/devtron/issues"
   },
+  "keywords": [
+    "Electron",
+    "Chrome",
+    "devtools",
+    "developer tools"
+  ],
   "homepage": "https://github.com/electron/devtron#readme",
   "devDependencies": {
     "body-parser": "^1.15.0",
@@ -29,13 +35,13 @@
     "standard": "^6.0.8",
     "watchify": "^3.7.0"
   },
+  "dependencies": {
+    "highlight.js": "^9.3.0",
+    "humanize-plus": "^1.8.1"
+  },
   "standard": {
     "ignore": [
       "/out/index.js"
     ]
-  },
-  "dependencies": {
-    "highlight.js": "^9.3.0",
-    "humanize-plus": "^1.8.1"
   }
 }
