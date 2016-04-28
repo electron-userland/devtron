@@ -2,6 +2,8 @@
 
 An Electron developer tools extension.
 
+![screenshot](https://cloud.githubusercontent.com/assets/671378/14900253/8f794de8-0d44-11e6-8972-37886b716e60.png)
+
 ## Installing
 
 ```sh
