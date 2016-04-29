@@ -19,7 +19,7 @@
     </div>
 
     <template id="requires-table-row">
-      <tr class="require-row">
+      <tr>
         <td class="row-module" data-field="moduleName"></td>
         <td class="row-version" data-field="moduleVersion"></td>
         <td class="row-size" data-field="fileSize"></td>
@@ -32,7 +32,7 @@
     </template>
 
     <template id="ipc-table-row">
-      <tr class="ipc-row">
+      <tr>
         <td class="row-event-name">
           <div class="ipc-icon" data-field="eventIcon"></div>
           <div class="ipc-icon ipc-icon-sync" data-field="syncIcon" title="Synchronous"></div>
@@ -47,7 +47,7 @@
 
     <template id="emitter-row">
       <tr>
-        <td class="row-listener has-children">
+        <td class="row-listener">
           <span class="disclosure-arrow" data-field="disclosure"></span>
           <span data-field="emitterName"></span>
           <span class="listener-count" data-field="listenerCount"></span>
@@ -57,7 +57,7 @@
 
     <template id="event-type-row">
       <tr>
-        <td class="row-listener has-children row-listener-event-name">
+        <td class="row-listener row-listener-event-name">
           <span class="disclosure-arrow" data-field="disclosure"></span>
           <span data-field="eventName"></span>
           <span class="listener-count" data-field="listenerCount"></span>
@@ -77,11 +77,11 @@
       <div class="pane" data-pane="graph">
         <header class="toolbar toolbar-header">
           <div class="toolbar-actions">
-            <button data-field="loadButton" class="btn btn-default js-load-graph pull-right">
+            <button data-field="loadButton" class="btn btn-default pull-right">
               <span class="toolbar-icon toolbar-icon-cycle"></span>
               Load Graph
             </button>
-            <input data-field="searchBox" class="form-control pull-right search-box pull-right js-search-graph" type="text" placeholder="Search modules">
+            <input data-field="searchBox" class="form-control search-box pull-right" type="text" placeholder="Search modules">
           </div>
         </header>
 
@@ -132,11 +132,11 @@
       <div class="pane hidden" data-pane="listeners">
         <header class="toolbar toolbar-header">
           <div class="toolbar-actions">
-            <button data-field="loadButton" class="btn btn-default js-load-graph pull-right">
+            <button data-field="loadButton" class="btn btn-default pull-right">
               <span class="toolbar-icon toolbar-icon-cycle"></span>
               Load Listeners
             </button>
-            <input data-field="searchBox" class="form-control pull-right search-box pull-right js-search-graph" type="text" placeholder="Search events">
+            <input data-field="searchBox" class="form-control search-box pull-right" type="text" placeholder="Search events">
           </div>
         </header>
 
@@ -181,7 +181,7 @@
                 Docs
               </button>
             </div>
-            <input data-field="searchBox" class="form-control pull-right search-box pull-right js-search-graph" type="text" placeholder="Search events">
+            <input data-field="searchBox" class="form-control search-box pull-right" type="text" placeholder="Search events">
           </div>
         </header>
 
@@ -210,7 +210,7 @@
       <div class="pane hidden" data-pane="lint">
         <header class="toolbar toolbar-header">
           <div class="toolbar-actions">
-            <button data-field="lintButton" class="btn btn-default js-load-graph pull-right">
+            <button data-field="lintButton" class="btn btn-default pull-right">
               <span class="toolbar-icon toolbar-icon-cycle"></span>
               Lint App
             </button>
@@ -334,7 +334,7 @@
       <div class="pane hidden" data-pane="about">
         <header class="toolbar toolbar-header">
           <div class="toolbar-actions">
-            <button data-field="issueButton" class="btn btn-default js-load-graph pull-right">
+            <button data-field="issueButton" class="btn btn-default pull-right">
               <span class="toolbar-icon toolbar-icon-bug"></span>
               Report Issue
             </button>
