@@ -3,3 +3,4 @@
 .npmignore
 /test/
 /lib/
+appveyor.yml
