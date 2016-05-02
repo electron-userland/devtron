@@ -1,13 +1,13 @@
 'use strict'
 
 const devtools = require('./devtools')
-const Lint = require('../../lib/lint-helpers')
 const expect = require('chai').expect
+const Lint = require('../../lib/lint-helpers')
 
+const afterEach = global.afterEach
+const beforeEach = global.beforeEach
 const describe = global.describe
 const it = global.it
-const beforeEach = global.beforeEach
-const afterEach = global.afterEach
 
 describe('Lint Helpers', () => {
   beforeEach(() => {
