@@ -54,6 +54,17 @@ describe('when opened in an app', function () {
     })
   })
 
+  describe('Require Graph', function () {
+    describe('when the Load Graph button is clicked', function () {
+      it('displays a table of required files', function () {
+        return app.client
+          .click('.pane[data-pane=graph] button')
+          .waitForVisible('.pane[data-pane=graph] .table-description', timeout, true)
+          .isVisible('.pane[data-pane=graph] .row-module').should.eventually.have.length(25)
+      })
+    })
+  })
+
   describe('Event Listeners', function () {
     describe('when the Load Listeners button is clicked', function () {
       it('displays a table of emitters, events, and listeners', function () {
