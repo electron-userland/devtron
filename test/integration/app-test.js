@@ -36,7 +36,7 @@ describe('when opened in an app', function () {
   })
 
   afterEach(function () {
-    return app.stop()
+    if (app.isRunning()) return app.stop()
   })
 
   describe('when a sidebar item is clicked', function () {
