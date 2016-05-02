@@ -4,4 +4,4 @@ const chaiAsPromised = require('chai-as-promised')
 chai.should()
 chai.use(chaiAsPromised)
 
-require('electron').setup()
+if (!process.versions.electron) require('electron').setup()
