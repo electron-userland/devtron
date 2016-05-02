@@ -21,7 +21,7 @@ describe('when opened in an app', function () {
   let app
 
   beforeEach(function () {
-    var electronPath = path.join(__dirname, '..', '..', 'node_modules', '.bin', 'electron')
+    let electronPath = path.join(__dirname, '..', '..', 'node_modules', '.bin', 'electron')
     if (process.platform === 'win32') electronPath += '.cmd'
 
     app = new Application({
