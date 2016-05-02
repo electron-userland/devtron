@@ -6,7 +6,7 @@
   "scripts": {
     "prepublish": "browserify lib/*.js -o out/index.js --ignore-missing --entry lib/index.js",
     "start": "watchify lib/*.js -o out/index.js --ignore-missing --entry lib/index.js --verbose",
-    "test": "mocha test/*-test.js && standard"
+    "test": "mocha test/unit/*-test.js test/integration/*-test.js && standard"
   },
   "repository": {
     "type": "git",

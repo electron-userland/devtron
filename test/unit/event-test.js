@@ -1,7 +1,7 @@
 'use strict'
 
 const devtools = require('./devtools')
-const Event = require('../lib/event-helpers')
+const Event = require('../../lib/event-helpers')
 const expect = require('chai').expect
 
 const describe = global.describe

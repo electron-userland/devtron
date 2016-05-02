@@ -1,7 +1,7 @@
 'use strict'
 
 const devtools = require('./devtools')
-const ipc = require('../lib/ipc-helpers')
+const ipc = require('../../lib/ipc-helpers')
 const expect = require('chai').expect
 
 const describe = global.describe

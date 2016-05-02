@@ -1,7 +1,7 @@
 'use strict'
 
 const devtools = require('./devtools')
-const Lint = require('../lib/lint-helpers')
+const Lint = require('../../lib/lint-helpers')
 const expect = require('chai').expect
 
 const describe = global.describe
