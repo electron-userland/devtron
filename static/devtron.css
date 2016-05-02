@@ -324,3 +324,7 @@ code {
   font-weight: 300;
   color: #bbb;
 }
+
+.pane {
+  overflow-y: hidden;
+}
