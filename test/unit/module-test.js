@@ -25,6 +25,7 @@ describe('Module', () => {
       expect(root.getDepth()).to.equal(1)
       expect(root.getDirectory()).to.equal('lib')
       expect(root.getLibrary()).to.equal('My App')
+      expect(root.getId()).to.equal('my app')
     })
   })
 
@@ -32,10 +33,15 @@ describe('Module', () => {
     it('returns the main module and child modules', () => {
       return Modules.getMainModules().then((mainModule) => {
         expect(mainModule.appName).to.equal('Devtron')
+        expect(mainModule.totalSize).to.be.above(0)
         expect(mainModule.getLibrary()).to.equal('mocha')
+        expect(mainModule.getId()).to.equal('mocha')
         expect(mainModule.getName()).to.equal('_mocha')
         expect(mainModule.hasChildren()).to.be.true
         expect(mainModule.getPath()).to.equal(process.mainModule.filename)
+        expect(mainModule.getSize()).to.be.above(0)
+        expect(mainModule.getDepth()).to.equal(1)
+        expect(mainModule.getVersion()).not.to.be.empty
       })
     })
   })
@@ -44,10 +50,15 @@ describe('Module', () => {
     it('returns the main module and child modules', () => {
       return Modules.getRenderModules().then((mainModule) => {
         expect(mainModule.appName).to.equal('Devtron')
+        expect(mainModule.totalSize).to.be.above(0)
         expect(mainModule.getLibrary()).to.equal('mocha')
+        expect(mainModule.getId()).to.equal('mocha')
         expect(mainModule.getName()).to.equal('_mocha')
         expect(mainModule.hasChildren()).to.be.true
         expect(mainModule.getPath()).to.equal(process.mainModule.filename)
+        expect(mainModule.getSize()).to.be.above(0)
+        expect(mainModule.getDepth()).to.equal(1)
+        expect(mainModule.getVersion()).not.to.be.empty
       })
     })
   })
