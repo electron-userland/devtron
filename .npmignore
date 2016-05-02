@@ -4,3 +4,4 @@
 /test/
 /lib/
 appveyor.yml
+.travis.yml
