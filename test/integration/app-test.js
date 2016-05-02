@@ -10,10 +10,14 @@ const it = global.it
 const beforeEach = global.beforeEach
 const afterEach = global.afterEach
 
+const timeout = process.env.CI ? 60000 : 30000
+
 chai.should()
 chai.use(chaiAsPromised)
 
 describe('when opened in an app', function () {
+  this.timeout(timeout)
+
   let app
 
   beforeEach(function () {
@@ -47,6 +51,18 @@ describe('when opened in an app', function () {
         .click('.list-group-item[data-pane-link=listeners]')
         .isVisible('.pane[data-pane=graph]').should.eventually.be.false
         .isVisible('.pane[data-pane=listeners]').should.eventually.be.true
+    })
+  })
+
+  describe('Event Listeners', function () {
+    describe('when the Load Listeners button is clicked', function () {
+      it('displays a table of emitters, events, and listeners', function () {
+        return app.client
+          .click('.list-group-item[data-pane-link=listeners]')
+          .click('.pane[data-pane=listeners] button')
+          .waitForVisible('.pane[data-pane=listeners] .table-description', timeout, true)
+          .isVisible('.pane[data-pane=listeners] .row-emitter').should.eventually.have.length(7)
+      })
     })
   })
 })
