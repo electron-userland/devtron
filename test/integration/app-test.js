@@ -13,7 +13,7 @@ const afterEach = global.afterEach
 chai.should()
 chai.use(chaiAsPromised)
 
-describe.only('when opened in an app', function () {
+describe('when opened in an app', function () {
   let app
 
   beforeEach(function () {
@@ -38,5 +38,15 @@ describe.only('when opened in an app', function () {
   it('display the require graph pane', function () {
     return app.client.getText('.sidebar .active').should.eventually.equal('Require Graph')
       .isVisible('.pane[data-pane=graph]').should.eventually.be.true
+  })
+
+  describe('when a sidebar item is clicked', function () {
+    it('displays the pane for the selected item', function () {
+      return app.client
+        .isVisible('.pane[data-pane=listeners]').should.eventually.be.false
+        .click('.list-group-item[data-pane-link=listeners]')
+        .isVisible('.pane[data-pane=graph]').should.eventually.be.false
+        .isVisible('.pane[data-pane=listeners]').should.eventually.be.true
+    })
   })
 })
