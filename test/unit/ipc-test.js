@@ -24,5 +24,23 @@ describe('IPC Helpers', () => {
         expect(events.length).to.equal(0)
       })
     })
+
+    it('returns the emitted IPC events', () => {
+      return ipc.listenForEvents().then(() => {
+        require('electron').ipcRenderer.emit('foo', {}, 'bar')
+        return ipc.getEvents()
+      }).then((events) => {
+        expect(events.length).to.equal(1)
+
+        const event = events[0]
+        expect(event.channel).to.equal('foo')
+        expect(event.data).to.equal('["bar"]')
+        expect(event.sync).to.be.false
+        expect(event.sent).to.be.false
+
+      }).then(ipc.getEvents).then((events) => {
+        expect(events.length).to.equal(0)
+      })
+    })
   })
 })
