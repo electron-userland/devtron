@@ -6,8 +6,8 @@ let window
 
 app.on('ready', function () {
   window = new BrowserWindow({
-    width: 500,
-    height: 500,
+    width: 800,
+    height: 600,
     webPreferences: {
       preload: path.join(__dirname, 'preload')
     }
