@@ -6,7 +6,7 @@
   "scripts": {
     "prepublish": "browserify lib/*.js -o out/index.js --ignore-missing --entry lib/index.js",
     "start": "watchify lib/*.js -o out/index.js --ignore-missing --entry lib/index.js --verbose",
-    "test": "mocha test/*-test.js && standard"
+    "test": "mocha test/unit/*-test.js test/integration/*-test.js && standard"
   },
   "repository": {
     "type": "git",
@@ -30,8 +30,10 @@
     "chai": "^3.5.0",
     "chai-as-promised": "^5.3.0",
     "cors": "^2.7.1",
+    "electron-prebuilt": "^0.37.8",
     "express": "^4.13.4",
     "mocha": "^2.4.5",
+    "spectron": "~2.37.0",
     "standard": "^6.0.8",
     "watchify": "^3.7.0"
   },

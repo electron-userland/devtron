@@ -1,7 +1,7 @@
 'use strict'
 
 const devtools = require('./devtools')
-const Eval = require('../lib/eval')
+const Eval = require('../../lib/eval')
 const path = require('path')
 
 const describe = global.describe
@@ -38,17 +38,17 @@ describe('Eval', () => {
 
   describe('getFileSize(filePath)', () => {
     it('returns the size of the file', () => {
-      return Eval.getFileSize(path.join(__dirname, 'fixtures', 'foo.txt')).should.eventually.equal(15)
+      return Eval.getFileSize(path.join(__dirname, '..', 'fixtures', 'foo.txt')).should.eventually.equal(15)
     })
 
     it('returns -1 for files that do not exist', () => {
-      return Eval.getFileSize(path.join(__dirname, 'fixtures', 'does-not-exist.txt')).should.eventually.equal(-1)
+      return Eval.getFileSize(path.join(__dirname, '..', 'fixtures', 'does-not-exist.txt')).should.eventually.equal(-1)
     })
   })
 
   describe('getFileVersion(filePath)', () => {
     it('returns the version from the parent package.json', () => {
-      return Eval.getFileVersion(path.join(__dirname, 'fixtures', 'node_modules', 'foo', 'index.js')).should.eventually.equal('1.2.3')
+      return Eval.getFileVersion(path.join(__dirname, '..', 'fixtures', 'node_modules', 'foo', 'index.js')).should.eventually.equal('1.2.3')
     })
 
     it('returns the electron version for paths inside the api asar file', () => {
