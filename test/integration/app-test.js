@@ -39,11 +39,6 @@ describe('when opened in an app', function () {
     return app.stop()
   })
 
-  it('display the require graph pane', function () {
-    return app.client.getText('.sidebar .active').should.eventually.equal('Require Graph')
-      .isVisible('.pane[data-pane=graph]').should.eventually.be.true
-  })
-
   describe('when a sidebar item is clicked', function () {
     it('displays the pane for the selected item', function () {
       return app.client
@@ -55,6 +50,13 @@ describe('when opened in an app', function () {
   })
 
   describe('Require Graph', function () {
+    it.only('displays it initially', function () {
+      return app.client
+        .getText('.sidebar .active').should.eventually.equal('Require Graph')
+        .isVisible('.pane[data-pane=graph]').should.eventually.be.true
+        .getText('.pane[data-pane=graph] .tab-item.active').should.eventually.equal('Renderer Process')
+    })
+
     describe('when the Load Graph button is clicked', function () {
       it('displays a table of required files', function () {
         return app.client
