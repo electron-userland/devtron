@@ -46,6 +46,15 @@ describe('when opened in an app', function () {
         .click('.list-group-item[data-pane-link=listeners]')
         .isVisible('.pane[data-pane=graph]').should.eventually.be.false
         .isVisible('.pane[data-pane=listeners]').should.eventually.be.true
+        .click('.list-group-item[data-pane-link=ipc]')
+        .isVisible('.pane[data-pane=listeners]').should.eventually.be.false
+        .isVisible('.pane[data-pane=ipc]').should.eventually.be.true
+        .click('.list-group-item[data-pane-link=lint]')
+        .isVisible('.pane[data-pane=ipc]').should.eventually.be.false
+        .isVisible('.pane[data-pane=lint]').should.eventually.be.true
+        .click('.list-group-item[data-pane-link=about]')
+        .isVisible('.pane[data-pane=lint]').should.eventually.be.false
+        .isVisible('.pane[data-pane=about]').should.eventually.be.true
     })
   })
 
