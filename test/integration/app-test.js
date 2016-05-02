@@ -37,5 +37,6 @@ describe.only('when opened in an app', function () {
 
   it('display the require graph pane', function () {
     return app.client.getText('.sidebar .active').should.eventually.equal('Require Graph')
+      .isVisible('.pane[data-pane=graph]').should.eventually.be.true
   })
 })
