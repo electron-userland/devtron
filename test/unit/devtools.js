@@ -3,6 +3,7 @@
 const vm = require('vm')
 
 exports.create = () => {
+  const devtron = {}
   return {
     chrome: {
       devtools: {
@@ -15,7 +16,8 @@ exports.create = () => {
                 console: console,
                 process: process,
                 global: {
-                  process: process
+                  process: process,
+                  __devtron: devtron
                 }
               }
               callback(vm.runInNewContext(expression, sandbox))
