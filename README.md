@@ -1,6 +1,6 @@
 # devtron
 
-An Electron developer tools extension.
+An [Electron](http://electron.atom.io) [DevTools](https://developer.chrome.com/devtools) extension.
 
 ![screenshot](https://cloud.githubusercontent.com/assets/671378/14900253/8f794de8-0d44-11e6-8972-37886b716e60.png)
 
