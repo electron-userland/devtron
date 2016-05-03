@@ -23,7 +23,7 @@ npm install --save-dev devtron
 ```
 
 Then execute the following from the Console tab of your running Electron app's
-developer tools::
+developer tools:
 
 ```js
 require('devtron').install()
