@@ -1,6 +1,6 @@
 {
   "name": "devtron",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "Electron DevTools Extension",
   "main": "./api.js",
   "scripts": {
