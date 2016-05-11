@@ -1,9 +1,10 @@
 const electron = require('electron')
 
 exports.install = () => {
-  electron.remote.BrowserWindow.addDevToolsExtension(__dirname)
+  console.log(`Installing Devtron from ${__dirname}`)
+  return electron.remote.BrowserWindow.addDevToolsExtension(__dirname)
 }
 
 exports.uninstall = () => {
-  electron.remote.BrowserWindow.removeDevToolsExtension('devtron')
+  return electron.remote.BrowserWindow.removeDevToolsExtension('devtron')
 }
