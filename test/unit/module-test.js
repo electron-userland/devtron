@@ -9,6 +9,8 @@ const describe = global.describe
 const it = global.it
 
 describe('Module', () => {
+  this.timeout(process.env.CI ? 60000 : 30000)
+
   beforeEach(() => {
     global.window = devtools.create()
   })
