@@ -1,6 +1,12 @@
 # <img src="https://cloud.githubusercontent.com/assets/378023/15063285/cf554e40-1383-11e6-9b9c-45d381b03f9f.png" width="60px" align="center" alt="Devtron icon"> Devtron
 
-An [Electron](http://electron.atom.io) [DevTools](https://developer.chrome.com/devtools) extension.
+An [Electron](http://electron.atom.io) [DevTools](https://developer.chrome.com/devtools)
+extension to help you inspect, monitor, and debug your app.
+
+[![Travis Build Status](https://travis-ci.org/electron/devtron.svg?branch=master)](https://travis-ci.org/electron/devtron)
+[![AppVeyor Build status](https://ci.appveyor.com/api/projects/status/m8bl2rgi5loud7jy/branch/master?svg=true)](https://ci.appveyor.com/project/Atom/devtron/branch/master)
+[![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](http://standardjs.com/)
+[![downloads:?](https://img.shields.io/npm/dm/devtron.svg)](https://www.npmjs.com/packages/devtron)
 
 ![screenshot](https://cloud.githubusercontent.com/assets/378023/15036521/e3e7cd06-12ca-11e6-8054-ed0455015f05.png)
 
