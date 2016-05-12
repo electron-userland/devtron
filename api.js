@@ -9,4 +9,4 @@ exports.uninstall = () => {
   return electron.remote.BrowserWindow.removeDevToolsExtension('devtron')
 }
 
-exports.path = __dirname;
+exports.path = __dirname
