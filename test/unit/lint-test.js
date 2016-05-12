@@ -9,7 +9,9 @@ const beforeEach = global.beforeEach
 const describe = global.describe
 const it = global.it
 
-describe('Lint Helpers', () => {
+describe('Lint Helpers', function () {
+  this.timeout(process.env.CI ? 60000 : 30000)
+
   beforeEach(() => {
     global.window = devtools.create()
   })
