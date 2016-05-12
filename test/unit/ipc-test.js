@@ -9,7 +9,7 @@ const it = global.it
 const beforeEach = global.beforeEach
 const afterEach = global.afterEach
 
-describe('IPC Helpers', () => {
+describe('IPC Helpers', function () {
   this.timeout(process.env.CI ? 60000 : 30000)
 
   beforeEach(() => {
