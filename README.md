@@ -2,6 +2,8 @@
 
 An [Electron](http://electron.atom.io) [DevTools](https://developer.chrome.com/devtools) extension.
 
+[![Build Status](https://travis-ci.org/electron/devtron.svg?branch=master)](https://travis-ci.org/electron/devtron)
+
 ![screenshot](https://cloud.githubusercontent.com/assets/378023/15036521/e3e7cd06-12ca-11e6-8054-ed0455015f05.png)
 
 ## Features
