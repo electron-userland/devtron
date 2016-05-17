@@ -331,4 +331,6 @@ code {
 
 .lint-table .alert {
   border-radius: 0;
+  background: #fff;
+  color: #333;
 }
