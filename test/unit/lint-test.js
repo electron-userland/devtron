@@ -32,6 +32,12 @@ describe('Lint Helpers', function () {
     it('returns false if not listening for crash events', () => {
       return Lint.isListeningForCrashEvents().then((listening) => {
         expect(listening).to.equal(false)
+
+        require('electron').remote.getCurrentWebContents().on('crashed', function () {})
+
+        return Lint.isListeningForCrashEvents().then((listening) => {
+          expect(listening).to.equal(true)
+        })
       })
     })
   })
@@ -40,6 +46,12 @@ describe('Lint Helpers', function () {
     it('returns false if not listening for unresponsive events', () => {
       return Lint.isListeningForUnresponsiveEvents().then((listening) => {
         expect(listening).to.equal(false)
+
+        require('electron').remote.getCurrentWindow().on('unresponsive', function () {})
+
+        return Lint.isListeningForUnresponsiveEvents().then((listening) => {
+          expect(listening).to.equal(true)
+        })
       })
     })
   })
@@ -48,6 +60,12 @@ describe('Lint Helpers', function () {
     it('returns false if not listening for uncaught exception events', () => {
       return Lint.isListeningForUncaughtExceptionEvents().then((listening) => {
         expect(listening).to.equal(false)
+
+        require('electron').remote.process.on('uncaughtException', function () {})
+
+        return Lint.isListeningForUncaughtExceptionEvents().then((listening) => {
+          expect(listening).to.equal(true)
+        })
       })
     })
   })
