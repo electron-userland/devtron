@@ -328,3 +328,7 @@ code {
 .pane {
   overflow-y: hidden;
 }
+
+.lint-table .alert {
+  border-radius: 0;
+}
