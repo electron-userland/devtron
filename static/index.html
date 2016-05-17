@@ -232,8 +232,6 @@
                   <p data-field="outdatedDescription">
                     Your application is using version <span data-field="versionLabel"></span>
                     and the latest version released is <span data-field="latestLabel"></span>.
-
-                    <br><br>
                     View the <a href="http://electron.atom.io/releases.html">Electron release notes</a>.
                   </p>
                 </td>
@@ -249,10 +247,7 @@
                     Your application is not bundled in an <code>.asar</code> archive.
                     Asar bundles your entire application into a single file which
                     makes your app quicker to install/update as well as improves the
-                    code loading performance in many environments.
-
-                    <br><br>
-                    View the <a href="http://electron.atom.io/docs/latest/tutorial/application-packaging">asar instructions</a>.
+                    code loading performance in many environments. View the <a href="http://electron.atom.io/docs/latest/tutorial/application-packaging">asar instructions</a>.
                   </p>
                 </td>
               </tr>
@@ -267,12 +262,11 @@
                     Your application is not listening for the <code>crashed</code> event on
                     the <code>webContents</code> property of the <code>BrowserWindow</code>.
                     It is important to listen for this event to report when it happens
-                    and notify the user about what happened.
+                    and notify the user about what happened. View the <a href="http://electron.atom.io/docs/latest/api/web-contents/#event-crashed">docs</a>.
 
                     <br><br>
-                    Listen for this event by adding: <code>myWindow.webContents.on('crashed', function () { })</code>
-                    <br>
-                    View the <a href="http://electron.atom.io/docs/latest/api/web-contents/#event-crashed">docs</a>.
+                    Listen for this event by adding the following to the <code>BrowserWindow</code>:
+                    <pre class="lint-code "><code class="language-javascript" data-field="crashedExample">myWindow.webContents.on('crashed', function () { })</code></pre>
                   </p>
                 </td>
               </tr>
@@ -287,12 +281,11 @@
                     Your application is not listening for the <code>unresponsive</code> event on
                     the <code>BrowserWindow</code>. It is important to listen for this
                     event to report when it happens and to notify the user about what
-                    has happened.
+                    has happened. View the <a href="http://electron.atom.io/docs/latest/api/browser-window/#event-unresponsive">docs</a>.
 
                     <br><br>
-                    Listen for this event by adding: <code>myWindow.on('unresponsive', function () { })</code>
-                    <br>
-                    View the <a href="http://electron.atom.io/docs/latest/api/browser-window/#event-unresponsive">docs</a>.
+                    Listen for this event by adding the following <code>WebContents</code>:
+                    <pre class="lint-code"><code class="language-javascript" data-field="unresponsiveExample">myWindow.on('unresponsive', function () { })</code></pre>
                   </p>
                 </td>
               </tr>
@@ -308,12 +301,11 @@
                     event on the main <code>process</code>. Electron shows a dialog with a
                     stack trace by default if you do not provide a listener for this event.
                     It is important to listen for this event to report when it happens
-                    and possibly notify the user about what has happened.
+                    and possibly notify the user about what has happened. View the <a href="https://nodejs.org/api/process.html#process_event_uncaughtexception">docs</a>.
 
                     <br><br>
-                    Listen for this event by adding <code>process.on('uncaughtException', function () { })</code> in the main process.
-                    <br>
-                    View the <a href="https://nodejs.org/api/process.html#process_event_uncaughtexception">docs</a>.
+                    Listen for this event by adding the following to the main process:
+                    <pre class="lint-code"><code class="language-javascript" data-field="uncaughtExample">process.on('uncaughtException', function () { })</code></pre>
                   </p>
                 </td>
               </tr>

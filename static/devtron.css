@@ -41,7 +41,8 @@
   border-width: 0;
 }
 
-.row-listener-event-code code {
+.row-listener-event-code code,
+.lint-code code {
   padding: 5px;
 }
 
