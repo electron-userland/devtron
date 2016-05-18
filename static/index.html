@@ -265,7 +265,7 @@
                     and notify the user about what happened. View the <a href="http://electron.atom.io/docs/api/web-contents/#event-crashed"><code>BrowserWindow</code> docs</a>.
 
                     <br><br>
-                    Listen for this event by adding the following to the <code>BrowserWindow</code>:
+                    Listen for this event by adding the following to the <code>webContents</code>:
                     <pre class="lint-code "><code class="language-javascript" data-field="crashedExample">myWindow.webContents.on('crashed', function () { })</code></pre>
                   </p>
                 </td>
@@ -284,7 +284,7 @@
                     has happened. View the <a href="http://electron.atom.io/docs/api/browser-window/#event-unresponsive"><code>WebContents</code> docs</a>.
 
                     <br><br>
-                    Listen for this event by adding the following <code>WebContents</code>:
+                    Listen for this event by adding the following to the <code>BrowserWindow</code>:
                     <pre class="lint-code"><code class="language-javascript" data-field="unresponsiveExample">myWindow.on('unresponsive', function () { })</code></pre>
                   </p>
                 </td>
