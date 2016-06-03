@@ -275,6 +275,7 @@ pre,
 code {
   color: inherit;
   background-color: inherit;
+  -webkit-user-select: text;
 }
 
 .row-event-data pre code {
