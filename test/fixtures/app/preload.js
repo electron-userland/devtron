@@ -15,7 +15,7 @@ window.chrome = {
             },
             window: {
               require: require,
-              process: process,
+              process: process
             }
           }
           callback(vm.runInNewContext(expression, sandbox))

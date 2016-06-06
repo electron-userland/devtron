@@ -7,8 +7,8 @@ const chaiAsPromised = require('chai-as-promised')
 
 const describe = global.describe
 const it = global.it
-const beforeEach = global.beforeEach
-const afterEach = global.afterEach
+const before = global.before
+const after = global.after
 
 const timeout = process.env.CI ? 60000 : 30000
 
