@@ -11,11 +11,15 @@ exports.create = () => {
           eval: (expression, callback) => {
             expression = `'use strict';\n${expression}`
             try {
-              let sandbox = {
+              const sandbox = {
                 require: require,
                 console: console,
                 process: process,
                 global: {
+                  process: process,
+                  __devtron: devtron
+                },
+                window: {
                   process: process,
                   __devtron: devtron
                 }
