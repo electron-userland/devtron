@@ -21,6 +21,7 @@ exports.create = () => {
                 },
                 window: {
                   process: process,
+                  require: require,
                   __devtron: devtron
                 }
               }
