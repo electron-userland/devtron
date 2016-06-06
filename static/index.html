@@ -335,7 +335,7 @@
 
         <div class="padded table-scroller">
           <h3>Devtron <small data-field="versionLabel"></small></h3>
-          <p>A dev tools extension for Electron</p>
+          <p>A DevTools extension for Electron</p>
           <p><a href="https://github.com/electron/devtron">https://github.com/electron/devtron</a></p>
 
           <h4>Keyboard Shortcuts</h4>
@@ -379,6 +379,29 @@
             About
           </li>
         </ul>
+      </div>
+    </template>
+
+    <template id="node-integration-view">
+      <div class="pane" data-pane="nodeIntegration">
+        <div class="padded table-scroller">
+          <h3>Node Integration Disabled</h3>
+          <p>It appears that this <code>BrowserWindow</code> was created with
+            <code>nodeIntegration</code> set to <code>false</code>.
+            Devtron accesses Electron APIs via <code>require</code> so you will
+            need to expose <code>require</code> and <code>process</code> via a
+            preload script to use Devtron:
+
+            <pre class="lint-code"><code class="language-javascript">window.__devtron = {require: require, process: process}</code></pre>
+
+            You may want to guard the previous code block with a <code>NODE_ENV</code>
+            check so that these variables are only exposed during development:
+
+            <pre class="lint-code"><code class="language-javascript">if (process.env.NODE_ENV === 'development')</code></pre>
+
+            Restart your application once you've configured this preload script
+            and Devtron should then be enabled for your app.
+          </div>
       </div>
     </template>
 
