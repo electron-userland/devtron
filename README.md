@@ -37,6 +37,20 @@ require('devtron').install()
 
 You should then see a `Devtron` tab added.
 
+## Disabled Node Integration
+
+If your application's `BrowserWindow` was created with `nodeIntegration` set
+to `false` then you will need to expose some globals via a [preload](http://electron.atom.io/docs/api/browser-window/#new-browserwindowoptions)
+script to allow Devtron access to Electron APIs:
+
+```js
+window.__devtron = {require: require, process: process}
+```
+
+Then restart your application and Devtron should successfully load. You may
+want to guard this assignment with a `if (process.env.NODE_ENV === 'development')`
+check to ensure these variables aren't exposed in production.
+
 ## Developing locally
 
 ```
