@@ -384,24 +384,47 @@
 
     <template id="node-integration-view">
       <div class="pane" data-pane="nodeIntegration">
-        <div class="padded table-scroller">
-          <h3>Node Integration Disabled</h3>
-          <p>It appears that this <code>BrowserWindow</code> was created with
+        <div class="padded node-integration-view">
+          <h3 class="error-heading">Node Integration Disabled</h3>
+          <p>
+            It appears that this <code>BrowserWindow</code> was created with
             <code>nodeIntegration</code> set to <code>false</code>.
+          </p>
+
+          <p>
             Devtron accesses Electron APIs via <code>require</code> so you will
             need to expose <code>require</code> and <code>process</code> via a
-            preload script to use Devtron:
+            preload script in order to use Devtron.
+          </p>
 
-            <pre class="lint-code"><code class="language-javascript">window.__devtron = {require: require, process: process}</code></pre>
+          <p>
+            You can specify a preload script to the <code>BrowserWindow</code> constructor:
+          </p>
 
+          <pre class="lint-code"><code class="language-javascript" data-field="browserWindowExample">var window = new BrowserWindow({
+  webPreferences: {
+    preload: path.join(__dirname, 'preload.js')
+  }
+})</code></pre>
+
+          <p>
+            Then add the following to the <code>preload.js</code> script:
+          </p>
+
+          <pre class="lint-code"><code class="language-javascript" data-field="devtronExample">window.__devtron = {require: require, process: process}</code></pre>
+
+          </p>
             You may want to guard the previous code block with a <code>NODE_ENV</code>
             check so that these variables are only exposed during development:
+          </p>
 
-            <pre class="lint-code"><code class="language-javascript">if (process.env.NODE_ENV === 'development')</code></pre>
+            <pre class="lint-code"><code class="language-javascript" data-field="envCheckExample">if (process.env.NODE_ENV === 'development')</code></pre>
 
+          <p>
             Restart your application once you've configured this preload script
             and Devtron should then be enabled for your app.
-          </div>
+          </p>
+        </div>
       </div>
     </template>
 
