@@ -26,7 +26,7 @@ describe('when nodeIntegration is disabled in the app', function () {
 
     app = new Application({
       path: electronPath,
-      args: [path.join(__dirname, '..', 'fixtures', 'no-node-integration')]
+      args: [path.join(__dirname, '..', 'fixtures', 'preload')]
     })
 
     return app.start().then(function () {
