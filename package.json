@@ -31,10 +31,10 @@
     "chai": "^3.5.0",
     "chai-as-promised": "^5.3.0",
     "cors": "^2.7.1",
-    "electron-prebuilt": "^0.37.8",
+    "electron-prebuilt": "~1.2.1",
     "express": "^4.13.4",
     "mocha": "^2.4.5",
-    "spectron": "~2.37.0",
+    "spectron": "~3.2.3",
     "standard": "^6.0.8",
     "watchify": "^3.7.0"
   },

@@ -1,21 +1,19 @@
 const vm = require('vm')
 
+const devtron = {
+  require: require,
+  process: process
+}
+
 window.chrome = {
   devtools: {
     inspectedWindow: {
       eval: (expression, callback) => {
         expression = `'use strict';\n${expression}`
         try {
-          const sandbox = {
-            require: require,
-            console: console,
-            process: process,
-            global: {
-              process: process
-            },
+          let sandbox = {
             window: {
-              require: require,
-              process: process
+              __devtron: devtron
             }
           }
           callback(vm.runInNewContext(expression, sandbox))
