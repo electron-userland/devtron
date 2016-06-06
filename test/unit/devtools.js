@@ -30,8 +30,11 @@ exports.create = () => {
               callback(null, error)
             }
           }
-        }
-
+        },
+        tabId: 1
+      },
+      extension: {
+        getURL: () => 'file:///foo/bar.html'
       }
     }
   }
