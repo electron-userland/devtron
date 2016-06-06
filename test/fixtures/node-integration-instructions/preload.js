@@ -1,6 +1,5 @@
 const vm = require('vm')
 
-
 window.chrome = {
   devtools: {
     inspectedWindow: {
