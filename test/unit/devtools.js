@@ -2,6 +2,12 @@
 
 const vm = require('vm')
 
+class Extension {
+  getURL () {
+    return 'file:///foo/bar.html'
+  }
+}
+
 exports.create = () => {
   const devtron = {}
   return {
@@ -33,9 +39,7 @@ exports.create = () => {
         },
         tabId: 1
       },
-      extension: {
-        getURL: () => 'file:///foo/bar.html'
-      }
+      extension: new Extension()
     }
   }
 }
