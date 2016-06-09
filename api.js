@@ -1,15 +1,27 @@
 const electron = require('electron')
 
 exports.install = () => {
-  if (!electron.remote) {
-    throw new Error('Devtron cannot be installed from within the main process.')
+  if (process.type === 'renderer') {
+    console.log(`Installing Devtron from ${__dirname}`)
+    return electron.remote.BrowserWindow.addDevToolsExtension(__dirname)
+  } else if (process.type === 'browser') {
+    console.log(`Installing Devtron from ${__dirname}`)
+    return electron.BrowserWindow.addDevToolsExtension(__dirname)
+  } else {
+    throw new Error('Devtron can only be installed from an Electron process.')
   }
-  console.log(`Installing Devtron from ${__dirname}`)
-  return electron.remote.BrowserWindow.addDevToolsExtension(__dirname)
 }
 
 exports.uninstall = () => {
-  return electron.remote.BrowserWindow.removeDevToolsExtension('devtron')
+  if (process.type === 'renderer') {
+    console.log(`Uninstalling Devtron from ${__dirname}`)
+    return electron.remote.BrowserWindow.removeDevToolsExtension('devtron')
+  } else if (process.type === 'browser') {
+    console.log(`Uninstalling Devtron from ${__dirname}`)
+    return electron.BrowserWindow.removeDevToolsExtension('devtron')
+  } else {
+    throw new Error('Devtron can only be uninstalled from an Electron process.')
+  }
 }
 
 exports.path = __dirname
