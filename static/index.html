@@ -206,6 +206,38 @@
       </div>
     </template>
 
+    <template id="accessibility-view">
+      <div class="pane hidden" data-pane="accessibility">
+        <header class="toolbar toolbar-header">
+          <div class="toolbar-actions">
+            <button data-field="accessibilityButton" class="btn btn-default pull-right">
+              <span class="toolbar-icon toolbar-icon-cycle"></span>
+              Audit App
+            </button>
+          </div>
+        </header>
+
+        <div data-field="auditResults">
+          nothing yet
+        </div>
+
+        <!-- <div class="table-scroller">
+          <table class="table-striped accessibility-table" tabindex="-1" data-field="auditResults">
+            <thead>
+              <th>Accessibility Checks</th>
+            </thead>
+          </table>
+
+          <div class="table-description" data-field="tableDescription">
+            This pane shows errors and warnings from elements that do
+            not meet accessibility standards.
+            <br>
+            Click Audit App to inspect the running application.
+          </div>
+        </div> -->
+      </div>
+    </template>
+
     <template id="lint-view">
       <div class="pane hidden" data-pane="lint">
         <header class="toolbar toolbar-header">
@@ -386,6 +418,10 @@
           <li class="list-group-item" data-field="lintLink" data-pane-link="lint">
             <div class="sidebar-icon sidebar-icon-lint"></div>
             Lint
+          </li>
+          <li class="list-group-item" data-field="accessibilityLink" data-pane-link="accessibility">
+            <div class="sidebar-icon sidebar-icon-lint"></div>
+            Accessibility
           </li>
           <li class="list-group-item" data-field="aboutLink" data-pane-link="about">
             <div class="sidebar-icon sidebar-icon-about"></div>
