@@ -73,6 +73,24 @@
       </tr>
     </template>
 
+    <template id="rule-row">
+      <tr>
+        <td class="row-listener row-emitter">
+          <span class="disclosure-arrow" data-field="disclosure"></span>
+          <span data-field="ruleName"></span>
+          <span class="listener-count" data-field="elementCount"></span>
+        </td>
+      </tr>
+    </template>
+
+    <template id="element-row">
+      <tr>
+        <td class="row-element-path">
+          <span data-field="selectorPath"></span>
+        </td>
+      </tr>
+    </template>
+
     <template id="modules-view">
       <div class="pane" data-pane="graph">
         <header class="toolbar toolbar-header">
