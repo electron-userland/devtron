@@ -154,6 +154,10 @@ tbody:focus,
   -webkit-mask-image: url(../vendor/entypo/help-with-circle.svg);
 }
 
+.sidebar-icon-accessibility {
+  -webkit-mask-image: url(../vendor/entypo/globe.svg);
+}
+
 .keybinding {
   padding-bottom: 5px;
 }
