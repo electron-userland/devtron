@@ -125,7 +125,8 @@ tbody:focus,
   padding-left: 30px;
 }
 
-.row-listener-event-code {
+.row-listener-event-code,
+.row-element-path {
   padding-left: 45px;
 }
 
