@@ -75,6 +75,8 @@
 
     <template id="rule-row">
       <tr>
+        <td data-field="status"></td>
+        <td data-field="severity"></td>
         <td class="row-listener row-emitter">
           <span class="disclosure-arrow" data-field="disclosure"></span>
           <span data-field="ruleName"></span>
@@ -85,6 +87,8 @@
 
     <template id="element-row">
       <tr>
+        <td></td>
+        <td></td>
         <td class="row-element-path">
           <span data-field="selectorPath"></span>
         </td>
@@ -238,7 +242,9 @@
         <div class="table-scroller">
           <table class="table-striped accessibility-table" tabindex="-1">
             <thead>
-              <th>Accessibility Results</th>
+              <th>Status</th>
+              <th>Severity</th>
+              <th>Accessibility</th>
             </thead>
             <tbody data-field="accessibilityResultsTable" tabindex="-1">
             </tbody>
