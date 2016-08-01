@@ -1,5 +1,11 @@
 {
   "name": "devtron",
   "version": "1.0",
-  "devtools_page": "static/devtron.html"
+  "devtools_page": "static/devtron.html",
+  "content_scripts": [
+    {
+      "matches": ["*"],
+      "js": ["vendor/axs.js"]
+    }
+  ]
 }

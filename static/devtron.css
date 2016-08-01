@@ -125,7 +125,8 @@ tbody:focus,
   padding-left: 30px;
 }
 
-.row-listener-event-code {
+.row-listener-event-code,
+.row-element-path {
   padding-left: 45px;
 }
 
@@ -151,6 +152,10 @@ tbody:focus,
 
 .sidebar-icon-about {
   -webkit-mask-image: url(../vendor/entypo/help-with-circle.svg);
+}
+
+.sidebar-icon-accessibility {
+  -webkit-mask-image: url(../vendor/entypo/globe.svg);
 }
 
 .keybinding {

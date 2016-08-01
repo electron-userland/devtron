@@ -73,6 +73,28 @@
       </tr>
     </template>
 
+    <template id="rule-row">
+      <tr>
+        <td data-field="status"></td>
+        <td data-field="severity"></td>
+        <td class="row-listener row-emitter">
+          <span class="disclosure-arrow" data-field="disclosure"></span>
+          <span data-field="ruleName"></span>
+          <span class="listener-count" data-field="elementCount"></span>
+        </td>
+      </tr>
+    </template>
+
+    <template id="element-row">
+      <tr>
+        <td></td>
+        <td></td>
+        <td class="row-element-path">
+          <span data-field="selectorPath"></span>
+        </td>
+      </tr>
+    </template>
+
     <template id="modules-view">
       <div class="pane" data-pane="graph">
         <header class="toolbar toolbar-header">
@@ -201,6 +223,45 @@
             and received between the renderer process and the main process.
             <br>
             Click Record to start monitoring and displaying IPC traffic.
+          </div>
+        </div>
+      </div>
+    </template>
+
+    <template id="accessibility-view">
+      <div class="pane hidden" data-pane="accessibility">
+        <header class="toolbar toolbar-header">
+          <div class="toolbar-actions">
+            <div class="btn-group pull-right">
+              <button data-field="accessibilityButton" class="btn btn-default">
+                <span class="toolbar-icon toolbar-icon-cycle"></span>
+                Audit App
+              </button>
+              <button data-field="docsButton" class="btn btn-default" title="Open accessibility docs">
+                <span class="toolbar-icon toolbar-icon-book"></span>
+                Docs
+              </button>
+            </div>
+            <input data-field="searchBox" class="form-control search-box pull-right" type="text" placeholder="Search events">
+          </div>
+        </header>
+
+        <div class="table-scroller">
+          <table class="table-striped accessibility-table" tabindex="-1">
+            <thead>
+              <th>Status</th>
+              <th>Severity</th>
+              <th>Accessibility</th>
+            </thead>
+            <tbody data-field="accessibilityResultsTable" tabindex="-1">
+            </tbody>
+          </table>
+
+          <div class="table-description" data-field="tableDescription">
+            This pane shows errors and warnings from elements that do
+            not meet accessibility standards.
+            <br>
+            Click Audit App to inspect the running application.
           </div>
         </div>
       </div>
@@ -386,6 +447,10 @@
           <li class="list-group-item" data-field="lintLink" data-pane-link="lint">
             <div class="sidebar-icon sidebar-icon-lint"></div>
             Lint
+          </li>
+          <li class="list-group-item" data-field="accessibilityLink" data-pane-link="accessibility">
+            <div class="sidebar-icon sidebar-icon-accessibility"></div>
+            Accessibility
           </li>
           <li class="list-group-item" data-field="aboutLink" data-pane-link="about">
             <div class="sidebar-icon sidebar-icon-about"></div>
