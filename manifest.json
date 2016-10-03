@@ -5,7 +5,7 @@
   "content_scripts": [
     {
       "matches": ["*"],
-      "js": ["out/browserGlobals.js"]
+      "js": ["out/browser-globals.js"]
     }
   ]
 }
