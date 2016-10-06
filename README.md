@@ -101,3 +101,7 @@ apps easier? Please [open an issue](https://github.com/electron/devtron/issues/n
 
 Pull requests are also welcome and appreciated. Run `npm test` to run the
 existing tests. This project uses the [standard JavaScript style](http://standardjs.com).
+
+## License
+
+MIT
