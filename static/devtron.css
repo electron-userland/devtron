@@ -130,6 +130,13 @@ tbody:focus,
   padding-left: 45px;
 }
 
+.row-element-path a {
+  cursor: pointer;
+}
+tr.active .row-element-path a {
+  color: white;
+}
+
 .active .sidebar-icon {
   background-color: white;
 }

@@ -4,8 +4,8 @@
   "description": "Electron DevTools Extension",
   "main": "./api.js",
   "scripts": {
-    "prepublish": "browserify lib/*.js -o out/index.js --ignore-missing --entry lib/index.js",
-    "start": "watchify lib/*.js -o out/index.js --ignore-missing --entry lib/index.js --verbose",
+    "prepublish": "browserify lib/*.js -o out/index.js --ignore-missing --entry lib/index.js && browserify lib/browser-globals.js -o out/browser-globals.js",
+    "start": "browserify lib/browser-globals.js -o out/browser-globals.js && watchify lib/*.js -o out/index.js --ignore-missing --entry lib/index.js --verbose",
     "test": "mocha test/unit/*-test.js test/integration/*-test.js && standard"
   },
   "repository": {
@@ -39,6 +39,7 @@
     "watchify": "^3.7.0"
   },
   "dependencies": {
+    "accessibility-developer-tools": "^2.11.0",
     "highlight.js": "^9.3.0",
     "humanize-plus": "^1.8.1"
   },
