@@ -93,6 +93,25 @@ Chrome tab that will talk remotely to a running Electron app over HTTP.
 - Then open `/Users/me/devtron/static/index.html` in Chrome
 - The page there will talk remotely to the running Electron app so you'll
   be able to fully interact with each pane with real data.
+  
+### Additional Notes
+
+- `require('devtron').install()` cannot be called before the ready event of the `app` module has been emitted.
+
+- When using webpack, you may experience issues resolving `__dirname` in accordance with the [docs](https://webpack.js.org/configuration/node/#node-__dirname) since `__dirname` is resolved at runtime on the compiled file.
+  - To work around this:
+    1. Make sure, that webpack does not replace `__dirname` by setting:
+      ```
+      // in your webpack config for main process
+      {
+        target: 'electron-main',
+        node: {
+          __dirname: false,
+        }
+      }
+      ```
+    2. Ensure that the copy target for `devtron/manifest.json` is the same folder as your compiled main process `js` file.
+    3. Ensure that the copy target for the `devtron/out/browser-globals.js` is `out/browser-globals.js` relative to your compiled main process `js` file.
 
 ## Contributing
 
