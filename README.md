@@ -96,11 +96,11 @@ Chrome tab that will talk remotely to a running Electron app over HTTP.
   
 ### Additional Notes
 
-- `require('devtron').install()` cannot be called before the ready event of the `app` module has been emitted.
+- `require('devtron').install()` cannot be called before the `ready` event of the `app` module has been emitted.
 
 - When using webpack, you may experience issues resolving `__dirname` in accordance with the [docs](https://webpack.js.org/configuration/node/#node-__dirname) since `__dirname` is resolved at runtime on the compiled file.
   - To work around this:
-    1. Make sure, that webpack does not replace `__dirname` by setting:
+    1. Make sure that webpack does not replace `__dirname` by setting:
       ```
       // in your webpack config for main process
       {
