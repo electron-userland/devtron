@@ -103,10 +103,10 @@ Chrome tab that will talk remotely to a running Electron app over HTTP.
 When using webpack, you may experience issues resolving `__dirname`. In accordance with the [docs](https://webpack.js.org/configuration/node/#node-__dirname), `__dirname` is resolved at runtime on the compiled file.
 
 You have to two solutions: 
- - Remove `devtron` from Webpack bundle with `config.externals` **[Recommanded]**
- - Copy `devtron` files to the same folder as your compiled main process file 
+ 1. Remove `devtron` from Webpack bundle with `config.externals`
+ 2. Copy `devtron` files to the same folder as your compiled main process file
 
-#### Remove from webpack bundle [Recommended]
+#### [Solution 1] Remove from webpack bundle
 
 ```js
 config.externals = [
@@ -120,7 +120,7 @@ config.externals = [
 ]
 ```
 
-#### Copy devtron files
+#### [Solution 2] Copy devtron files
  1. Make sure that webpack does not replace `__dirname` by setting:
    ```js
    // in your webpack config for main process
