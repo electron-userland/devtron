@@ -98,20 +98,63 @@ Chrome tab that will talk remotely to a running Electron app over HTTP.
 
 - `require('devtron').install()` cannot be called before the `ready` event of the `app` module has been emitted.
 
-- When using webpack, you may experience issues resolving `__dirname` in accordance with the [docs](https://webpack.js.org/configuration/node/#node-__dirname) since `__dirname` is resolved at runtime on the compiled file.
-  - To work around this:
-    1. Make sure that webpack does not replace `__dirname` by setting:
-      ```
-      // in your webpack config for main process
-      {
-        target: 'electron-main',
-        node: {
-          __dirname: false,
-        }
-      }
-      ```
-    2. Ensure that the copy target for `devtron/manifest.json` is the same folder as your compiled main process `js` file.
-    3. Ensure that the copy target for the `devtron/out/browser-globals.js` is `out/browser-globals.js` relative to your compiled main process `js` file.
+#### Webpack
+
+When using webpack, you may experience issues resolving `__dirname`. In accordance with the [docs](https://webpack.js.org/configuration/node/#node-__dirname), `__dirname` is resolved at runtime on the compiled file.
+
+You have to two solutions: 
+ 1. Remove `devtron` from Webpack bundle with `config.externals`
+ 2. Copy `devtron` files to the same folder as your compiled main process file
+
+#### [Solution 1] Remove from webpack bundle
+
+```js
+config.externals = [
+  function(context, request, callback) {
+    if (request.match(/devtron/)) {
+      return callback(null, 'commonjs ' + request)
+    }
+
+    callback()
+  }
+]
+```
+
+#### [Solution 2] Copy devtron files
+ 1. Make sure that webpack does not replace `__dirname` by setting:
+   ```js
+   // in your webpack config for main process
+   {
+     target: 'electron-main',
+     node: {
+       __dirname: false,
+     }
+   }
+   ```
+ 2. Ensure that the copy target for `devtron/manifest.json` is the same folder as your compiled main process `js` file.
+ 3. Ensure that the copy target for the `devtron/out/browser-globals.js` is `out/browser-globals.js` relative to your compiled main process `js` file.
+ 
+You can copy files with `copy-webpack-plugin`.
+
+```js
+const path = require('path');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+
+const copyFiles = [
+  {
+    from: path.resolve(__dirname, 'node_modules/devtron/manifest.json')
+  }, 
+  {
+    from: path.resolve(__dirname, 'node_modules/devtron/out/browser-globals.js'),
+    to: path.resolve(__dirname, 'out'),
+  }
+];
+
+config.target = 'electron-main',
+config.plugins = [
+  new CopyWebpackPlugin(copyFiles),
+]
+```
 
 ## Contributing
 
