@@ -1,6 +1,8 @@
 language: node_js
 
-node_js: "4.2"
+node_js:
+  - node
+  - 8
 
 branches:
   only:
