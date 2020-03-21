@@ -14,7 +14,7 @@ jobs:
     strategy:
       matrix:
         os: [windows-latest]
-        node-version: [4.x]
+        node-version: [10.x]
 
     steps:
       - name: Fix git checkout line endings
