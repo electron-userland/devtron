@@ -35,6 +35,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
       - name: Install
-        run: npm ci
+        run: npm install --engine-strict
       - name: Test
         run: npm test
