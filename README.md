@@ -1,10 +1,10 @@
 # <img src="https://cloud.githubusercontent.com/assets/378023/15063285/cf554e40-1383-11e6-9b9c-45d381b03f9f.png" width="60px" align="center" alt="Devtron icon"> Devtron
 
-An [Electron](http://electron.atom.io) [DevTools](https://developer.chrome.com/devtools)
+An [Electron](https://electronjs.org) [DevTools](https://developer.chrome.com/devtools)
 extension to help you inspect, monitor, and debug your app.
 
-[![Travis Build Status](https://travis-ci.org/electron/devtron.svg?branch=master)](https://travis-ci.org/electron/devtron)
-[![AppVeyor Build status](https://ci.appveyor.com/api/projects/status/t9eqglwos7kyv6w3/branch/master?svg=true)](https://ci.appveyor.com/project/electron-bot/devtron/branch/master)
+[![Travis Build Status](https://travis-ci.org/electron-userland/devtron.svg?branch=master)](https://travis-ci.org/electron-userland/devtron)
+[![GitHub Actions Build Status](https://github.com/electron-userland/devtron/workflows/CI/badge.svg)](https://github.com/electron-userland/devtron/actions?query=workflow%3ACI)
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](http://standardjs.com/)
 [![downloads:?](https://img.shields.io/npm/dm/devtron.svg)](https://www.npmjs.com/packages/devtron)
 

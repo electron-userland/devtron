@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+    tags:
+      - v[0-9]+.[0-9]+.[0-9]+*
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [windows-latest, macOS-latest]
+        node-version: [4.x]
+
+    steps:
+      - name: Fix git checkout line endings
+        run: git config --global core.autocrlf input
+      - uses: actions/checkout@v2
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Get npm cache directory
+        id: npm-cache
+        run: |
+          echo "::set-output name=dir::$(npm config get cache)"
+      - uses: actions/cache@v1
+        with:
+          path: ${{ steps.npm-cache.outputs.dir }}
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - name: Install
+        run: npm ci
+      - name: Test
+        run: npm test
