@@ -45,7 +45,8 @@
   "dependencies": {
     "accessibility-developer-tools": "^2.11.0",
     "highlight.js": "^9.3.0",
-    "humanize-plus": "^1.8.1"
+    "humanize-plus": "^1.8.1",
+    "semver": "^5.3.0"
   },
   "standard": {
     "ignore": [
