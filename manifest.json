@@ -1,11 +1,15 @@
 {
+  "manifest_version": 2,
   "name": "devtron",
-  "version": "1.0",
-  "devtools_page": "static/devtron.html",
+  "version": "2.0.0-alpha.0",
+  "devtools_page": "dist/devtron.html",
+  "background": {
+    "scripts": ["dist/background.js"]
+  },
   "content_scripts": [
     {
-      "matches": ["*"],
-      "js": ["out/browser-globals.js"]
+      "matches": ["<all_urls>"],
+      "js": ["dist/content-script.js"]
     }
   ]
 }

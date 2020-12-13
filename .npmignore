@@ -1,7 +1,0 @@
-.node-version
-.gitkeep
-.npmignore
-/test/
-/lib/
-appveyor.yml
-.travis.yml
