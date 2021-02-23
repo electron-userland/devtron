@@ -36,7 +36,7 @@
     "cors": "^2.7.1",
     "electron-prebuilt": "~1.2.2",
     "express": "^4.13.4",
-    "husky": "^0.14.3",
+    "husky": "^5.1.1",
     "mocha": "^2.4.5",
     "spectron": "~3.2.3",
     "standard": "^6.0.8",
