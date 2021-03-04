@@ -30,7 +30,7 @@
   "devDependencies": {
     "body-parser": "^1.15.0",
     "browserify": "^13.0.0",
-    "chai": "^3.5.0",
+    "chai": "^4.3.3",
     "chai-as-promised": "^5.3.0",
     "check-for-leaks": "^1.2.0",
     "cors": "^2.7.1",
