@@ -38,7 +38,7 @@
     "express": "^4.13.4",
     "husky": "^0.14.3",
     "mocha": "^2.4.5",
-    "spectron": "~3.2.3",
+    "spectron": "~14.0.0",
     "standard": "^6.0.8",
     "watchify": "^3.7.0"
   },
