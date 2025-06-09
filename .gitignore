@@ -1,0 +1,8 @@
+node_modules
+dist/*
+!dist/.gitkeep
+
+lib/*
+!lib/.gitkeep
+
+todo.md

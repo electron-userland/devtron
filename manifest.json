@@ -1,0 +1,27 @@
+{
+  "name": "devtron",
+  "version": "1.0.0",
+  "description": "Track IPC events in Electron applications",
+  "devtools_page": "devtools.html",
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self';"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["contentScript.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "permissions": ["tabs", "storage"],
+  "web_accessible_resources": [
+    {
+      "resources": ["fonts/*", "*.woff2", "*.woff"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "manifest_version": 3
+}
