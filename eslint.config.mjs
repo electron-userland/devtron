@@ -2,6 +2,7 @@ import js from '@eslint/js';
 import react from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
+import globals from 'globals';
 
 export default [
   js.configs.recommended,
@@ -32,38 +33,8 @@ export default [
       ecmaVersion: 2020,
       sourceType: 'module',
       globals: {
-        document: 'readonly',
-        window: 'readonly',
-        console: 'readonly',
-        process: 'readonly',
-        chrome: 'readonly',
-        browser: 'readonly',
-        setTimeout: 'readonly',
-        clearTimeout: 'readonly',
-        setInterval: 'readonly',
-        clearInterval: 'readonly',
-        fetch: 'readonly',
-        URL: 'readonly',
-        URLSearchParams: 'readonly',
-        FormData: 'readonly',
-        Headers: 'readonly',
-        Request: 'readonly',
-        Response: 'readonly',
-        Blob: 'readonly',
-        File: 'readonly',
-        FileReader: 'readonly',
-        localStorage: 'readonly',
-        sessionStorage: 'readonly',
-        location: 'readonly',
-        history: 'readonly',
-        navigator: 'readonly',
-        Element: 'readonly',
-        HTMLElement: 'readonly',
-        Event: 'readonly',
-        CustomEvent: 'readonly',
-        MutationObserver: 'readonly',
-        IntersectionObserver: 'readonly',
-        ResizeObserver: 'readonly',
+        ...globals.browser,
+        ...globals.webextensions,
       },
       parserOptions: {
         ecmaFeatures: {
