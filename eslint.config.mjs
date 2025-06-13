@@ -33,6 +33,7 @@ export default [
       ecmaVersion: 2020,
       sourceType: 'module',
       globals: {
+        ...globals.node,
         ...globals.browser,
         ...globals.webextensions,
       },
