@@ -64,6 +64,7 @@
     "ag-grid-community": "^33.3.2",
     "ag-grid-react": "^33.3.2",
     "denque": "^2.1.0",
+    "eslint-plugin-unicorn": "^59.0.1",
     "lucide-react": "^0.513.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"

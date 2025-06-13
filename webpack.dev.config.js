@@ -1,5 +1,5 @@
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-import path from 'path';
+import path from 'node:path';
 
 export default {
   mode: 'development',

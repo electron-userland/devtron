@@ -1,12 +1,12 @@
 'use strict';
 import { session } from 'electron';
-import path from 'path';
+import path from 'node:path';
 
 async function install() {
   const extensionName = 'devtron';
   const extensions = session.defaultSession.getAllExtensions();
   const isInstalled = Object.values(extensions).some(
-    (ext) => ext.name === extensionName,
+    (ext) => ext.name === extensionName
   );
 
   if (isInstalled) {
