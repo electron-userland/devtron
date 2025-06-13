@@ -46,14 +46,14 @@ function track(direction, channel, args) {
       source: MSG_TYPE.SEND_TO_PANEL,
       event,
     },
-    '*',
+    '*'
   );
 }
 
 function copyArgs(args) {
   try {
-    return JSON.parse(JSON.stringify(args));
+    return structuredClone(args);
   } catch (err) {
-    return [`[Could not stringify args: ${err.message}]`];
+    return [`[Could not clone args: ${err.message}]`];
   }
 }
