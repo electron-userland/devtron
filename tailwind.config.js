@@ -5,6 +5,7 @@ export default {
     fontFamily: {
       sans: ['ui-sans-serif', 'system-ui'],
       'space-mono': ['Space Mono', 'ui-sans-serif', 'system-ui'],
+      'roboto': ['Roboto', 'ui-sans-serif', 'system-ui'],
     },
     extend: {},
   },

@@ -81,13 +81,7 @@ function Panel() {
         headerName: 'No.',
         field: 'serialNumber',
         width: 55,
-        cellStyle: {
-          fontSize: '12px',
-          padding: '4px',
-          height: '100%',
-          display: 'flex',
-          'align-items': 'center',
-        },
+        cellClass: 'flex !p-1 items-center h-full text-xs',
       },
       {
         headerName: 'Time',
@@ -101,13 +95,7 @@ function Panel() {
             date.getMilliseconds().toString().padStart(3, '0')
           );
         },
-        cellStyle: {
-          fontSize: '12px',
-          padding: '4px',
-          height: '100%',
-          display: 'flex',
-          'align-items': 'center',
-        },
+        cellClass: 'flex !p-1 items-center h-full text-xs',
       },
       {
         headerName: 'Method',
@@ -135,25 +123,13 @@ function Panel() {
             </div>
           );
         },
-        cellStyle: {
-          padding: '4px',
-          height: '100%',
-          display: 'flex',
-          'align-items': 'center',
-        },
+        cellClass: 'flex !p-1 items-center h-full',
       },
       {
         headerName: 'Channel',
         field: 'channel',
         flex: 1,
-        cellStyle: {
-          fontFamily: 'Roboto, sans-serif',
-          fontSize: '13px',
-          padding: '4px',
-          height: '100%',
-          display: 'flex ',
-          'align-items': 'center ',
-        },
+        cellClass: 'font-roboto text-[13px] !p-1 h-full flex items-center',
       },
       {
         headerName: 'Data',
@@ -169,15 +145,10 @@ function Panel() {
             </span>
           );
         },
-        cellStyle: {
-          padding: '4px',
-          height: '100%',
-          display: 'flex',
-          'align-items': 'center',
-        },
+        cellClass: 'flex !p-1 items-center h-full',
       },
     ],
-    [],
+    []
   );
 
   const defaultColDef = useMemo(
@@ -186,7 +157,7 @@ function Panel() {
       filter: true,
       resizable: true,
     }),
-    [],
+    []
   );
 
   const onRowClicked = (event) => {

@@ -14,7 +14,6 @@ function ResizablePanel({ children, isOpen, onResize }) {
       if (!isResizing) return;
 
       const newWidth = window.innerWidth - e.clientX;
-      // if (newWidth >= 200 && newWidth <= window.innerWidth) {
       if (newWidth >= 200) {
         setWidth(newWidth);
         onResize?.(newWidth);
