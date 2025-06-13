@@ -1,6 +1,6 @@
 {
   "name": "devtron",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Track IPC events in Electron applications",
   "devtools_page": "devtools.html",
   "content_security_policy": {
