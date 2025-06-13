@@ -4,8 +4,9 @@
 
 ## Building and Development
 - Clone the repository to your local machine
-- run `npm install` to install dependencies
-- run `npm link` to link the package globally
+- Run `npm install` to install dependencies
+- Run `npm link` to link the package globally
+- Run `npm run build` to build the project
 
 #### Configuring an Electron App to use Devtron
 - In your Electron app run `npm link devtron` to link the Devtron package
@@ -21,7 +22,7 @@ monitorMain()
 app.whenReady().then(() => {
   devtron.install()
   // ...
-}
+})
 ```
 - In your Electron app's `preload.js` (or other relevant file) add the following code to load Devtron:
 ```js
