@@ -13,7 +13,7 @@ async function install() {
     return;
   }
 
-  const devtronPath = path.resolve('node_modules', 'devtron');
+  const devtronPath = path.resolve('node_modules', '@electron', 'devtron');
   const distPath = path.join(devtronPath, 'dist');
   try {
     const ext = await session.defaultSession.loadExtension(distPath, {
