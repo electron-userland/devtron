@@ -1,5 +1,6 @@
 import ReactJson from '@microlink/react-json-view';
 import { X } from 'lucide-react';
+import DirectionBadge from './DirectionBadge';
 
 function DetailPanel({ selectedRow, onClose }) {
   if (!selectedRow) return null;
@@ -42,15 +43,12 @@ function DetailPanel({ selectedRow, onClose }) {
         </div>
 
         {/* Method */}
-        <div className="mb-3">
+        <div className="mb-3 w-fit flex items-center gap-x-1">
           <span className="text-gray-600">Method: </span>
-          <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium border border-yellow-400 bg-yellow-100 text-yellow-800">
-            {selectedRow.direction === 'renderer-to-main' ? '↓ RTM' : '↑ MTR'}{' '}
-            {/* #EDIT: Change the above line to match other RTM and MTR Icons */}
-          </span>
+          <DirectionBadge direction={selectedRow.direction} />
         </div>
 
-        {/* args */}
+        {/* Args */}
         <div className="border border-gray-200 rounded bg-white">
           <ReactJson
             src={selectedRow.args}

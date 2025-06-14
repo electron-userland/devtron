@@ -1,4 +1,4 @@
-const events = [
+export const events = [
   {
     serialNumber: 1,
     direction: 'renderer-to-main',

@@ -7,17 +7,17 @@ import {
   RowSelectionModule,
   themeQuartz,
 } from 'ag-grid-community';
+import { Ban } from 'lucide-react';
+import { MSG_TYPE, PORT_NAME } from '../../../common/constants';
+import ResizablePanel from './ResizablePanel';
+import DetailPanel from './DetailPanel';
+import DirectionBadge from './DirectionBadge';
 
 ModuleRegistry.registerModules([
   ClientSideRowModelModule,
   RowSelectionModule,
   CellStyleModule,
 ]);
-
-import { ArrowDown, ArrowUp, Ban } from 'lucide-react';
-import { MSG_TYPE, PORT_NAME } from '../../../common/constants';
-import ResizablePanel from './ResizablePanel';
-import DetailPanel from './DetailPanel';
 
 function Panel() {
   const [events, setEvents] = useState([]);
@@ -28,6 +28,7 @@ function Panel() {
    * Comment out the useEffect below if you want to test the UI in dev mode on localhost
    * and use JSON data from test_data/test_data.js for testing.
    */
+
   useEffect(() => {
     const port = chrome.runtime.connect({ name: PORT_NAME.PANEL });
     portRef.current = port;
@@ -102,26 +103,7 @@ function Panel() {
         field: 'direction',
         width: 85,
         cellRenderer: (params) => {
-          const rtm = params.value === 'renderer-to-main';
-          return (
-            <div
-              className={`flex w-full px-1.5 justify-center items-center py-0.5 rounded-sm  text-xs font-medium ${
-                rtm
-                  ? 'bg-blue-100 text-blue-800 border border-blue-300'
-                  : 'bg-yellow-100 text-yellow-800 border border-yellow-400'
-              }`}
-            >
-              {rtm ? (
-                <div className="w-full items-center justify-center flex flex-row">
-                  <ArrowDown size={13} className="mr-1" /> RTM
-                </div>
-              ) : (
-                <div className="w-full items-center justify-center flex flex-row">
-                  <ArrowUp size={13} className="mr-1" /> MTR
-                </div>
-              )}
-            </div>
-          );
+          return <DirectionBadge direction={params.value} />;
         },
         cellClass: 'flex !p-1 items-center h-full',
       },
