@@ -1,5 +1,5 @@
 {
-  "name": "devtron",
+  "name": "@electron/devtron",
   "version": "0.0.0-development",
   "description": "Electron DevTools Extension to track IPC events",
   "exports": {
@@ -32,6 +32,9 @@
     "developer tools",
     "ipc"
   ],
+  "engines": {
+    "node": ">=22.12.0"
+  },
   "devDependencies": {
     "@babel/core": "^7.27.4",
     "@babel/preset-env": "^7.27.2",

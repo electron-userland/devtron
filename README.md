@@ -9,12 +9,12 @@
 - Run `npm run build` to build the project
 
 #### Configuring an Electron App to use Devtron
-- In your Electron app run `npm link devtron` to link the Devtron package
+- In your Electron app run `npm link @electron/devtron` to link the Devtron package
 - In your Electron app's `main.js` (or other relevant file) add the following code to load Devtron:
 ```js
 // main.js
-const { devtron } = require('devtron')
-const { monitorMain } = require('devtron/monitorMain')
+const { devtron } = require('@electron/devtron')
+const { monitorMain } = require('@electron/devtron/monitorMain')
 monitorMain()
 
 // function createWindow() {...}
@@ -27,7 +27,7 @@ app.whenReady().then(() => {
 - In your Electron app's `preload.js` (or other relevant file) add the following code to load Devtron:
 ```js
 // preload.js
-const { monitorRenderer } = require('devtron/monitorRenderer')
+const { monitorRenderer } = require('@electron/devtron/monitorRenderer')
 monitorRenderer()
 ```
 
