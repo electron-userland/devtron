@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.ag-cell-focus {
+  border: none !important;
+}
+
+/** 
+ * Prevents Long String overflow 
+ * https://github.com/mac-s-g/react-json-view/issues/244
+ */
+.react-json-view {
+  word-break: break-all;
+}

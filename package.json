@@ -1,0 +1,82 @@
+{
+  "name": "@electron/devtron",
+  "version": "0.0.0-development",
+  "description": "Electron DevTools Extension to track IPC events",
+  "exports": {
+    ".": {
+      "import": "./lib/devtron.mjs",
+      "require": "./lib/devtron.cjs"
+    },
+    "./monitorRenderer": {
+      "import": "./lib/monitorRenderer.mjs",
+      "require": "./lib/monitorRenderer.cjs"
+    },
+    "./monitorMain": {
+      "import": "./lib/monitorMain.mjs",
+      "require": "./lib/monitorMain.cjs"
+    }
+  },
+  "scripts": {
+    "build:browser": "webpack --config webpack.extension.config.js",
+    "build:node": "webpack --config webpack.node.config.js",
+    "build": "npm run build:node && npm run build:browser",
+    "dev": "webpack serve --config webpack.dev.config.js"
+  },
+  "author": "Hitarth Rajput",
+  "license": "MIT",
+  "keywords": [
+    "Electron",
+    "Chrome",
+    "Chromium",
+    "devtools",
+    "developer tools",
+    "ipc"
+  ],
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.27.4",
+    "@babel/preset-env": "^7.27.2",
+    "@babel/preset-react": "^7.27.1",
+    "@eslint/js": "^9.27.0",
+    "autoprefixer": "^10.4.21",
+    "babel-loader": "^10.0.0",
+    "copy-webpack-plugin": "^13.0.0",
+    "css-loader": "^7.1.2",
+    "eslint": "^9.28.0",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.20",
+    "eslint-plugin-unicorn": "^59.0.1",
+    "globals": "^16.2.0",
+    "html-webpack-plugin": "^5.6.3",
+    "postcss": "^8.5.4",
+    "postcss-loader": "^8.1.1",
+    "postcss-preset-env": "^10.2.1",
+    "style-loader": "^4.0.0",
+    "tailwindcss": "^3.4.17",
+    "webpack": "^5.99.9",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.2"
+  },
+  "dependencies": {
+    "@fontsource-variable/roboto": "^5.2.5",
+    "@fontsource/space-mono": "^5.2.5",
+    "@microlink/react-json-view": "^1.26.2",
+    "@tailwindcss/postcss": "^4.1.8",
+    "ag-grid-community": "^33.3.2",
+    "ag-grid-react": "^33.3.2",
+    "denque": "^2.1.0",
+    "lucide-react": "^0.513.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "files": [
+    "dist/",
+    "lib/",
+    "package.json",
+    "LICENSE",
+    "README.md"
+  ]
+}
