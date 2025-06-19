@@ -1,9 +1,9 @@
-const PORT_NAME = Object.freeze({
+const PORT_NAME = {
   PANEL: 'devt-panel',
   CONTENT_SCRIPT: 'devt-content-script',
-});
+} as const;
 
-const MSG_TYPE = Object.freeze({
+const MSG_TYPE = {
   PING: 'ping',
   PONG: 'pong',
   KEEP_ALIVE: 'keep-alive',
@@ -13,6 +13,6 @@ const MSG_TYPE = Object.freeze({
   EVENTS_CLEARED_ACK: 'events-cleared-ack',
   ADD_IPC_EVENT: 'add-ipc-event',
   SEND_TO_PANEL: 'send-to-panel',
-});
+} as const;
 
 export { PORT_NAME, MSG_TYPE };

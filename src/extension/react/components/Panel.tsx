@@ -1,5 +1,11 @@
 import { useMemo, useState, useEffect, useRef } from 'react';
 import { AgGridReact } from 'ag-grid-react';
+import type {
+  ColDef,
+  ICellRendererParams,
+  RowClickedEvent,
+  ValueFormatterParams,
+} from 'ag-grid-community';
 import {
   ModuleRegistry,
   CellStyleModule,
@@ -10,25 +16,24 @@ import {
 import { Ban } from 'lucide-react';
 import { MSG_TYPE, PORT_NAME } from '../../../common/constants';
 import ResizablePanel from './ResizablePanel';
-import DetailPanel from './DetailPanel';
+import type { IpcEventDataIndexed, MessagePanel } from '../../../types/shared';
 import DirectionBadge from './DirectionBadge';
+import formatTimestamp from '../utils/formatTimestamp';
+import DetailPanel from './DetailPanel';
 
-ModuleRegistry.registerModules([
-  ClientSideRowModelModule,
-  RowSelectionModule,
-  CellStyleModule,
-]);
+ModuleRegistry.registerModules([ClientSideRowModelModule, RowSelectionModule, CellStyleModule]);
 
 function Panel() {
-  const [events, setEvents] = useState([]);
-  const portRef = useRef(null);
-  const pingIntervalRef = useRef(null);
+  const MAX_EVENTS_TO_DISPLAY = 1000;
+  const [events, setEvents] = useState<IpcEventDataIndexed[]>([]);
+  const portRef = useRef<chrome.runtime.Port | null>(null);
+  const pingIntervalRef = useRef<NodeJS.Timeout | null>(null);
   const clearEventsRef = useRef(() => {});
+
   /**
    * Comment out the useEffect below if you want to test the UI in dev mode on localhost
    * and use JSON data from test_data/test_data.js for testing.
    */
-
   useEffect(() => {
     const port = chrome.runtime.connect({ name: PORT_NAME.PANEL });
     portRef.current = port;
@@ -40,43 +45,49 @@ function Panel() {
     pingIntervalRef.current = pingInterval;
 
     port.onDisconnect.addListener(() => {
-      clearInterval(pingIntervalRef.current);
+      if (pingIntervalRef.current) clearInterval(pingIntervalRef.current);
       console.log('Devtron - Panel disconnected');
     });
 
-    port.onMessage.addListener((message) => {
+    const onMessage = (message: MessagePanel): void => {
       if (message.type === MSG_TYPE.RENDER_EVENT) {
-        setEvents((prev) => [...prev, message.event]);
+        setEvents((prev) => [...prev, message.event].slice(-MAX_EVENTS_TO_DISPLAY));
       }
       if (message.type === MSG_TYPE.PONG) {
-        // Do nothing // #EDIT #REMOVE
+        // Do nothing // #EDIT or #REMOVE
       }
-    });
+    };
+
+    port.onMessage.addListener(onMessage);
 
     clearEventsRef.current = () => {
       try {
-        port.postMessage({ type: MSG_TYPE.CLEAR_EVENTS });
+        port.postMessage({
+          type: MSG_TYPE.CLEAR_EVENTS,
+        } satisfies MessagePanel);
         setEvents([]);
       } catch (error) {
         console.error('Devtron - Error clearing events:', error);
       }
     };
 
-    port.postMessage({ type: MSG_TYPE.GET_ALL_EVENTS });
+    port.postMessage({ type: MSG_TYPE.GET_ALL_EVENTS } satisfies MessagePanel);
 
     return () => {
-      clearInterval(pingIntervalRef.current);
-
+      if (pingIntervalRef.current) clearInterval(pingIntervalRef.current);
+      port.onMessage.removeListener(onMessage);
+      portRef.current = null;
+      clearEventsRef.current = () => {};
       if (port) {
         port.disconnect();
       }
     };
   }, []);
 
-  const [selectedRow, setSelectedRow] = useState(null);
-  const [showDetailPanel, setShowDetailPanel] = useState(false);
+  const [selectedRow, setSelectedRow] = useState<IpcEventDataIndexed | null>(null);
+  const [showDetailPanel, setShowDetailPanel] = useState<boolean>(false);
 
-  const columnDefs = useMemo(
+  const columnDefs: ColDef<IpcEventDataIndexed>[] = useMemo(
     () => [
       {
         headerName: 'No.',
@@ -88,21 +99,16 @@ function Panel() {
         headerName: 'Time',
         field: 'timestamp',
         width: 120,
-        valueFormatter: (params) => {
-          const date = new Date(params.value);
-          return (
-            date.toLocaleTimeString() +
-            '.' +
-            date.getMilliseconds().toString().padStart(3, '0')
-          );
+        valueFormatter: (params: ValueFormatterParams<IpcEventDataIndexed, any>) => {
+          return formatTimestamp(params.value);
         },
         cellClass: 'flex !p-1 items-center h-full text-xs',
       },
       {
-        headerName: 'Method',
+        headerName: 'Direction',
         field: 'direction',
         width: 85,
-        cellRenderer: (params) => {
+        cellRenderer: (params: ICellRendererParams<IpcEventDataIndexed>) => {
           return <DirectionBadge direction={params.value} />;
         },
         cellClass: 'flex !p-1 items-center h-full',
@@ -117,14 +123,11 @@ function Panel() {
         headerName: 'Data',
         field: 'args',
         flex: 3,
-        cellRenderer: (params) => {
+        cellRenderer: (params: ICellRendererParams<IpcEventDataIndexed>) => {
           const jsonStr = JSON.stringify(params.value);
-          const preview =
-            jsonStr.length > 120 ? jsonStr.slice(0, 120) + '...' : jsonStr;
+          const preview = jsonStr.length > 120 ? jsonStr.slice(0, 120) + '...' : jsonStr;
           return (
-            <span className="text-xs font-space-mono text-gray-600 truncate block">
-              {preview}
-            </span>
+            <span className="text-xs font-space-mono text-gray-600 truncate block">{preview}</span>
           );
         },
         cellClass: 'flex !p-1 items-center h-full',
@@ -142,8 +145,8 @@ function Panel() {
     []
   );
 
-  const onRowClicked = (event) => {
-    setSelectedRow(event.data);
+  const onRowClicked = (event: RowClickedEvent<IpcEventDataIndexed>) => {
+    setSelectedRow(event.data ?? null);
     setShowDetailPanel(true);
   };
 
@@ -154,9 +157,7 @@ function Panel() {
 
   return (
     <div className="h-screen w-full flex border border-gray-300 rounded overflow-hidden bg-white">
-      <div
-        className={`flex-1 flex flex-col ${showDetailPanel ? 'min-w-96' : ''}`}
-      >
+      <div className={`flex-1 flex flex-col ${showDetailPanel ? 'min-w-96' : ''}`}>
         {/* Header */}
         <div className="px-3 py-2 bg-gray-100 border-b border-gray-300 justify-between text-sm font-medium flex items-center gap-2">
           <div className="">Devtron</div>
@@ -192,10 +193,7 @@ function Panel() {
 
       {/* Details panel */}
       <ResizablePanel isOpen={showDetailPanel}>
-        <DetailPanel
-          selectedRow={selectedRow}
-          onClose={handleCloseDetailPanel}
-        />
+        <DetailPanel selectedRow={selectedRow} onClose={handleCloseDetailPanel} />
       </ResizablePanel>
     </div>
   );
