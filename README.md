@@ -1,8 +1,10 @@
-
-> 🚨 **WARNING:** Devtron is currently **unmaintained**. If you're interested in becoming a maintainer, see Issue [#200](https://github.com/electron-userland/devtron/issues/200) for more information.
 # <img src="https://cloud.githubusercontent.com/assets/378023/15063285/cf554e40-1383-11e6-9b9c-45d381b03f9f.png" width="60px" align="center" alt="Devtron icon"> Devtron
 
-An [Electron](http://electron.atom.io) [DevTools](https://developer.chrome.com/devtools)
+> [!IMPORTANT]
+> Devtron is currently undergoing a modern rewrite through the Google Summer of Code 2025 program.
+> To follow progress, see the [`next`](https://github.com/electron-userland/devtron/tree/next) branch.
+
+An [Electron](http://electronjs.org) [DevTools](https://developer.chrome.com/devtools)
 extension to help you inspect, monitor, and debug your app.
 
 [![Travis Build Status](https://travis-ci.org/electron/devtron.svg?branch=master)](https://travis-ci.org/electron/devtron)
