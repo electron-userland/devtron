@@ -1,19 +1,17 @@
 import ReactJson from '@microlink/react-json-view';
 import { X } from 'lucide-react';
 import DirectionBadge from './DirectionBadge';
+import type { IpcEventDataIndexed } from '../../../types/shared';
+import formatTimestamp from '../utils/formatTimestamp';
 
-function DetailPanel({ selectedRow, onClose }) {
+type Props = {
+  selectedRow: IpcEventDataIndexed | null;
+  onClose: () => void;
+};
+function DetailPanel({ selectedRow, onClose }: Props) {
   if (!selectedRow) return null;
 
-  const formatTimestamp = (timestamp) => {
-    const date = new Date(timestamp);
-    return (
-      date.toLocaleTimeString() +
-      '.' +
-      date.getMilliseconds().toString().padStart(3, '0')
-    );
-  };
-
+  const timestamp = formatTimestamp(selectedRow.timestamp);
   return (
     <div className="h-full bg-gray-50 border-l border-gray-300 flex flex-col">
       {/* Header */}
@@ -24,10 +22,7 @@ function DetailPanel({ selectedRow, onClose }) {
             {selectedRow.channel}
           </div>
         </div>
-        <button
-          onClick={onClose}
-          className="text-[#78797a] p-1 rounded-full hover:bg-gray-300"
-        >
+        <button onClick={onClose} className="text-[#78797a] p-1 rounded-full hover:bg-gray-300">
           <X size={16} />
         </button>
       </div>
@@ -37,14 +32,12 @@ function DetailPanel({ selectedRow, onClose }) {
         {/* Time */}
         <div className="mb-2">
           <span className="text-gray-600">Time: </span>
-          <span className="font-mono">
-            {formatTimestamp(selectedRow.timestamp)}
-          </span>
+          <span className="font-mono">{timestamp}</span>
         </div>
 
-        {/* Method */}
+        {/* Direction */}
         <div className="mb-3 w-fit flex items-center gap-x-1">
-          <span className="text-gray-600">Method: </span>
+          <span className="text-gray-600">Direction: </span>
           <DirectionBadge direction={selectedRow.direction} />
         </div>
 

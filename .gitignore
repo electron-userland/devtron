@@ -1,6 +1,8 @@
 node_modules
 
 dist
-lib
+build
 
 todo.md
+
+**/*.tsbuildinfo
