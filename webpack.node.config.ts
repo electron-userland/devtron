@@ -19,7 +19,7 @@ const commonConfig: Configuration = {
     ],
   },
   optimization: {
-    minimize: true,
+    minimize: false,
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
