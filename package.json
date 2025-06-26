@@ -4,23 +4,28 @@
   "description": "Electron DevTools Extension to track IPC events",
   "exports": {
     ".": {
-      "import": "./lib/devtron.mjs",
-      "require": "./lib/devtron.cjs"
-    },
-    "./monitorRenderer": {
-      "import": "./lib/monitorRenderer.mjs",
-      "require": "./lib/monitorRenderer.cjs"
+      "import": "./dist/mjs/index.mjs",
+      "require": "./dist/cjs/index.cjs",
+      "types": "./dist/types/index.d.ts"
     },
     "./monitorMain": {
-      "import": "./lib/monitorMain.mjs",
-      "require": "./lib/monitorMain.cjs"
+      "import": "./dist/mjs/electron-main-tracker.mjs",
+      "require": "./dist/cjs/electron-main-tracker.cjs",
+      "types": "./dist/types/lib/electron-main-tracker.d.ts"
+    },
+    "./monitorRenderer": {
+      "import": "./dist/mjs/electron-renderer-tracker.mjs",
+      "require": "./dist/cjs/electron-renderer-tracker.cjs",
+      "types": "./dist/types/lib/electron-renderer-tracker.d.ts"
     }
   },
   "scripts": {
-    "build:browser": "webpack --config webpack.extension.config.js",
-    "build:node": "webpack --config webpack.node.config.js",
-    "build": "npm run build:node && npm run build:browser",
-    "dev": "webpack serve --config webpack.dev.config.js"
+    "clean": "node -e \"fs.rmSync('dist', { recursive: true, force: true })\"",
+    "build:browser": "webpack --config webpack.extension.config.ts",
+    "build:types": "tsc -b ./tsconfig.types.json",
+    "build:node": "webpack --config webpack.node.config.ts",
+    "build": "npm run clean && npm run build:node && npm run build:types && npm run build:browser",
+    "dev": "webpack serve --config webpack.dev.config.ts"
   },
   "author": "Hitarth Rajput",
   "license": "MIT",
@@ -36,18 +41,19 @@
     "node": ">=22.12.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.27.4",
-    "@babel/preset-env": "^7.27.2",
-    "@babel/preset-react": "^7.27.1",
     "@eslint/js": "^9.27.0",
-    "autoprefixer": "^10.4.21",
-    "babel-loader": "^10.0.0",
+    "@tsconfig/node22": "^22.0.2",
+    "@types/chrome": "^0.0.326",
+    "@types/node": "~22.10.7",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "@types/webpack-env": "^1.18.8",
     "copy-webpack-plugin": "^13.0.0",
     "css-loader": "^7.1.2",
+    "electron": "^36.5.0",
     "eslint": "^9.28.0",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^5.2.0",
-    "eslint-plugin-react-refresh": "^0.4.20",
     "eslint-plugin-unicorn": "^59.0.1",
     "globals": "^16.2.0",
     "html-webpack-plugin": "^5.6.3",
@@ -56,6 +62,9 @@
     "postcss-preset-env": "^10.2.1",
     "style-loader": "^4.0.0",
     "tailwindcss": "^3.4.17",
+    "ts-loader": "^9.5.2",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.34.0",
     "webpack": "^5.99.9",
     "webpack-cli": "^6.0.1",
     "webpack-dev-server": "^5.2.2"
@@ -64,7 +73,6 @@
     "@fontsource-variable/roboto": "^5.2.5",
     "@fontsource/space-mono": "^5.2.5",
     "@microlink/react-json-view": "^1.26.2",
-    "@tailwindcss/postcss": "^4.1.8",
     "ag-grid-community": "^33.3.2",
     "ag-grid-react": "^33.3.2",
     "denque": "^2.1.0",
@@ -74,9 +82,9 @@
   },
   "files": [
     "dist/",
-    "lib/",
     "package.json",
     "LICENSE",
-    "README.md"
+    "README.md",
+    "!**/*.tsbuildinfo"
   ]
 }

@@ -1,25 +1,24 @@
 import { useCallback, useEffect, useState } from 'react';
 
-function ResizablePanel({ children, isOpen, onResize }) {
+function ResizablePanel({ children, isOpen }: { children: React.ReactNode; isOpen: boolean }) {
   const [isResizing, setIsResizing] = useState(false);
   const [width, setWidth] = useState(500);
 
-  const handleMouseDown = useCallback((e) => {
+  const handleMouseDown = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
     setIsResizing(true);
   }, []);
 
   const handleMouseMove = useCallback(
-    (e) => {
+    (e: MouseEvent) => {
       if (!isResizing) return;
 
       const newWidth = window.innerWidth - e.clientX;
       if (newWidth >= 200) {
         setWidth(newWidth);
-        onResize?.(newWidth);
       }
     },
-    [isResizing, onResize],
+    [isResizing]
   );
 
   const handleMouseUp = useCallback(() => {

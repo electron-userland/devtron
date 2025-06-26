@@ -1,0 +1,14 @@
+{
+  "extends": "@tsconfig/node22/tsconfig.json",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "lib": ["DOM"],
+    "module": "esnext",
+    "moduleResolution": "node",
+    "types": ["chrome", "node", "webpack-env", "electron"],
+    "declaration": false,
+    "sourceMap": false,
+    "outDir": "./dist",
+    "forceConsistentCasingInFileNames": true
+  }
+}
