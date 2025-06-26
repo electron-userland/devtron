@@ -1,16 +1,14 @@
 {
+  "extends": "@tsconfig/node22/tsconfig.json",
   "compilerOptions": {
-    "target": "es2020",
     "jsx": "react-jsx",
+    "lib": ["DOM"],
     "module": "esnext",
     "moduleResolution": "node",
-    "types": ["chrome", "webpack-env", "electron"],
+    "types": ["chrome", "node", "webpack-env", "electron"],
     "declaration": false,
     "sourceMap": false,
     "outDir": "./dist",
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "skipLibCheck": true
+    "forceConsistentCasingInFileNames": true
   }
 }

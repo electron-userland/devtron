@@ -1,17 +1,7 @@
 {
+  "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "target": "es2020",
-    "jsx": "react-jsx",
-    "module": "esnext",
-    "rootDir": "../../src",
-    "moduleResolution": "node",
-    "types": ["chrome", "node", "webpack-env"],
-    "declaration": false,
-    "sourceMap": false,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "skipLibCheck": true
+    "rootDir": "../../src"
   },
   "include": ["../../src/extension/**/*", "../../src/common/**/*", "../../src/types/**/*"]
 }
