@@ -33,6 +33,7 @@ export function monitorRenderer(): void {
   isInstalled = true;
 
   const originalOn = ipcRenderer.on.bind(ipcRenderer);
+  const originalOff = ipcRenderer.off.bind(ipcRenderer);
   const originalOnce = ipcRenderer.once.bind(ipcRenderer);
   const originalAddListener = ipcRenderer.addListener.bind(ipcRenderer);
   const originalRemoveListener = ipcRenderer.removeListener.bind(ipcRenderer);
@@ -48,6 +49,26 @@ export function monitorRenderer(): void {
     };
     storeTrackedListener(channel, listener, trackedListener);
     return originalOn(channel, trackedListener);
+  };
+
+  ipcRenderer.off = function (
+    channel: string,
+    listener: (event: Electron.IpcRendererEvent, ...args: any[]) => void,
+  ) {
+    const channelMap = listenerMap.get(channel);
+    const tracked = channelMap?.get(listener);
+
+    if (!tracked) return ipcRenderer;
+
+    // Remove the listener from the map
+    channelMap?.delete(listener);
+    // If no listeners left for this channel, remove the channel from the map
+    if (channelMap && channelMap.size === 0) {
+      listenerMap.delete(channel);
+    }
+
+    track('renderer', channel, [], 'off');
+    return originalOff(channel, tracked);
   };
 
   ipcRenderer.once = function (
