@@ -10,9 +10,8 @@ interface PanelMessage {
 type IpcListener = (event: Electron.IpcRendererEvent, ...args: any[]) => void;
 
 /**
- * Store tracked listeners in a map to manage them efficiently
- * so that they can be removed later if the user calls `removeListener`
- * or `removeAllListeners`.
+ * Store tracked listeners in a map so that they can be removed later
+ * if the user calls `removeListener`or `removeAllListeners`.
  */
 const listenerMap = new Map<string, Map<IpcListener, IpcListener>>(); // channel -> (originalListener -> trackedListener)
 
