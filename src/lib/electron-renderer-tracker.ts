@@ -9,6 +9,8 @@ interface PanelMessage {
 
 type IpcListener = (event: Electron.IpcRendererEvent, ...args: any[]) => void;
 
+let isInstalled = false;
+
 /**
  * Store tracked listeners in a map so that they can be removed later
  * if the user calls `removeListener`or `removeAllListeners`.
@@ -23,6 +25,13 @@ function storeTrackedListener(channel: string, original: IpcListener, tracked: I
 }
 
 export function monitorRenderer(): void {
+  if (isInstalled) {
+    throw new Error(
+      'Devtron is already monitoring this renderer process. Please avoid calling monitorRenderer() more than once.',
+    );
+  }
+  isInstalled = true;
+
   const originalOn = ipcRenderer.on.bind(ipcRenderer);
   const originalOnce = ipcRenderer.once.bind(ipcRenderer);
   const originalAddListener = ipcRenderer.addListener.bind(ipcRenderer);

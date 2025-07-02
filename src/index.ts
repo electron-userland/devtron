@@ -2,6 +2,8 @@ import { app } from 'electron';
 import path from 'node:path';
 import type { Direction, IpcEventData } from './types/shared';
 
+let isInstalled = false;
+
 /**
  * sends captured IPC events to the service-worker preload script
  */
@@ -101,6 +103,13 @@ async function startServiceWorker(ses: Electron.Session, extension: Electron.Ext
 }
 
 function install() {
+  if (isInstalled) {
+    throw new Error(
+      'Devtron has already been installed. Please avoid calling devtron.install() more than once.',
+    );
+  }
+  isInstalled = true;
+
   app.on('session-created', async (ses) => {
     let devtron: Electron.Extension;
     try {
