@@ -38,7 +38,7 @@ export default function DirectionBadge({ direction }: Props) {
           colorClass:
             'dark:bg-dark-purple dark:text-light-purple bg-purple-100 text-purple-800 border-purple-300 dark:border-light-purple',
           label: 'Renderer',
-          tooltip: 'Service Worker to Main',
+          tooltip: 'Renderer',
         };
       default:
         return {
