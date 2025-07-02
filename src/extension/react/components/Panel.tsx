@@ -274,6 +274,8 @@ function Panel() {
               )}
             defaultColDef={defaultColDef}
             onRowClicked={onRowClicked}
+            tooltipShowDelay={100}
+            tooltipShowMode="whenTruncated"
             rowSelection={'single'}
             suppressCellFocus={true}
             headerHeight={25}
