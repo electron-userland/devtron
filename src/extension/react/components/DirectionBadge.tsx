@@ -6,27 +6,37 @@ type Props = {
 };
 export default function DirectionBadge({ direction }: Props) {
   const baseClass =
-    'flex items-center justify-center w-full px-2 py-0.5 rounded-sm text-xs font-medium border';
-
+    'flex items-center overflow-hidden justify-center w-full px-2 py-0.5 rounded-sm text-xs font-medium border';
   const getBadgeConfig = (direction: Direction) => {
     switch (direction) {
       case 'renderer-to-main':
         return {
-          colorClass: 'bg-blue-100 text-blue-800 border-blue-300',
+          colorClass:
+            'dark:bg-dark-blue dark:text-light-blue bg-blue-100 text-blue-800 border-blue-300 dark:border-light-blue',
           Icon: ArrowDown,
           label: 'RTM',
           tooltip: 'Renderer to Main',
         };
       case 'main-to-renderer':
         return {
-          colorClass: 'bg-green-100 text-green-800 border-green-300',
+          colorClass:
+            'dark:bg-dark-green dark:text-light-green bg-green-100 text-green-800 border-green-300 dark:border-light-green',
           Icon: ArrowUp,
           label: 'MTR',
           tooltip: 'Main to Renderer',
         };
+      case 'service-worker-to-main':
+        return {
+          colorClass:
+            'dark:bg-dark-orange dark:text-light-orange bg-yellow-100 text-yellow-800 border-yellow-300 dark:border-light-orange',
+          Icon: ArrowDown,
+          label: 'SWM',
+          tooltip: 'Service Worker to Main',
+        };
       default:
         return {
-          colorClass: 'bg-gray-100 text-gray-800 border-gray-400',
+          colorClass:
+            'dark:bg-charcoal-500 dark:text-charcoal-100 bg-gray-100 text-gray-800 border-gray-400 dark:border-charcoal-200',
           Icon: HelpCircle,
           label: 'Unknown',
           tooltip: 'Unknown direction',
@@ -38,7 +48,7 @@ export default function DirectionBadge({ direction }: Props) {
 
   return (
     <span className={`${baseClass} ${colorClass}`} title={tooltip}>
-      <Icon size={13} className="mr-1" />
+      <Icon size={13} className="mr-1 flex-shrink-0" />
       {label}
     </span>
   );

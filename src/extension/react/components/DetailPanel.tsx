@@ -3,61 +3,83 @@ import { X } from 'lucide-react';
 import DirectionBadge from './DirectionBadge';
 import type { IpcEventDataIndexed } from '../../../types/shared';
 import formatTimestamp from '../utils/formatTimestamp';
+import CircularButton from '../ui/CircularButton';
+import { useDevtronContext } from '../context/context';
 
 type Props = {
   selectedRow: IpcEventDataIndexed | null;
   onClose: () => void;
+  direction?: 'right' | 'bottom';
 };
-function DetailPanel({ selectedRow, onClose }: Props) {
+function DetailPanel({ selectedRow, onClose, direction = 'right' }: Props) {
+  const { theme } = useDevtronContext();
   if (!selectedRow) return null;
 
   const timestamp = formatTimestamp(selectedRow.timestamp);
+
+  const isBottomDocked = direction === 'bottom';
+
   return (
-    <div className="h-full bg-gray-50 border-l border-gray-300 flex flex-col">
+    <div
+      className={`flex h-full flex-col border-gray-300 bg-gray-50 text-gray-700 dark:border-charcoal-400 dark:bg-charcoal-800 dark:text-charcoal-100 ${
+        isBottomDocked ? 'border-t' : 'border-l'
+      }`}
+    >
       {/* Header */}
-      <div className="px-4 py-2 border-b border-gray-300 bg-gray-100 flex justify-between items-center">
-        <div className="text-sm font-medium text-gray-700 flex flex-row items-center">
-          Channel:
-          <div className="ml-1 border border-blue-500 px-1 rounded-sm bg-blue-100">
-            {selectedRow.channel}
-          </div>
-        </div>
-        <button onClick={onClose} className="text-[#78797a] p-1 rounded-full hover:bg-gray-300">
-          <X size={16} />
-        </button>
+      <div className="flex items-center justify-between border-b border-gray-300 bg-gray-100 px-3 py-0.5 dark:border-charcoal-400 dark:bg-charcoal-800">
+        <div className="text-sm font-medium">Details:</div>
+        <CircularButton onClick={onClose}>
+          <X strokeWidth={3} size={14} />
+        </CircularButton>
       </div>
 
       {/* Content */}
-      <div className="flex-1 p-3 overflow-auto text-xs">
-        {/* Time */}
-        <div className="mb-2">
-          <span className="text-gray-600">Time: </span>
-          <span className="font-mono">{timestamp}</span>
-        </div>
+      <div className="flex-1 overflow-auto p-3 text-[.85rem]">
+        <div className={isBottomDocked ? 'flex gap-4' : ''}>
+          <div
+            className={`${isBottomDocked ? 'flex-shrink-0 gap-y-12' : ''} flex flex-col gap-y-2`}
+          >
+            {/* Channel */}
+            <div className="flex items-center gap-x-1">
+              <span className="font-medium"> Channel: </span>
+              <span className="block max-w-72 break-all rounded bg-gray-200 px-1 py-0.5 dark:bg-charcoal-500">
+                {selectedRow.channel}
+              </span>
+            </div>
 
-        {/* Direction */}
-        <div className="mb-3 w-fit flex items-center gap-x-1">
-          <span className="text-gray-600">Direction: </span>
-          <DirectionBadge direction={selectedRow.direction} />
-        </div>
+            {/* Time */}
+            <div>
+              <span className="font-medium">Time: </span>
+              <span className="">{timestamp}</span>
+            </div>
 
-        {/* Args */}
-        <div className="border border-gray-200 rounded bg-white">
-          <ReactJson
-            src={selectedRow.args}
-            theme="rjv-default"
-            displayDataTypes={false}
-            displayObjectSize={false}
-            enableClipboard={false}
-            collapsed={false}
-            name={`args[${selectedRow.args.length}]`}
-            style={{
-              fontSize: '13px',
-              fontFamily: 'Space Mono, Monaco, Menlo, "Ubuntu Mono", monospace',
-              padding: '8px',
-              backgroundColor: 'white',
-            }}
-          />
+            {/* Direction */}
+            <div className="mb-3 flex w-fit items-center gap-x-1">
+              <span className="font-medium">Direction: </span>
+              <DirectionBadge direction={selectedRow.direction} />
+            </div>
+          </div>
+
+          {/* Args */}
+          <div
+            className={`h-fit rounded border border-gray-200 dark:border-0 dark:bg-charcoal-600 ${isBottomDocked ? 'flex-1' : ''}`}
+          >
+            <ReactJson
+              src={selectedRow.args}
+              theme={theme === 'dark' ? 'monokai' : 'rjv-default'}
+              displayDataTypes={false}
+              displayObjectSize={false}
+              enableClipboard={false}
+              collapsed={false}
+              name={`data`}
+              style={{
+                fontSize: '13px',
+                fontFamily: 'Space Mono, Monaco, Menlo, "Ubuntu Mono", monospace',
+                padding: '8px',
+                backgroundColor: theme === 'dark' ? '' : 'white',
+              }}
+            />
+          </div>
         </div>
       </div>
     </div>

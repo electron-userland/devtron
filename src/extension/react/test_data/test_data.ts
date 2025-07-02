@@ -32,6 +32,12 @@ export const events = [
     timestamp: 1749114387250,
   },
   {
+    direction: 'service-worker-to-main',
+    channel: 'sw-check',
+    args: [],
+    timestamp: 1749114387250,
+  },
+  {
     timestamp: 1749114387251,
     direction: 'main-to-renderer',
     channel: 'test-ipc',

@@ -16,17 +16,13 @@ interface PanelMessage {
 }
 
 export function monitorRenderer(): void {
-  ipcRenderer.on(MSG_TYPE.RENDER_EVENT, (_event, data: { channel: string; args: any[] }) => {
-    track('renderer-to-main', data.channel, data.args);
-  });
-
   const originalOn = ipcRenderer.on.bind(ipcRenderer);
   const originalOnce = ipcRenderer.once.bind(ipcRenderer);
   const originalAddListener = ipcRenderer.addListener.bind(ipcRenderer);
 
   ipcRenderer.on = function (
     channel: string,
-    listener: (event: Electron.IpcRendererEvent, ...args: any[]) => void
+    listener: (event: Electron.IpcRendererEvent, ...args: any[]) => void,
   ) {
     return originalOn(channel, (event, ...args) => {
       track('main-to-renderer', channel, args);
@@ -36,7 +32,7 @@ export function monitorRenderer(): void {
 
   ipcRenderer.once = function (
     channel: string,
-    listener: (event: Electron.IpcRendererEvent, ...args: any[]) => void
+    listener: (event: Electron.IpcRendererEvent, ...args: any[]) => void,
   ) {
     return originalOnce(channel, (event, ...args) => {
       track('main-to-renderer', channel, args);
@@ -46,7 +42,7 @@ export function monitorRenderer(): void {
 
   ipcRenderer.addListener = function (
     channel: string,
-    listener: (event: Electron.IpcRendererEvent, ...args: any[]) => void
+    listener: (event: Electron.IpcRendererEvent, ...args: any[]) => void,
   ) {
     return originalAddListener(channel, (event, ...args) => {
       track('main-to-renderer', channel, args);

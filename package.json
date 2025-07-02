@@ -8,11 +8,6 @@
       "require": "./dist/cjs/index.cjs",
       "types": "./dist/types/index.d.ts"
     },
-    "./monitorMain": {
-      "import": "./dist/mjs/electron-main-tracker.mjs",
-      "require": "./dist/cjs/electron-main-tracker.cjs",
-      "types": "./dist/types/lib/electron-main-tracker.d.ts"
-    },
     "./monitorRenderer": {
       "import": "./dist/mjs/electron-renderer-tracker.mjs",
       "require": "./dist/cjs/electron-renderer-tracker.cjs",
@@ -60,6 +55,8 @@
     "postcss": "^8.5.4",
     "postcss-loader": "^8.1.1",
     "postcss-preset-env": "^10.2.1",
+    "prettier": "^3.6.2",
+    "prettier-plugin-tailwindcss": "^0.6.13",
     "style-loader": "^4.0.0",
     "tailwindcss": "^3.4.17",
     "ts-loader": "^9.5.2",
