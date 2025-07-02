@@ -14,8 +14,7 @@
 ```js
 // main.js
 const { devtron } = require('@electron/devtron')
-const { monitorMain } = require('@electron/devtron/monitorMain')
-monitorMain()
+// or import { devtron } from '@electron/devtron'
 
 // function createWindow() {...}
 
@@ -28,8 +27,11 @@ app.whenReady().then(() => {
 ```js
 // preload.js
 const { monitorRenderer } = require('@electron/devtron/monitorRenderer')
+// or import { monitorRenderer } from '@electron/devtron/monitorRenderer'
+
 monitorRenderer()
 ```
 
 If Devtron is installed correctly, it should appear as a tab in the Developer Tools of your Electron app.
-![image](https://i.ibb.co/C3WgrHKG/Screenshot-2025-06-09-171027.png)
+
+<img src="https://github.com/user-attachments/assets/0f278b54-50fe-4116-9317-9c1525bf872b" width="800">
