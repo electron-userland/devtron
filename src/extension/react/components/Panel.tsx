@@ -29,7 +29,7 @@ ModuleRegistry.registerModules([
   ScrollApiModule,
 ]);
 import { useDevtronContext } from '../context/context';
-
+// import { events } from '../test_data/test_data';
 function Panel() {
   const MAX_EVENTS_TO_DISPLAY = 1000;
   const [events, setEvents] = useState<IpcEventDataIndexed[]>([]);
@@ -43,7 +43,7 @@ function Panel() {
     setDetailPanelPosition,
     setLockToBottom,
   } = useDevtronContext();
-  const lockToBottomRef = useRef(true);
+  const lockToBottomRef = useRef(lockToBottom);
   const gridRef = useRef<AgGridReact<IpcEventDataIndexed> | null>(null);
 
   const portRef = useRef<chrome.runtime.Port | null>(null);
@@ -53,6 +53,14 @@ function Panel() {
    * and use JSON data from test_data/test_data.ts for testing.
    */
   useEffect(() => {
+    // Update lockToBottomRef on first render
+    const savedLockToBottom = localStorage.getItem('lockToBottom');
+    if (savedLockToBottom) {
+      const parsed = JSON.parse(savedLockToBottom);
+      setLockToBottom(parsed);
+      lockToBottomRef.current = parsed;
+    }
+
     const port = chrome.runtime.connect({ name: PORT_NAME.PANEL });
     portRef.current = port;
     port.onDisconnect.addListener(() => {
@@ -60,13 +68,14 @@ function Panel() {
     });
 
     const onMessage = (message: MessagePanel): void => {
-      console.log(`Devtron - Panel received message: ${JSON.stringify(message)}`);
       if (message.type === MSG_TYPE.RENDER_EVENT) {
         setEvents((prev) => {
           const updated = [...prev, message.event].slice(-MAX_EVENTS_TO_DISPLAY);
           if (lockToBottomRef.current) {
             requestAnimationFrame(() => {
-              gridRef.current?.api.ensureIndexVisible(updated.length - 1, 'bottom');
+              requestAnimationFrame(() => {
+                gridRef.current?.api.ensureIndexVisible(updated.length - 1, 'bottom');
+              });
             });
           }
           return updated;
@@ -122,7 +131,7 @@ function Panel() {
       {
         headerName: 'Direction',
         field: 'direction',
-        width: 85,
+        width: 91,
         cellRenderer: (params: ICellRendererParams<IpcEventDataIndexed>) => {
           return <DirectionBadge direction={params.value} />;
         },

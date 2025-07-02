@@ -22,10 +22,12 @@ export default {
         'light-orange': '#ffa057',
         'light-blue': '#70b8ff',
         'light-green': '#3ddb8f',
+        'light-purple': '#c96cff',
 
         'dark-orange': '#331e10',
         'dark-blue': '#0d2849',
         'dark-green': '#132d23',
+        'dark-purple': '#2b132d',
       },
     },
   },

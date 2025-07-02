@@ -37,14 +37,16 @@ function DetailPanel({ selectedRow, onClose, direction = 'right' }: Props) {
       <div className="flex-1 overflow-auto p-3 text-[.85rem]">
         <div className={isBottomDocked ? 'flex gap-4' : ''}>
           <div
-            className={`${isBottomDocked ? 'flex-shrink-0 gap-y-12' : ''} flex flex-col gap-y-2`}
+            className={`${isBottomDocked ? 'flex-shrink-0 gap-y-12' : 'mb-4'} flex flex-col gap-y-2`}
           >
             {/* Channel */}
             <div className="flex items-center gap-x-1">
               <span className="font-medium"> Channel: </span>
-              <span className="block max-w-72 break-all rounded bg-gray-200 px-1 py-0.5 dark:bg-charcoal-500">
-                {selectedRow.channel}
-              </span>
+              {selectedRow.channel && (
+                <span className="block max-w-72 break-all rounded bg-gray-200 px-1 py-0.5 dark:bg-charcoal-500">
+                  {selectedRow.channel}
+                </span>
+              )}
             </div>
 
             {/* Time */}
@@ -54,10 +56,20 @@ function DetailPanel({ selectedRow, onClose, direction = 'right' }: Props) {
             </div>
 
             {/* Direction */}
-            <div className="mb-3 flex w-fit items-center gap-x-1">
+            <div className="flex w-fit items-center gap-x-1">
               <span className="font-medium">Direction: </span>
               <DirectionBadge direction={selectedRow.direction} />
             </div>
+
+            {/* Method */}
+            {selectedRow.method && (
+              <div className="flex w-fit items-center gap-x-1">
+                <span className="font-medium">Method: </span>
+                <span className="block max-w-72 break-all rounded bg-gray-200 px-1 py-0.5 dark:bg-charcoal-500">
+                  {selectedRow.method}
+                </span>
+              </div>
+            )}
           </div>
 
           {/* Args */}

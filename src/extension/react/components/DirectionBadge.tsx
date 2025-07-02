@@ -33,6 +33,13 @@ export default function DirectionBadge({ direction }: Props) {
           label: 'SWM',
           tooltip: 'Service Worker to Main',
         };
+      case 'renderer':
+        return {
+          colorClass:
+            'dark:bg-dark-purple dark:text-light-purple bg-purple-100 text-purple-800 border-purple-300 dark:border-light-purple',
+          label: 'Renderer',
+          tooltip: 'Service Worker to Main',
+        };
       default:
         return {
           colorClass:
@@ -48,7 +55,7 @@ export default function DirectionBadge({ direction }: Props) {
 
   return (
     <span className={`${baseClass} ${colorClass}`} title={tooltip}>
-      <Icon size={13} className="mr-1 flex-shrink-0" />
+      {Icon && <Icon size={13} className="mr-1 flex-shrink-0" />}
       {label}
     </span>
   );

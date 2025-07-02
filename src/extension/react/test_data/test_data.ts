@@ -21,6 +21,7 @@ export const events = [
   {
     serialNumber: 123,
     direction: 'renderer-to-main',
+    method: 'on',
     channel: 'hello-renderer',
     args: ['random string as argument lol'],
     timestamp: 1749114386627,
@@ -28,6 +29,20 @@ export const events = [
   {
     direction: 'renderer-to-main',
     channel: 'ping',
+    args: [],
+    timestamp: 1749114387250,
+  },
+  {
+    direction: 'renderer',
+    channel: 'renderer-check',
+    method: 'removeAllListeners',
+    args: [],
+    timestamp: 1749114387250,
+  },
+  {
+    direction: 'renderer',
+    method: 'removeListener',
+    channel: '',
     args: [],
     timestamp: 1749114387250,
   },

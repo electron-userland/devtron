@@ -1,11 +1,16 @@
 import type { MSG_TYPE } from '../common/constants';
 /* ------------------ ELECTRON-PROCESS ------------------ */
-export type Direction = 'renderer-to-main' | 'main-to-renderer' | 'service-worker-to-main';
+export type Direction =
+  | 'renderer-to-main'
+  | 'main-to-renderer'
+  | 'service-worker-to-main'
+  | 'renderer';
 export interface IpcEventData {
   direction: Direction;
   channel: string;
   args: any[];
   timestamp: number;
+  method?: string;
 }
 /* ------------------------------------------------------ */
 
