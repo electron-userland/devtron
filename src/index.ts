@@ -75,8 +75,8 @@ async function startServiceWorker(ses: Electron.Session, extension: Electron.Ext
     const sw = await ses.serviceWorkers.startWorkerForScope(extension.url);
     sw.startTask();
     registerIpcListeners(ses, sw);
-  } catch (error_1) {
-    console.warn(`Failed to start Devtron service-worker (${error_1}), trying again...`);
+  } catch (error) {
+    console.warn(`Failed to start Devtron service-worker (${error}), trying again...`);
     /**
      * This is a workaround for the issue where the Devtron service-worker fails to start
      * when the Electron app is launched for the first time, or when the service worker
@@ -96,8 +96,8 @@ async function startServiceWorker(ses: Electron.Session, extension: Electron.Ext
         }
       };
       ses.serviceWorkers.on('registration-completed', handleDetails);
-    } catch (error_2) {
-      console.error('Failed to start Devtron service-worker:', error_2);
+    } catch (error) {
+      console.error('Failed to start Devtron service-worker:', error);
     }
   }
 }
