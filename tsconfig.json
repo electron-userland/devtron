@@ -10,5 +10,6 @@
     "sourceMap": false,
     "outDir": "./dist",
     "forceConsistentCasingInFileNames": true
-  }
+  },
+  "include": ["./global.d.ts", "./src/**/*"]
 }
