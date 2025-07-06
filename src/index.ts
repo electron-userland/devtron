@@ -104,9 +104,7 @@ async function startServiceWorker(ses: Electron.Session, extension: Electron.Ext
 
 function install() {
   if (isInstalled) {
-    throw new Error(
-      'Devtron has already been installed. Please avoid calling devtron.install() more than once.',
-    );
+    return;
   }
   isInstalled = true;
 

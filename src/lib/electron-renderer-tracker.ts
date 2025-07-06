@@ -26,9 +26,7 @@ function storeTrackedListener(channel: string, original: IpcListener, tracked: I
 
 export function monitorRenderer(): void {
   if (isInstalled) {
-    throw new Error(
-      'Devtron is already monitoring this renderer process. Please avoid calling monitorRenderer() more than once.',
-    );
+    return;
   }
   isInstalled = true;
 
