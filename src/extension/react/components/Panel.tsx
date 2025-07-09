@@ -55,65 +55,62 @@ function Panel() {
    * Comment out the useEffect below if you want to test the UI in dev mode on localhost
    * and use JSON data from test_data/test_data.ts for testing.
    */
-  useEffect(
-    () => {
-      // Update lockToBottomRef on first render
-      const savedLockToBottom = localStorage.getItem('lockToBottom');
-      if (savedLockToBottom) {
-        const parsed = JSON.parse(savedLockToBottom);
-        setLockToBottom(parsed);
-        lockToBottomRef.current = parsed;
-      }
+  useEffect(() => {
+    // Update lockToBottomRef on first render
+    const savedLockToBottom = localStorage.getItem('lockToBottom');
+    if (savedLockToBottom) {
+      const parsed = JSON.parse(savedLockToBottom);
+      setLockToBottom(parsed);
+      lockToBottomRef.current = parsed;
+    }
 
-      const port = chrome.runtime.connect({ name: PORT_NAME.PANEL });
-      portRef.current = port;
-      port.onDisconnect.addListener(() => {
-        console.log('Devtron - Panel disconnected');
-      });
+    const port = chrome.runtime.connect({ name: PORT_NAME.PANEL });
+    portRef.current = port;
+    port.onDisconnect.addListener(() => {
+      console.log('Devtron - Panel disconnected');
+    });
 
-      const onMessage = (message: MessagePanel): void => {
-        if (message.type === MSG_TYPE.RENDER_EVENT) {
-          setEvents((prev) => {
-            const updated = [...prev, message.event].slice(-MAX_EVENTS_TO_DISPLAY);
-            if (lockToBottomRef.current) {
+    const onMessage = (message: MessagePanel): void => {
+      if (message.type === MSG_TYPE.RENDER_EVENT) {
+        setEvents((prev) => {
+          const updated = [...prev, message.event].slice(-MAX_EVENTS_TO_DISPLAY);
+          if (lockToBottomRef.current) {
+            requestAnimationFrame(() => {
               requestAnimationFrame(() => {
-                requestAnimationFrame(() => {
-                  gridRef.current?.api.ensureIndexVisible(updated.length - 1, 'bottom');
-                });
+                gridRef.current?.api.ensureIndexVisible(updated.length - 1, 'bottom');
               });
-            }
-            return updated;
-          });
-        }
-      };
+            });
+          }
+          return updated;
+        });
+      }
+    };
 
-      port.onMessage.addListener(onMessage);
+    port.onMessage.addListener(onMessage);
 
-      clearEventsRef.current = () => {
-        try {
-          port.postMessage({
-            type: MSG_TYPE.CLEAR_EVENTS,
-          } satisfies MessagePanel);
-          setEvents([]);
-        } catch (error) {
-          console.error('Devtron - Error clearing events:', error);
-        }
-      };
+    clearEventsRef.current = () => {
+      try {
+        port.postMessage({
+          type: MSG_TYPE.CLEAR_EVENTS,
+        } satisfies MessagePanel);
+        setEvents([]);
+      } catch (error) {
+        console.error('Devtron - Error clearing events:', error);
+      }
+    };
 
-      port.postMessage({ type: MSG_TYPE.GET_ALL_EVENTS } satisfies MessagePanel);
+    port.postMessage({ type: MSG_TYPE.GET_ALL_EVENTS } satisfies MessagePanel);
 
-      return () => {
-        port.onMessage.removeListener(onMessage);
-        portRef.current = null;
-        clearEventsRef.current = () => {};
+    return () => {
+      port.onMessage.removeListener(onMessage);
+      portRef.current = null;
+      clearEventsRef.current = () => {};
 
-        if (port) {
-          port.disconnect();
-        }
-      };
-    },
-    [setLockToBottom],
-  );
+      if (port) {
+        port.disconnect();
+      }
+    };
+  }, [setLockToBottom]);
 
   const columnDefs: ColDef<IpcEventDataIndexed>[] = useMemo(
     () => [
