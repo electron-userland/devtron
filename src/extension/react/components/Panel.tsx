@@ -112,8 +112,7 @@ function Panel() {
         }
       };
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [],
+    [setLockToBottom],
   );
 
   const columnDefs: ColDef<IpcEventDataIndexed>[] = useMemo(
