@@ -1,4 +1,4 @@
-import { useMemo, useState, useEffect, useRef } from 'react';
+import { useMemo, useState, useEffect, useRef, useCallback } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import type {
   ColDef,
@@ -48,9 +48,20 @@ function Panel() {
   } = useDevtronContext();
   const lockToBottomRef = useRef(lockToBottom);
   const gridRef = useRef<AgGridReact<IpcEventDataIndexed> | null>(null);
-
+  const [isPortReady, setIsPortReady] = useState(false);
   const portRef = useRef<chrome.runtime.Port | null>(null);
-  const clearEventsRef = useRef(() => {});
+  const clearEvents = useCallback(() => {
+    if (!isPortReady || !portRef.current) return;
+    try {
+      portRef.current.postMessage({
+        type: MSG_TYPE.CLEAR_EVENTS,
+      } satisfies MessagePanel);
+      setEvents([]);
+    } catch (error) {
+      console.error('Devtron - Error clearing events:', error);
+    }
+  }, [isPortReady]);
+
   /**
    * Comment out the useEffect below if you want to test the UI in dev mode on localhost
    * and use JSON data from test_data/test_data.ts for testing.
@@ -66,11 +77,8 @@ function Panel() {
 
     const port = chrome.runtime.connect({ name: PORT_NAME.PANEL });
     portRef.current = port;
-    port.onDisconnect.addListener(() => {
-      console.log('Devtron - Panel disconnected');
-    });
 
-    const onMessage = (message: MessagePanel): void => {
+    const handleOnMessage = (message: MessagePanel): void => {
       if (message.type === MSG_TYPE.RENDER_EVENT) {
         setEvents((prev) => {
           const updated = [...prev, message.event].slice(-MAX_EVENTS_TO_DISPLAY);
@@ -86,29 +94,22 @@ function Panel() {
       }
     };
 
-    port.onMessage.addListener(onMessage);
-
-    clearEventsRef.current = () => {
-      try {
-        port.postMessage({
-          type: MSG_TYPE.CLEAR_EVENTS,
-        } satisfies MessagePanel);
-        setEvents([]);
-      } catch (error) {
-        console.error('Devtron - Error clearing events:', error);
-      }
-    };
-
+    port.onMessage.addListener(handleOnMessage);
     port.postMessage({ type: MSG_TYPE.GET_ALL_EVENTS } satisfies MessagePanel);
+    setIsPortReady(true);
+
+    const handleOnDisconnect = () => {
+      console.log('Devtron - Panel disconnected');
+      setIsPortReady(false);
+    }
+    port.onDisconnect.addListener(handleOnDisconnect);
 
     return () => {
-      port.onMessage.removeListener(onMessage);
+      port.onMessage.removeListener(handleOnMessage);
+      port.onDisconnect.removeListener(handleOnDisconnect);
       portRef.current = null;
-      clearEventsRef.current = () => {};
-
-      if (port) {
-        port.disconnect();
-      }
+      setIsPortReady(false);
+      if (port) port.disconnect();
     };
   }, [setLockToBottom]);
 
@@ -235,11 +236,7 @@ function Panel() {
               )}
             </CircularButton>
 
-            <CircularButton
-              onClick={() => {
-                clearEventsRef.current();
-              }}
-            >
+            <CircularButton onClick={clearEvents}>
               <Ban strokeWidth={3} size={15} />
             </CircularButton>
           </div>
