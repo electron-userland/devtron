@@ -31,7 +31,8 @@ ModuleRegistry.registerModules([
   TooltipModule,
 ]);
 import { useDevtronContext } from '../context/context';
-// import { events } from '../test_data/test_data';
+
+const isDev = process.env.NODE_ENV === 'development';
 
 function Panel() {
   const MAX_EVENTS_TO_DISPLAY = 1000;
@@ -51,11 +52,13 @@ function Panel() {
   const [isPortReady, setIsPortReady] = useState(false);
   const portRef = useRef<chrome.runtime.Port | null>(null);
   const clearEvents = useCallback(() => {
+    if (isDev) {
+      setEvents([]);
+      return;
+    }
     if (!isPortReady || !portRef.current) return;
     try {
-      portRef.current.postMessage({
-        type: MSG_TYPE.CLEAR_EVENTS,
-      } satisfies MessagePanel);
+      portRef.current.postMessage({ type: MSG_TYPE.CLEAR_EVENTS } satisfies MessagePanel);
       setEvents([]);
     } catch (error) {
       console.error('Devtron - Error clearing events:', error);
@@ -74,6 +77,19 @@ function Panel() {
       setLockToBottom(parsed);
       lockToBottomRef.current = parsed;
     }
+
+    /* ---------------------- DEV MODE ---------------------- */
+    if (isDev) {
+      import('../test_data/test_data')
+        .then((mod) => {
+          setEvents(mod.events);
+        })
+        .catch((err) => {
+          console.error('Failed to load test data:', err);
+        });
+      return;
+    }
+    /* ------------------------------------------------------ */
 
     const port = chrome.runtime.connect({ name: PORT_NAME.PANEL });
     portRef.current = port;
@@ -101,7 +117,7 @@ function Panel() {
     const handleOnDisconnect = () => {
       console.log('Devtron - Panel disconnected');
       setIsPortReady(false);
-    }
+    };
     port.onDisconnect.addListener(handleOnDisconnect);
 
     return () => {
