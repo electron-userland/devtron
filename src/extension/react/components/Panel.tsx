@@ -36,10 +36,12 @@ const isDev = process.env.NODE_ENV === 'development';
 
 function Panel() {
   const MAX_EVENTS_TO_DISPLAY = 1000;
+
   const [events, setEvents] = useState<IpcEventDataIndexed[]>([]);
   const [selectedRow, setSelectedRow] = useState<IpcEventDataIndexed | null>(null);
   const [showDetailPanel, setShowDetailPanel] = useState<boolean>(false);
-  const [isPortReady, setIsPortReady] = useState(false);
+  const [isPortReady, setIsPortReady] = useState<boolean>(false);
+
   const {
     theme,
     setTheme,
@@ -48,9 +50,11 @@ function Panel() {
     setDetailPanelPosition,
     setLockToBottom,
   } = useDevtronContext();
+
   const lockToBottomRef = useRef(lockToBottom);
   const gridRef = useRef<AgGridReact<IpcEventDataIndexed> | null>(null);
   const portRef = useRef<chrome.runtime.Port | null>(null);
+
   const clearEvents = useCallback(() => {
     if (isDev) {
       setEvents([]);
@@ -88,7 +92,7 @@ function Panel() {
       return;
     }
     /* ------------------------------------------------------ */
-    
+
     const port = chrome.runtime.connect({ name: PORT_NAME.PANEL });
     portRef.current = port;
 
