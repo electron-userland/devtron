@@ -39,6 +39,7 @@ function Panel() {
   const [events, setEvents] = useState<IpcEventDataIndexed[]>([]);
   const [selectedRow, setSelectedRow] = useState<IpcEventDataIndexed | null>(null);
   const [showDetailPanel, setShowDetailPanel] = useState<boolean>(false);
+  const [isPortReady, setIsPortReady] = useState(false);
   const {
     theme,
     setTheme,
@@ -49,14 +50,15 @@ function Panel() {
   } = useDevtronContext();
   const lockToBottomRef = useRef(lockToBottom);
   const gridRef = useRef<AgGridReact<IpcEventDataIndexed> | null>(null);
-  const [isPortReady, setIsPortReady] = useState(false);
   const portRef = useRef<chrome.runtime.Port | null>(null);
   const clearEvents = useCallback(() => {
     if (isDev) {
       setEvents([]);
       return;
     }
+
     if (!isPortReady || !portRef.current) return;
+
     try {
       portRef.current.postMessage({ type: MSG_TYPE.CLEAR_EVENTS } satisfies MessagePanel);
       setEvents([]);
@@ -65,10 +67,6 @@ function Panel() {
     }
   }, [isPortReady]);
 
-  /**
-   * Comment out the useEffect below if you want to test the UI in dev mode on localhost
-   * and use JSON data from test_data/test_data.ts for testing.
-   */
   useEffect(() => {
     // Update lockToBottomRef on first render
     const savedLockToBottom = localStorage.getItem('lockToBottom');
@@ -90,7 +88,7 @@ function Panel() {
       return;
     }
     /* ------------------------------------------------------ */
-
+    
     const port = chrome.runtime.connect({ name: PORT_NAME.PANEL });
     portRef.current = port;
 
