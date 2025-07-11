@@ -6,7 +6,6 @@ const PORT_NAME = {
 const MSG_TYPE = {
   PING: 'ping',
   PONG: 'pong',
-  KEEP_ALIVE: 'keep-alive',
   GET_ALL_EVENTS: 'get-all-events',
   RENDER_EVENT: 'render-event',
   CLEAR_EVENTS: 'clear-events',

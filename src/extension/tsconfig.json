@@ -3,5 +3,10 @@
   "compilerOptions": {
     "rootDir": "../../src"
   },
-  "include": ["../../src/extension/**/*", "../../src/common/**/*", "../../src/types/**/*"]
+  "include": [
+    "../../global.d.ts",
+    "../../src/extension/**/*",
+    "../../src/common/**/*",
+    "../../src/types/**/*"
+  ]
 }

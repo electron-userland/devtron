@@ -1,8 +1,15 @@
 import { useCallback, useEffect, useState } from 'react';
 
-function ResizablePanel({ children, isOpen }: { children: React.ReactNode; isOpen: boolean }) {
+type Props = {
+  children: React.ReactNode;
+  isOpen: boolean;
+  direction?: 'right' | 'bottom';
+};
+
+function ResizablePanel({ children, isOpen, direction = 'right' }: Props) {
   const [isResizing, setIsResizing] = useState(false);
-  const [width, setWidth] = useState(500);
+  const [width, setWidth] = useState(() => Math.max(window.innerWidth / 3, 200));
+  const [height, setHeight] = useState(() => window.innerHeight / 3);
 
   const handleMouseDown = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
@@ -13,12 +20,19 @@ function ResizablePanel({ children, isOpen }: { children: React.ReactNode; isOpe
     (e: MouseEvent) => {
       if (!isResizing) return;
 
-      const newWidth = window.innerWidth - e.clientX;
-      if (newWidth >= 200) {
-        setWidth(newWidth);
+      if (direction === 'right') {
+        const newWidth = window.innerWidth - e.clientX;
+        if (newWidth >= 200 && newWidth <= (window.innerWidth * 70) / 100) {
+          setWidth(newWidth);
+        }
+      } else if (direction === 'bottom') {
+        const newHeight = window.innerHeight - e.clientY;
+        if (newHeight >= 35 && newHeight <= window.innerHeight - 50) {
+          setHeight(newHeight);
+        }
       }
     },
-    [isResizing]
+    [isResizing, direction],
   );
 
   const handleMouseUp = useCallback(() => {
@@ -38,12 +52,30 @@ function ResizablePanel({ children, isOpen }: { children: React.ReactNode; isOpe
 
   if (!isOpen) return null;
 
+  if (direction === 'bottom') {
+    return (
+      <div className="relative flex w-full flex-col">
+        {/* Resize handle */}
+        <div
+          onMouseDown={handleMouseDown}
+          className={`absolute left-0 top-0 z-10 h-1 w-full cursor-row-resize transition-colors ${
+            isResizing ? 'bg-blue-500' : 'hover:bg-gray-400'
+          }`}
+        />
+        {/* Children */}
+        <div style={{ height: `${height}px` }} className="w-full">
+          {children}
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className="flex h-full">
+    <div className="relative flex h-full">
       {/* Resize handle */}
       <div
         onMouseDown={handleMouseDown}
-        className={`w-1 cursor-col-resize transition-colors ${
+        className={`absolute left-0 top-0 z-10 h-full w-1 cursor-col-resize transition-colors ${
           isResizing ? 'bg-blue-500' : 'hover:bg-gray-400'
         }`}
       />
@@ -54,4 +86,5 @@ function ResizablePanel({ children, isOpen }: { children: React.ReactNode; isOpe
     </div>
   );
 }
+
 export default ResizablePanel;

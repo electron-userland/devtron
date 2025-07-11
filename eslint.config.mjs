@@ -11,7 +11,6 @@ export default tseslint.config(
   react.configs.flat.recommended,
   react.configs.flat['jsx-runtime'],
   reactHooks.configs['recommended-latest'],
-
   {
     files: ['**/*.{js,jsx,ts,tsx}'],
     plugins: {
@@ -37,6 +36,8 @@ export default tseslint.config(
         },
       },
     },
+  },
+  {
     settings: {
       react: {
         version: 'detect',
@@ -45,5 +46,5 @@ export default tseslint.config(
   },
   {
     ignores: ['dist', 'build', 'node_modules'],
-  }
+  },
 );

@@ -1,4 +1,6 @@
-export const events = [
+import type { IpcEventDataIndexed } from '../../../types/shared';
+
+export const events: IpcEventDataIndexed[] = [
   {
     serialNumber: 1,
     direction: 'renderer-to-main',
@@ -16,22 +18,47 @@ export const events = [
         hello: 'world from main',
       },
     ],
-    processId: 5240,
   },
   {
     serialNumber: 123,
     direction: 'renderer-to-main',
+    method: 'on',
     channel: 'hello-renderer',
     args: ['random string as argument lol'],
     timestamp: 1749114386627,
   },
   {
+    serialNumber: 124,
     direction: 'renderer-to-main',
     channel: 'ping',
     args: [],
     timestamp: 1749114387250,
   },
   {
+    serialNumber: 125,
+    direction: 'renderer',
+    channel: 'renderer-check',
+    method: 'removeAllListeners',
+    args: [],
+    timestamp: 1749114387250,
+  },
+  {
+    serialNumber: 126,
+    direction: 'renderer',
+    method: 'removeListener',
+    channel: '',
+    args: [],
+    timestamp: 1749114387250,
+  },
+  {
+    serialNumber: 127,
+    direction: 'service-worker-to-main',
+    channel: 'sw-check',
+    args: [],
+    timestamp: 1749114387250,
+  },
+  {
+    serialNumber: 128,
     timestamp: 1749114387251,
     direction: 'main-to-renderer',
     channel: 'test-ipc',
@@ -64,6 +91,5 @@ export const events = [
         },
       },
     ],
-    processId: 5240,
   },
 ];
