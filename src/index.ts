@@ -133,7 +133,7 @@ function install() {
         path.resolve('node_modules', '@electron', 'devtron', 'dist', 'extension'),
         { allowFileAccess: true },
       );
-      startServiceWorker(ses, devtron);
+      await startServiceWorker(ses, devtron);
       console.log('Devtron loaded successfully');
     } catch (error) {
       console.error('Failed to load Devtron:', error);
