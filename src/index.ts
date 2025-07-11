@@ -1,9 +1,10 @@
-import { app } from 'electron';
+import { app, session } from 'electron';
 import path from 'node:path';
 import { createRequire } from 'node:module';
 import type { Direction, IpcEventData } from './types/shared';
 
 let isInstalled = false;
+let isInstalledToDefaultSession = false;
 
 /**
  * sends captured IPC events to the service-worker preload script
@@ -103,13 +104,14 @@ async function startServiceWorker(ses: Electron.Session, extension: Electron.Ext
   }
 }
 
-function install() {
-  if (isInstalled) {
-    return;
-  }
+async function install() {
+  if (isInstalled) return;
   isInstalled = true;
 
-  app.on('session-created', async (ses) => {
+  const installToSession = async (ses: Electron.Session) => {
+    if (ses === session.defaultSession && isInstalledToDefaultSession) return;
+    if (ses === session.defaultSession) isInstalledToDefaultSession = true;
+
     let devtron: Electron.Extension;
     try {
       // register service worker preload script
@@ -134,7 +136,12 @@ function install() {
     } catch (error) {
       console.error('Failed to load Devtron:', error);
     }
-  });
+  };
+
+  // explicitly install Devtron to the defaultSession in case the app is already ready
+  if (app.isReady()) await installToSession(session.defaultSession);
+
+  app.on('session-created', installToSession);
 }
 
 export const devtron = {
