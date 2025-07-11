@@ -125,6 +125,7 @@ function install() {
           preloadFileName,
         ),
         type: 'service-worker',
+        id: 'devtron-preload',
       });
 
       // load extension
