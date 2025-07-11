@@ -10,6 +10,12 @@ const entryPoints = {
 const commonConfig: Configuration = {
   entry: entryPoints,
   module: {
+    parser: {
+      javascript: {
+        importMeta: false,
+        createRequire: false,
+      },
+    },
     rules: [
       {
         test: /\.(ts|tsx)$/,

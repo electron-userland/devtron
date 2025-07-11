@@ -1,5 +1,6 @@
 import { app } from 'electron';
 import path from 'node:path';
+import { createRequire } from 'node:module';
 import type { Direction, IpcEventData } from './types/shared';
 
 let isInstalled = false;
@@ -112,18 +113,13 @@ function install() {
     let devtron: Electron.Extension;
     try {
       // register service worker preload script
-      // @ts-expect-error: __MODULE_TYPE__ is defined in webpack config, value is either 'esm' or 'cjs'
+      // @ts-expect-error: __MODULE_TYPE__ is defined in webpack.node.config.ts, value is either 'mjs' or 'cjs'
       const moduleType = __MODULE_TYPE__;
-      const preloadFileName = `service-worker-preload.${moduleType}`;
+      const dirname = moduleType === 'mjs' ? import.meta.dirname : __dirname;
+      const filePath = createRequire(dirname).resolve('@electron/devtron/service-worker-preload');
+
       ses.registerPreloadScript({
-        filePath: path.resolve(
-          'node_modules',
-          '@electron',
-          'devtron',
-          'dist',
-          moduleType,
-          preloadFileName,
-        ),
+        filePath,
         type: 'service-worker',
         id: 'devtron-preload',
       });
