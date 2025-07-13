@@ -138,10 +138,10 @@ async function install() {
     }
   };
 
-  // explicitly install Devtron to the defaultSession in case the app is already ready
-  if (app.isReady()) await installToSession(session.defaultSession);
-
   app.on('session-created', installToSession);
+
+  // explicitly install Devtron to the defaultSession in case the app is already ready
+  if (!isInstalledToDefaultSession && app.isReady()) await installToSession(session.defaultSession);
 }
 
 export const devtron = {
