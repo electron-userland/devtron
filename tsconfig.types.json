@@ -5,6 +5,6 @@
     "declaration": true,
     "emitDeclarationOnly": true
   },
-  "include": ["src/index.ts", "src/lib/**/*"],
+  "include": ["./global.d.ts", "src/index.ts", "src/lib/**/*"],
   "exclude": []
 }

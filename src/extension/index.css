@@ -2,8 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+.dark {
+  color-scheme: dark;
+}
+
+.ag-root-wrapper.ag-ltr.ag-layout-normal {
+  border: 0;
+}
 .ag-cell-focus {
   border: none !important;
+}
+.ag-header-container .ag-header-cell .ag-header-cell-resize::after {
+  height: 70%;
+  width: 20%;
+  top: 50%;
+  border-radius: 2px;
+  transform: translateY(-50%);
 }
 
 /** 

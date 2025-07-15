@@ -7,17 +7,6 @@ import type {
   MessagePanel,
 } from '../../types/shared';
 
-/* ------------------------------------------------------ */
-/**
- * This is used to keep the background script alive. More testing is needed to determine whether it is needed or not
- * since other KEEP_ALIVE methods are already implemented in the content script and panel script.
- * Code copied from: https://stackoverflow.com/questions/66618136/persistent-service-worker-in-chrome-extension
- */
-const keepAlive = () => setInterval(chrome.runtime.getPlatformInfo, 20e3);
-chrome.runtime.onStartup.addListener(keepAlive);
-keepAlive();
-/* ------------------------------------------------------ */
-
 const MAX_EVENTS = 1000;
 const ipcEvents = new Denque<IpcEventDataIndexed>();
 
@@ -34,8 +23,6 @@ function handlePanelMessage(message: MessagePanel): void {
     case MSG_TYPE.PING:
       connections.panel?.postMessage({ type: MSG_TYPE.PONG }); // (mimics `port.postMessage(...)`)
       break;
-    case MSG_TYPE.KEEP_ALIVE:
-      break;
     case MSG_TYPE.GET_ALL_EVENTS:
       for (let i = 0; i < ipcEvents.length; i++) {
         const event = ipcEvents.get(i);
@@ -49,7 +36,7 @@ function handlePanelMessage(message: MessagePanel): void {
       throw new Error(
         `Devtron - Background script: Unknown message type from panel: ${
           (message as MessagePanel).type
-        }`
+        }`,
       );
   }
 }
@@ -76,8 +63,6 @@ function handleContentMessage(message: MessageContentScript): void {
     case MSG_TYPE.ADD_IPC_EVENT:
       addIpcEvent(message.event);
       break;
-    case MSG_TYPE.KEEP_ALIVE:
-      break;
   }
 }
 
@@ -102,3 +87,5 @@ chrome.runtime.onConnect.addListener((port) => {
     });
   }
 });
+
+(globalThis as any).addIpcEvent = addIpcEvent;

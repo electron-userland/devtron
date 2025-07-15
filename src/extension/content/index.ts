@@ -11,19 +11,6 @@ function ensurePort() {
     });
   }
 }
-function startKeepAlivePing() {
-  setInterval(() => {
-    ensurePort();
-    if (port) {
-      port.postMessage({
-        type: MSG_TYPE.KEEP_ALIVE,
-      } satisfies MessageContentScript);
-    }
-  }, 10 * 1000); // 10 seconds
-}
-
-// Start the keep-alive ping
-startKeepAlivePing();
 
 if (!(window as any).__DEVTRON_CONTENT_SCRIPT_MSG_LISTENER__) {
   window.addEventListener('message', (event) => {
