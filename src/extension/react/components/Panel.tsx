@@ -82,6 +82,7 @@ function Panel() {
 
     /* ---------------------- DEV MODE ---------------------- */
     if (isDev) {
+      // the following import is ignored in production build using IgnorePlugin in webpack.extension.config.ts
       import('../test_data/test_data')
         .then((mod) => {
           setEvents(mod.events);

@@ -8,6 +8,7 @@ const entryPoints = {
 };
 
 const commonConfig: Configuration = {
+  mode: 'production',
   entry: entryPoints,
   module: {
     parser: {
