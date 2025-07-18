@@ -7,7 +7,7 @@ import type {
   MessagePanel,
 } from '../../types/shared';
 
-const MAX_EVENTS = 1000;
+const MAX_EVENTS = 20000;
 const ipcEvents = new Denque<IpcEventDataIndexed>();
 
 const connections: {
