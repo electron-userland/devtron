@@ -1,7 +1,7 @@
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import CopyPlugin from 'copy-webpack-plugin';
 import path from 'node:path';
-import type { Configuration } from 'webpack';
+import { IgnorePlugin, type Configuration } from 'webpack';
 const config: Configuration = {
   mode: 'production',
   entry: {
@@ -30,6 +30,9 @@ const config: Configuration = {
           to: path.resolve(__dirname, 'dist/extension'),
         },
       ],
+    }),
+    new IgnorePlugin({
+      resourceRegExp: /..\/test_data\/test_data$/, // to ignore test_data in production build
     }),
   ],
   module: {

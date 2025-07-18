@@ -115,7 +115,7 @@ async function install() {
     let devtron: Electron.Extension;
     try {
       // register service worker preload script
-      const dirname = __dirname; // __dirname is replaced with import.meta.dirname in ESM builds using webpack
+      const dirname = __dirname; // __dirname is replaced with import.meta.url in ESM builds using webpack
       const filePath = createRequire(dirname).resolve('@electron/devtron/service-worker-preload');
 
       ses.registerPreloadScript({

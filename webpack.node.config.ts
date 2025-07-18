@@ -51,7 +51,7 @@ const esmConfig: Configuration = {
   mode: 'none',
   plugins: [
     new DefinePlugin({
-      __dirname: 'import.meta.dirname',
+      __dirname: 'import.meta.url',
     }),
   ],
 };
