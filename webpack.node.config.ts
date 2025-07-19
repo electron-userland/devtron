@@ -51,7 +51,7 @@ const esmConfig: Configuration = {
   mode: 'none',
   plugins: [
     new DefinePlugin({
-      __MODULE_TYPE__: JSON.stringify('mjs'),
+      __dirname: 'import.meta.url',
     }),
   ],
 };
@@ -67,11 +67,6 @@ const cjsConfig: Configuration = {
   },
   target: 'node',
   mode: 'none',
-  plugins: [
-    new DefinePlugin({
-      __MODULE_TYPE__: JSON.stringify('cjs'),
-    }),
-  ],
 };
 
 const config: Configuration[] = [esmConfig, cjsConfig];
