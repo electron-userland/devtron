@@ -17,8 +17,8 @@
 
 ```js
 //main.js
-const { devtron } = require('@hitarth-gg/devtron');
-// or import { devtron } from '@hitarth-gg/devtron'
+const { devtron } = require('@electron/devtron');
+// or import { devtron } from '@electron/devtron'
 
 devtron.install(); // call this function at the top of your file
 ```
@@ -27,8 +27,8 @@ or call `devtron.install()` inside the `app.whenReady()` callback like this:
 
 ```js
 // main.js
-const { devtron } = require('@hitarth-gg/devtron');
-// or import { devtron } from '@hitarth-gg/devtron'
+const { devtron } = require('@electron/devtron');
+// or import { devtron } from '@electron/devtron'
 
 // function createWindow() {...}
 
