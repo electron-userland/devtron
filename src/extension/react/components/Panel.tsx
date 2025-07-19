@@ -35,7 +35,7 @@ import { useDevtronContext } from '../context/context';
 const isDev = process.env.NODE_ENV === 'development';
 
 function Panel() {
-  const MAX_EVENTS_TO_DISPLAY = 1000;
+  const MAX_EVENTS_TO_DISPLAY = 20000;
 
   const [events, setEvents] = useState<IpcEventDataIndexed[]>([]);
   const [selectedRow, setSelectedRow] = useState<IpcEventDataIndexed | null>(null);
