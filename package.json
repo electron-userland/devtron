@@ -8,15 +8,15 @@
       "require": "./dist/cjs/index.cjs",
       "types": "./dist/types/index.d.ts"
     },
-    "./monitorRenderer": {
-      "import": "./dist/mjs/electron-renderer-tracker.mjs",
-      "require": "./dist/cjs/electron-renderer-tracker.cjs",
-      "types": "./dist/types/lib/electron-renderer-tracker.d.ts"
-    },
     "./service-worker-preload": {
       "import": "./dist/mjs/service-worker-preload.mjs",
       "require": "./dist/cjs/service-worker-preload.cjs",
       "types": "./dist/types/lib/service-worker-preload.d.ts"
+    },
+    "./renderer-preload": {
+      "import": "./dist/mjs/renderer-preload.mjs",
+      "require": "./dist/cjs/renderer-preload.cjs",
+      "types": "./dist/types/lib/renderer-preload.d.ts"
     }
   },
   "scripts": {
