@@ -3,7 +3,7 @@ import { DefinePlugin, type Configuration } from 'webpack';
 
 const entryPoints = {
   index: './src/index.ts',
-  'electron-renderer-tracker': './src/lib/electron-renderer-tracker.ts',
+  'renderer-preload': './src/lib/renderer-preload.ts',
   'service-worker-preload': './src/lib/service-worker-preload.ts',
 };
 
