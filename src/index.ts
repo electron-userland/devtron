@@ -13,7 +13,7 @@ function trackIpcEvent(
   direction: Direction,
   channel: string,
   args: any[],
-  serviceWorker: Electron.ServiceWorkerMain,
+  devtronSW: Electron.ServiceWorkerMain,
 ) {
   const eventData: IpcEventData = {
     direction,
@@ -22,14 +22,14 @@ function trackIpcEvent(
     timestamp: Date.now(),
   };
 
-  if (serviceWorker === null) {
+  if (devtronSW === null) {
     console.error('The service-worker for Devtron is not registered yet. Cannot track IPC event.');
     return;
   }
-  serviceWorker.send('devtron-render-event', eventData);
+  devtronSW.send('devtron-render-event', eventData);
 }
 
-function registerIpcListeners(ses: Electron.Session, serviceWorker: Electron.ServiceWorkerMain) {
+function registerIpcListeners(ses: Electron.Session, devtronSW: Electron.ServiceWorkerMain) {
   ses.on(
     // @ts-expect-error: '-ipc-message' is an internal event
     '-ipc-message',
@@ -38,9 +38,9 @@ function registerIpcListeners(ses: Electron.Session, serviceWorker: Electron.Ser
       channel: string,
       args: any[],
     ) => {
-      if (event.type === 'frame') trackIpcEvent('renderer-to-main', channel, args, serviceWorker);
+      if (event.type === 'frame') trackIpcEvent('renderer-to-main', channel, args, devtronSW);
       else if (event.type === 'service-worker')
-        trackIpcEvent('service-worker-to-main', channel, args, serviceWorker);
+        trackIpcEvent('service-worker-to-main', channel, args, devtronSW);
     },
   );
 
@@ -52,9 +52,9 @@ function registerIpcListeners(ses: Electron.Session, serviceWorker: Electron.Ser
       channel: string,
       args: any[],
     ) => {
-      if (event.type === 'frame') trackIpcEvent('renderer-to-main', channel, args, serviceWorker);
+      if (event.type === 'frame') trackIpcEvent('renderer-to-main', channel, args, devtronSW);
       else if (event.type === 'service-worker')
-        trackIpcEvent('service-worker-to-main', channel, args, serviceWorker);
+        trackIpcEvent('service-worker-to-main', channel, args, devtronSW);
     },
   );
   ses.on(
@@ -65,9 +65,9 @@ function registerIpcListeners(ses: Electron.Session, serviceWorker: Electron.Ser
       channel: string,
       args: any[],
     ) => {
-      if (event.type === 'frame') trackIpcEvent('renderer-to-main', channel, args, serviceWorker);
+      if (event.type === 'frame') trackIpcEvent('renderer-to-main', channel, args, devtronSW);
       else if (event.type === 'service-worker')
-        trackIpcEvent('service-worker-to-main', channel, args, serviceWorker);
+        trackIpcEvent('service-worker-to-main', channel, args, devtronSW);
     },
   );
 }
