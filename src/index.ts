@@ -1,7 +1,7 @@
 import { app, session } from 'electron';
 import path from 'node:path';
 import { createRequire } from 'node:module';
-import type { Direction, IpcEventData } from './types/shared';
+import type { Direction, IpcEventData, ServiceWorkerDetails } from './types/shared';
 
 let isInstalled = false;
 let isInstalledToDefaultSession = false;
@@ -14,12 +14,14 @@ function trackIpcEvent(
   channel: string,
   args: any[],
   devtronSW: Electron.ServiceWorkerMain,
+  serviceWorkerDetails?: ServiceWorkerDetails,
 ) {
   const eventData: IpcEventData = {
     direction,
     channel,
     args,
     timestamp: Date.now(),
+    serviceWorkerDetails,
   };
 
   if (devtronSW === null) {
@@ -99,6 +101,10 @@ function registerServiceWorkerSendListener(
         args[0], // channel
         args.slice(1), // args
         devtronSW,
+        {
+          serviceWorkerScope: sw.scope,
+          serviceWorkerVersionId: sw.versionId,
+        },
       );
       return originalSend.apply(this, args);
     };
@@ -125,6 +131,10 @@ function registerServiceWorkerSendListener(
           args[0], // channel
           args.slice(1), // args
           devtronSW,
+          {
+            serviceWorkerScope: sw.scope,
+            serviceWorkerVersionId: sw.versionId,
+          },
         );
         return originalSend.apply(this, args);
       };
