@@ -72,11 +72,74 @@ function registerIpcListeners(ses: Electron.Session, serviceWorker: Electron.Ser
   );
 }
 
+/**
+ * Registers a listener for the service worker's send method to track IPC events
+ * sent from the main process to the service worker.
+ */
+function registerServiceWorkerSendListener(
+  ses: Electron.Session,
+  devtronSW: Electron.ServiceWorkerMain,
+): void {
+  const isInstalledSet = new Set<number>(); // stores version IDs of patched service workers
+
+  // register listener for existing service workers
+  const allRunning = ses.serviceWorkers.getAllRunning();
+  for (const vid in allRunning) {
+    const swInfo = allRunning[vid];
+
+    const sw = ses.serviceWorkers.getWorkerFromVersionID(Number(vid));
+
+    if (typeof sw === 'undefined' || sw.scope === devtronSW.scope) continue;
+    isInstalledSet.add(swInfo.versionId);
+
+    const originalSend = sw.send;
+    sw.send = function (...args) {
+      trackIpcEvent(
+        'main-to-service-worker',
+        args[0], // channel
+        args.slice(1), // args
+        devtronSW,
+      );
+      return originalSend.apply(this, args);
+    };
+  }
+
+  // register listener for new service workers
+  ses.serviceWorkers.on('running-status-changed', (details) => {
+    if (details.runningStatus === 'running' || details.runningStatus === 'starting') {
+      const sw = ses.serviceWorkers.getWorkerFromVersionID(details.versionId);
+
+      if (
+        typeof sw === 'undefined' ||
+        sw.scope === devtronSW.scope ||
+        isInstalledSet.has(sw.versionId)
+      )
+        return;
+
+      isInstalledSet.add(details.versionId);
+
+      const originalSend = sw.send;
+      sw.send = function (...args) {
+        trackIpcEvent(
+          'main-to-service-worker',
+          args[0], // channel
+          args.slice(1), // args
+          devtronSW,
+        );
+        return originalSend.apply(this, args);
+      };
+    } else if (details.runningStatus === 'stopped') {
+      isInstalledSet.delete(details.versionId);
+    }
+  });
+}
+
 async function startServiceWorker(ses: Electron.Session, extension: Electron.Extension) {
   try {
     const sw = await ses.serviceWorkers.startWorkerForScope(extension.url);
     sw.startTask();
     registerIpcListeners(ses, sw);
+    registerServiceWorkerSendListener(ses, sw);
   } catch (error) {
     console.warn(`Failed to start Devtron service-worker (${error}), trying again...`);
     /**
@@ -93,6 +156,7 @@ async function startServiceWorker(ses: Electron.Session, extension: Electron.Ext
           const sw = await ses.serviceWorkers.startWorkerForScope(extension.url);
           sw.startTask();
           registerIpcListeners(ses, sw);
+          registerServiceWorkerSendListener(ses, sw);
           ses.serviceWorkers.removeListener('registration-completed', handleDetails);
           console.log(`Devtron service-worker started successfully`);
         }
