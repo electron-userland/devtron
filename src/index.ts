@@ -116,16 +116,27 @@ async function install() {
     try {
       // register service worker preload script
       const dirname = __dirname; // __dirname is replaced with import.meta.url in ESM builds using webpack
-      const filePath = createRequire(dirname).resolve('@electron/devtron/service-worker-preload');
+      const serviceWorkerPreloadPath = createRequire(dirname).resolve(
+        '@electron/devtron/service-worker-preload',
+      );
+      const rendererPreloadPath = createRequire(dirname).resolve(
+        '@electron/devtron/renderer-preload',
+      );
 
       ses.registerPreloadScript({
-        filePath,
+        filePath: serviceWorkerPreloadPath,
         type: 'service-worker',
-        id: 'devtron-preload',
+        id: 'devtron-sw-preload',
+      });
+
+      ses.registerPreloadScript({
+        filePath: rendererPreloadPath,
+        type: 'frame',
+        id: 'devtron-renderer-preload',
       });
 
       // load extension
-      const extensionPath = path.resolve(filePath, '..', '..', 'extension');
+      const extensionPath = path.resolve(serviceWorkerPreloadPath, '..', '..', 'extension');
       devtron = await ses.extensions.loadExtension(extensionPath, { allowFileAccess: true });
       await startServiceWorker(ses, devtron);
       console.log('Devtron loaded successfully');

@@ -16,26 +16,11 @@
 - In your Electron app's `main.js` (or other relevant file) add the following code to load Devtron:
 
 ```js
-// main.js
+//main.js
 const { devtron } = require('@electron/devtron');
 // or import { devtron } from '@electron/devtron'
 
-// function createWindow() {...}
-
-app.whenReady().then(() => {
-  devtron.install();
-  // ...
-});
-```
-
-- In your Electron app's `preload.js` (or other relevant file) add the following code to load Devtron:
-
-```js
-// preload.js
-const { monitorRenderer } = require('@electron/devtron/monitorRenderer');
-// or import { monitorRenderer } from '@electron/devtron/monitorRenderer'
-
-monitorRenderer();
+devtron.install(); // call this function at the top of your file
 ```
 
 If Devtron is installed correctly, it should appear as a tab in the Developer Tools of your Electron app.
