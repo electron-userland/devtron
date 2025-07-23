@@ -23,21 +23,6 @@ const { devtron } = require('@electron/devtron');
 devtron.install(); // call this function at the top of your file
 ```
 
-or call `devtron.install()` inside the `app.whenReady()` callback like this:
-
-```js
-// main.js
-const { devtron } = require('@electron/devtron');
-// or import { devtron } from '@electron/devtron'
-
-// function createWindow() {...}
-
-app.whenReady().then(() => {
-  devtron.install();
-  // ...
-});
-```
-
 If Devtron is installed correctly, it should appear as a tab in the Developer Tools of your Electron app.
 
 <img src="https://github.com/user-attachments/assets/0f278b54-50fe-4116-9317-9c1525bf872b" width="800">
