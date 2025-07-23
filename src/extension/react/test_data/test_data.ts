@@ -96,7 +96,11 @@ export const events: IpcEventDataIndexed[] = [
     serialNumber: 129,
     direction: 'main-to-service-worker',
     channel: 'sw-check-2',
-    args: [],
+    args: ['Hello from main to service worker!'],
     timestamp: 1749114387250,
+    serviceWorkerDetails: {
+      serviceWorkerScope: 'chrome-extension://floigfkhicjhinimocdoblflbmefpjeg/',
+      serviceWorkerVersionId: 32,
+    },
   },
 ];
