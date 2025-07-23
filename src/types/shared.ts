@@ -4,6 +4,7 @@ export type Direction =
   | 'renderer-to-main'
   | 'main-to-renderer'
   | 'service-worker-to-main'
+  | 'main-to-service-worker'
   | 'renderer';
 export interface IpcEventData {
   direction: Direction;

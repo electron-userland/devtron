@@ -92,4 +92,11 @@ export const events: IpcEventDataIndexed[] = [
       },
     ],
   },
+  {
+    serialNumber: 129,
+    direction: 'main-to-service-worker',
+    channel: 'sw-check-2',
+    args: [],
+    timestamp: 1749114387250,
+  },
 ];
