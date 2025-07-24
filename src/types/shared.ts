@@ -11,6 +11,7 @@ export interface IpcEventData {
   args: any[];
   timestamp: number;
   method?: string;
+  responseTime?: number; // To track response time for `sendSync` and `invoke` methods
 }
 /* ------------------------------------------------------ */
 
