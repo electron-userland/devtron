@@ -219,6 +219,7 @@ function Panel() {
           <div className="font-medium dark:text-charcoal-100">Devtron</div>
           <div className="flex gap-2">
             <CircularButton
+              tooltip="Switch between Light and Dark theme"
               onClick={() => {
                 setTheme(theme === 'light' ? 'dark' : 'light');
               }}
@@ -230,6 +231,7 @@ function Panel() {
               )}
             </CircularButton>
             <CircularButton
+              tooltip="Toggle Detail Panel position (right/bottom)"
               onClick={() => {
                 setDetailPanelPosition(detailPanelPosition === 'right' ? 'bottom' : 'right');
               }}
@@ -242,6 +244,11 @@ function Panel() {
             </CircularButton>
 
             <CircularButton
+              tooltip={
+                lockToBottom
+                  ? 'Turn Auto Scrolling Off'
+                  : 'Turn Auto Scrolling On (Auto Scroll to newly added events)'
+              }
               active={lockToBottom}
               onClick={() => {
                 setLockToBottom(!lockToBottom);
@@ -255,7 +262,7 @@ function Panel() {
               )}
             </CircularButton>
 
-            <CircularButton onClick={clearEvents}>
+            <CircularButton tooltip="Clear all events" onClick={clearEvents}>
               <Ban strokeWidth={3} size={15} />
             </CircularButton>
           </div>
