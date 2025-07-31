@@ -138,8 +138,6 @@ function registerServiceWorkerSendListener(
         );
         return originalSend.apply(this, args);
       };
-    } else if (details.runningStatus === 'stopped') {
-      isInstalledSet.delete(details.versionId);
     }
   });
 }
