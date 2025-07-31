@@ -30,9 +30,6 @@ const commonConfig: Configuration = {
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
   },
-  externals: {
-    electron: 'commonjs2 electron',
-  },
 };
 
 const esmConfig: Configuration = {
@@ -54,6 +51,9 @@ const esmConfig: Configuration = {
       __dirname: 'import.meta.url',
     }),
   ],
+  externals: {
+    electron: 'module electron',
+  },
 };
 
 const cjsConfig: Configuration = {
@@ -67,6 +67,9 @@ const cjsConfig: Configuration = {
   },
   target: 'node',
   mode: 'none',
+  externals: {
+    electron: 'commonjs2 electron',
+  },
 };
 
 const config: Configuration[] = [esmConfig, cjsConfig];
