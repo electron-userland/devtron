@@ -23,7 +23,7 @@ const { devtron } = require('@electron/devtron');
 devtron.install(); // call this function at the top of your file
 ```
 
-Devtron can be conditionally installed in **development mode** to avoid impacting production builds. Here's an example:
+- Devtron can be conditionally installed in **development mode** to avoid impacting production builds. Here's an example:
 
 ```js
 const isDev = true
