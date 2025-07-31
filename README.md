@@ -16,7 +16,7 @@
 - In your Electron app's `main.js` (or other relevant file) add the following code to load Devtron:
 
 ```js
-//main.js
+// main.js
 const { devtron } = require('@electron/devtron');
 // or import { devtron } from '@electron/devtron'
 
