@@ -88,7 +88,7 @@
     "electron43": "npm:electron@^43",
     "html-webpack-plugin": "^5.6.3",
     "husky": "^9.1.7",
-    "lint-staged": "^16.4.0",
+    "lint-staged": "^17.4.1",
     "mocha": "^11.7.1",
     "oxfmt": "^0.44.0",
     "oxlint": "^1.59.0",
